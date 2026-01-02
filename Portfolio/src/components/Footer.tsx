@@ -7,9 +7,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <FaGithub />, href: 'https://github.com/omkarsonawane2004', label: 'GitHub' },
-    { icon: <FaLinkedin />, href: 'https://linkedin.com/in/omkar-sonawane', label: 'LinkedIn' },
-    { icon: <FaEnvelope />, href: 'mailto:omkarsonawane232@gmail.com', label: 'Email' },
+    { icon: <FaGithub />, href: 'https://github.com/Omkarcode11', label: 'GitHub' },
+    { icon: <FaLinkedin />, href: 'https://linkedin.com/in/omkardev', label: 'LinkedIn' },
+    { icon: <FaEnvelope />, href: 'mailto:omkarsonawaneomkar2@gmail.com', label: 'Email' },
   ];
 
   return (

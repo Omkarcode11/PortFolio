@@ -81,8 +81,8 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
             "url": "https://your-portfolio-domain.com",
             "jobTitle": "Full Stack Developer",
             "sameAs": [
-              "https://github.com/yourusername",
-              "https://linkedin.com/in/yourusername",
+              "https://github.com/Omkarcode11",
+              "https://linkedin.com/in/omkardev",
               "https://twitter.com/yourusername"
             ],
             "knowsAbout": ["React", "Next.js", "Node.js", "TypeScript", "AWS", "UI Design"]
