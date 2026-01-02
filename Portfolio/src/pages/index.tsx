@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SEO from '../components/SEO';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { getProjects, getSortedArticles } from '../lib/api';
@@ -66,123 +67,165 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
 
   return (
     <>
-      <Head>
-        <title>Portfolio | Creative Developer</title>
-        <meta
-          name="description"
-          content="Portfolio of a creative developer building premium web experiences."
-        />
-      </Head>
+      <SEO 
+        title="Creative Developer & UI Engineer"
+        description="Portfolio of a creative full-stack developer specializing in scalable SaaS architectures, reactive user interfaces, and performance-first web applications."
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Omkar",
+            "url": "https://your-portfolio-domain.com",
+            "jobTitle": "Full Stack Developer",
+            "sameAs": [
+              "https://github.com/yourusername",
+              "https://linkedin.com/in/yourusername",
+              "https://twitter.com/yourusername"
+            ],
+            "knowsAbout": ["React", "Next.js", "Node.js", "TypeScript", "AWS", "UI Design"]
+          })
+        }}
+      />
 
-      <section ref={targetRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        {/* Background Aurora Effect */}
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-cyan/20 rounded-full blur-[100px] animate-aurora mix-blend-screen" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-violet/20 rounded-full blur-[100px] animate-aurora animation-delay-2000 mix-blend-screen" />
-        
-        <motion.div style={{ opacity, scale, y } as any} className="container grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          
-          {/* Text Content */}
-          <div className="flex flex-col items-start text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="badge mb-8 backdrop-blur-sm bg-white/5 border-white/10 dark:bg-slate-900/50 dark:border-slate-800"
-            >
-              <span className="w-2 h-2 rounded-full bg-brand-cyan animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
-              <span className="font-semibold tracking-wide">Available for New Opportunities</span>
-            </motion.div>
+      <section ref={targetRef} className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden bg-[var(--bg-primary)]">
+        {/* Ambient Background - Aurora Effect */}
+        <div className="absolute top-[-20%] right-[-10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-brand-cyan/20 rounded-full blur-[80px] md:blur-[120px] animate-aurora mix-blend-screen -z-10" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-brand-violet/20 rounded-full blur-[80px] md:blur-[120px] animate-aurora animation-delay-2000 mix-blend-screen -z-10" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 -z-10" />
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-8"
-            >
-              Building <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet animate-gradient-x">
-                Digital Experiences
-              </span>
-            </motion.h1>
+        <motion.div style={{ opacity, scale, y } as any} className="container relative z-10 px-4 sm:px-6">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center">
+            
+            {/* Hero Content */}
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+              
+              {/* Status Badge & Social Proof */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-wrap items-center justify-center lg:justify-start gap-3"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-xs font-bold uppercase tracking-wider shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
+                  </span>
+                  Open to Work
+                </div>
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-secondary)] text-xs font-medium">
+                  <FaGithub className="text-[var(--text-primary)]" />
+                  <span>500+ Commits this year</span>
+                </div>
+              </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-[var(--text-secondary)] max-w-xl mb-10 leading-relaxed font-normal"
-            >
-              I engineer high-performance SaaS interfaces that merge technical precision with aesthetic excellence.
-            </motion.p>
+              {/* Main Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-[var(--text-primary)] via-[var(--text-primary)] to-[var(--text-secondary)]"
+              >
+                Crafting <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet animate-gradient-x pb-2">
+                  Digital Perfection
+                </span>
+              </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex gap-4"
-            >
-              <Link href="/projects" className="btn bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet text-white shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] border-none">
-                <span>View Projects</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </Link>
-              <Link href="/about" className="btn bg-white dark:bg-slate-800 text-[var(--text-primary)] border border-[var(--border-color)] hover:bg-[var(--bg-secondary)]">
-                About Me
-              </Link>
-            </motion.div>
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg md:text-xl text-[var(--text-secondary)] max-w-xl leading-relaxed font-normal"
+              >
+                Full-stack developer specializing in scalable SaaS architectures, reactive user interfaces, and performance-first web applications.
+              </motion.p>
 
-            {/* Social Proof */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="mt-12 flex gap-6 text-[var(--text-tertiary)]"
-            >
-              <a href="#" className="hover:text-brand-blue transition-colors hover:scale-110 transform duration-200"><FaGithub size={24} /></a>
-              <a href="#" className="hover:text-brand-blue transition-colors hover:scale-110 transform duration-200"><FaLinkedin size={24} /></a>
-              <a href="#" className="hover:text-brand-blue transition-colors hover:scale-110 transform duration-200"><FaTwitter size={24} /></a>
-            </motion.div>
-          </div>
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+              >
+                <Link href="/projects" className="btn bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet text-white shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] border-none text-base px-8 py-4 w-full sm:w-auto">
+                  View Projects
+                </Link>
+                <Link href="/about" className="btn bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-color)] hover:bg-[var(--bg-secondary)] text-base px-8 py-4 w-full sm:w-auto hover:border-brand-blue/30">
+                  About Me
+                </Link>
+              </motion.div>
+              
+              {/* Tech Stack Mini-Ticker (Mobile Optimized) */}
+              <motion.div 
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 transition={{ delay: 0.6 }}
+                 className="pt-8 w-full max-w-sm lg:max-w-none mx-auto lg:mx-0"
+              >
+                <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-tertiary)] mb-4">Trusted Tech Stack</p>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-[var(--text-secondary)] opacity-70">
+                   <SiNextdotjs size={24} />
+                   <SiTypescript size={24} />
+                   <SiTailwindcss size={24} />
+                   <FaNodeJs size={24} />
+                   <FaReact size={24} />
+                </div>
+              </motion.div>
+            </div>
 
-          {/* Visual Element (SaaS Dashboard Abstract) */}
-          <div className="relative hidden lg:block h-[600px] w-full perspective-1000">
-             <motion.div
-              initial={{ opacity: 0, rotateY: 15, x: 50 }}
-              animate={{ opacity: 1, rotateY: -5, x: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              {/* Main Glass Panel */}
-              <div className="relative w-[500px] h-[350px] bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl rounded-2xl border border-white/20 dark:border-slate-700 shadow-2xl z-20 overflow-hidden transform transition-transform hover:scale-[1.02] duration-500">
-                 {/* Fake UI Header */}
-                 <div className="h-12 border-b border-[var(--border-color)] flex items-center px-6 gap-2">
-                   <div className="w-3 h-3 rounded-full bg-red-400 opacity-50" />
-                   <div className="w-3 h-3 rounded-full bg-yellow-400 opacity-50" />
-                   <div className="w-3 h-3 rounded-full bg-green-400 opacity-50" />
-                 </div>
-                 {/* Fake UI Body */}
-                 <div className="p-8 space-y-4">
-                   <div className="flex gap-4">
-                      <div className="w-1/3 h-24 rounded-xl bg-gradient-to-br from-brand-cyan/10 to-brand-blue/10 animate-pulse" />
-                      <div className="w-1/3 h-24 rounded-xl bg-gradient-to-br from-brand-blue/10 to-brand-violet/10 animate-pulse delay-100" />
-                      <div className="w-1/3 h-24 rounded-xl bg-gradient-to-br from-brand-violet/10 to-brand-cyan/10 animate-pulse delay-200" />
+            {/* Visual Element (Desktop Only) */}
+            <div className="relative hidden lg:block h-[600px] w-full perspective-1000">
+               <motion.div
+                initial={{ opacity: 0, rotateY: 15, x: 50 }}
+                animate={{ opacity: 1, rotateY: -5, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="absolute inset-0 flex items-center justify-center transform hover:scale-[1.02] transition-transform duration-500 ease-out"
+              >
+                {/* Main Glass Panel */}
+                <div className="relative w-[500px] h-[350px] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl shadow-brand-blue/10 z-20 overflow-hidden">
+                   {/* Fake Window Controls */}
+                   <div className="h-12 border-b border-white/10 flex items-center px-6 gap-2 bg-white/5">
+                     <div className="w-3 h-3 rounded-full bg-red-400 opacity-80" />
+                     <div className="w-3 h-3 rounded-full bg-yellow-400 opacity-80" />
+                     <div className="w-3 h-3 rounded-full bg-green-400 opacity-80" />
                    </div>
-                   <div className="h-4 w-3/4 bg-slate-200 dark:bg-slate-700 rounded" />
-                   <div className="h-4 w-1/2 bg-slate-200 dark:bg-slate-700 rounded" />
-                   <div className="h-32 w-full bg-slate-100 dark:bg-slate-800 rounded-xl mt-4 border border-slate-200 dark:border-slate-700" />
-                 </div>
-              </div>
+                   {/* Content Area */}
+                   <div className="p-8 grid grid-cols-2 gap-4">
+                     <div className="col-span-2 h-32 rounded-2xl bg-gradient-to-br from-brand-cyan/20 to-brand-blue/20 border border-white/10 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+                     </div>
+                     <div className="h-24 rounded-2xl bg-white/5 border border-white/10" />
+                     <div className="h-24 rounded-2xl bg-white/5 border border-white/10" />
+                   </div>
+                </div>
 
-              {/* Floating Elements */}
-              <motion.div 
-                className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-brand-cyan to-brand-blue rounded-2xl opacity-20 blur-2xl z-10"
-                animate={{ y: [0, -20, 0], scale: [1, 1.1, 1] }}
-                transition={{ duration: 5, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute -bottom-5 -left-10 w-40 h-40 bg-gradient-to-br from-brand-violet to-brand-cyan rounded-full opacity-20 blur-2xl z-10"
-                animate={{ y: [0, 20, 0], scale: [1, 1.1, 1] }}
-                transition={{ duration: 7, repeat: Infinity }}
-              />
-            </motion.div>
+                {/* Floating Elements */}
+                <motion.div 
+                  className="absolute top-10 right-10 w-24 h-24 bg-gradient-to-br from-brand-violet to-brand-blue rounded-2xl z-30 shadow-lg border border-white/10 flex items-center justify-center text-white"
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <SiTypescript size={40} className="drop-shadow-md" />
+                </motion.div>
+
+                <motion.div 
+                  className="absolute -bottom-5 -left-5 w-20 h-20 bg-gradient-to-br from-brand-cyan to-brand-blue rounded-full z-30 shadow-lg border border-white/10 flex items-center justify-center text-white"
+                  animate={{ y: [0, 15, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                  <FaReact size={32} className="drop-shadow-md" />
+                </motion.div>
+                
+                {/* Glows */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-blue/20 blur-[100px] rounded-full -z-10" />
+              </motion.div>
+            </div>
+
           </div>
         </motion.div>
       </section>
