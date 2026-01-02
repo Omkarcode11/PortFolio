@@ -45,9 +45,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-[1000] backdrop-blur-2xl transition-all duration-500 ${
         scrolled
           ? 'bg-[var(--nav-blur)] border-b border-[var(--border-color)]'
-          : theme === 'dark'
-          ? 'bg-dark-900/70 border-b border-primary-500/10'
-          : 'bg-white/70 border-b border-primary-500/10'
+          : 'bg-transparent border-b border-transparent'
       }`}
       style={{
         boxShadow: scrolled ? 'var(--shadow-lg)' : 'none',
@@ -57,13 +55,13 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-black tracking-tighter z-[1001] text-[var(--text-primary)] hover:text-primary-500 transition-colors group font-heading"
+          className="text-2xl font-black tracking-tight z-[1001] text-[var(--text-primary)] hover:text-brand-blue transition-colors group font-heading"
         >
           <span className="relative">
             Portfolio
-            <span className="text-primary-500">.</span>
+            <span className="text-brand-blue">.</span>
             <motion.span
-              className="absolute -bottom-1 left-0 h-0.5 bg-primary-500"
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-brand-cyan to-brand-violet"
               initial={{ width: 0 }}
               whileHover={{ width: '100%' }}
               transition={{ duration: 0.3 }}
@@ -77,17 +75,17 @@ const Navbar = () => {
             <Link
               key={link.path}
               href={link.path}
-              className={`relative px-4 py-2 text-sm lg:text-base font-semibold rounded-lg transition-all duration-300 ${
+              className={`relative px-4 py-2 text-sm lg:text-base font-semibold rounded-full transition-all duration-300 ${
                 router.pathname === link.path
-                  ? 'text-primary-500 bg-primary-500/10'
-                  : 'text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-secondary)]'
+                  ? 'text-brand-blue bg-brand-blue/10 dark:text-brand-blue dark:bg-brand-blue/20'
+                  : 'text-[var(--text-secondary)] hover:text-brand-blue hover:bg-[var(--bg-secondary)]'
               }`}
             >
               {link.name}
               {router.pathname === link.path && (
                 <motion.span
                   layoutId="navbar-indicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-500"
+                  className="absolute inset-0 rounded-full bg-brand-blue/5 dark:bg-brand-blue/20"
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
@@ -97,9 +95,8 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="ml-2 w-11 h-11 rounded-xl border-2 border-[var(--border-color)] flex items-center justify-center text-xl cursor-pointer transition-all duration-300 hover:border-primary-500 hover:bg-primary-500/10 hover:scale-105 text-[var(--text-primary)]"
+            className="ml-2 w-10 h-10 rounded-full border border-[var(--border-color)] flex items-center justify-center text-lg cursor-pointer transition-all duration-300 hover:border-brand-blue hover:bg-brand-blue/10 hover:text-brand-blue text-[var(--text-primary)]"
             aria-label="Toggle Dark Mode"
-            style={{ boxShadow: 'var(--shadow-sm)' }}
           >
             <motion.span
               key={theme}
@@ -152,7 +149,7 @@ const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center justify-between font-bold text-lg py-4 px-5 rounded-xl transition-all duration-300 ${
                       router.pathname === link.path
-                        ? 'text-primary-500 bg-primary-500/15 shadow-md'
+                        ? 'text-brand-blue bg-brand-blue/15 shadow-md'
                         : 'text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] active:scale-95'
                     }`}
                   >
@@ -175,8 +172,7 @@ const Navbar = () => {
                   toggleTheme();
                   setIsOpen(false);
                 }}
-                className="flex items-center justify-center gap-3 py-4 px-5 mt-3 rounded-xl border-2 border-[var(--border-color)] font-bold text-base transition-all duration-300 hover:bg-[var(--bg-tertiary)] hover:border-primary-500 active:scale-95 text-[var(--text-primary)]"
-                style={{ boxShadow: 'var(--shadow-sm)' }}
+                className="flex items-center justify-center gap-3 py-4 px-5 mt-3 rounded-xl border-2 border-[var(--border-color)] font-bold text-base transition-all duration-300 hover:bg-[var(--bg-tertiary)] hover:border-brand-blue active:scale-95 text-[var(--text-primary)] shadow-sm"
               >
                 <span className="text-2xl">{theme === 'light' ? '🌙' : '☀️'}</span>
                 <span>{theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}</span>

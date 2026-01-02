@@ -2,117 +2,118 @@
 
 @theme {
   /* Font Families */
-  --font-heading: var(--font-outfit), sans-serif;
-  --font-sans: var(--font-jakarta), sans-serif;
+  --font-heading: "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
 
-  /* Primary Collection - Indigo/Violet */
+  /* Aurora Brand Colors */
+  --color-brand-cyan: #22d3ee;
+  --color-brand-blue: #3b82f6;
+  --color-brand-violet: #8b5cf6;
+  
+  /* Aliases for Backward Compatibility & Theme Mapping */
+  /* Secondary -> Violet */
+  --color-secondary-50: #f5f3ff;
+  --color-secondary-100: #ede9fe;
+  --color-secondary-200: #ddd6fe;
+  --color-secondary-300: #c4b5fd;
+  --color-secondary-400: #a78bfa;
+  --color-secondary-500: #8b5cf6;
+  --color-secondary-600: #7c3aed;
+  --color-secondary-700: #6d28d9;
+  --color-secondary-800: #5b21b6;
+  --color-secondary-900: #4c1d95;
+  
+  /* Accent -> Cyan */
+  --color-accent-50: #ecfeff;
+  --color-accent-100: #cffafe;
+  --color-accent-200: #a5f3fc;
+  --color-accent-300: #67e8f9;
+  --color-accent-400: #22d3ee;
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
+  --color-accent-800: #155e75;
+  --color-accent-900: #164e63;
+
+  /* Primary Grid - Aurora Gradient stops */
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
   --color-primary-200: #bfdbfe;
   --color-primary-300: #93c5fd;
   --color-primary-400: #60a5fa;
-  --color-primary-500: #4f46e5;
-  --color-primary-600: #4338ca;
-  --color-primary-700: #3730a3;
-  --color-primary-800: #312e81;
-  --color-primary-900: #1e1b4b;
+  --color-primary-500: #3b82f6; /* Blue Core */
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  
+  /* Neutrals - Slate */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
 
-  /* Secondary Collection - Electric Purple */
-  --color-secondary-500: #a855f7;
-  --color-secondary-600: #9333ea;
+  --animate-aurora: aurora 10s ease infinite;
 
-  /* Accent Collection - Cyan/Sky */
-  --color-accent-500: #06b6d4;
-  --color-accent-600: #0891b2;
-
-  /* Neutrals - Slate/Zinc */
-  --color-dark-50: #fafafa;
-  --color-dark-100: #f4f4f5;
-  --color-dark-200: #e4e4e7;
-  --color-dark-300: #d4d4d8;
-  --color-dark-400: #a1a1aa;
-  --color-dark-500: #71717a;
-  --color-dark-600: #52525b;
-  --color-dark-700: #3f3f46;
-  --color-dark-800: #27272a;
-  --color-dark-900: #18181b;
-  --color-dark-950: #09090b;
-
-  --animate-ripple: ripple 3s ease-out infinite;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-shimmer: shimmer 2s linear infinite;
-
-  @keyframes ripple {
-    0% { transform: scale(0.8); opacity: 0.5; }
-    100% { transform: scale(2.5); opacity: 0; }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-
-  @keyframes shimmer {
-    from { background-position: 0 0; }
-    to { background-position: -200% 0; }
+  @keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 }
 
 @layer base {
   :root {
-    --nav-height: 80px;
+    --nav-height: 72px;
     
-    /* Semantic Colors */
-    --accent-primary: #4f46e5;
-    --accent-secondary: #a855f7;
-    --accent-tertiary: #06b6d4;
-    
-    /* Light Mode Base */
+    /* Aurora Light Mode */
     --bg-primary: #ffffff;
-    --bg-secondary: #fafafa;
-    --bg-tertiary: #f4f4f5;
-    --bg-card: rgba(255, 255, 255, 0.8);
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: #ffffff;
     
-    --text-primary: #18181b;
-    --text-secondary: #52525b;
-    --text-tertiary: #a1a1aa;
+    --text-primary: #0f172a;   /* Slate 900 */
+    --text-secondary: #64748b; /* Slate 500 */
+    --text-tertiary: #94a3b8;  /* Slate 400 */
     
-    --border-color: #e4e4e7;
-    --border-color-hover: #d4d4d8;
+    --border-color: #e2e8f0;   /* Slate 200 */
+    --border-color-hover: #cbd5e1;
     
-    --nav-blur: rgba(255, 255, 255, 0.8);
+    --nav-blur: rgba(255, 255, 255, 0.9);
     
-    /* Shadows & Glows */
+    /* Shadows - Soft & Premium */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --glow-primary: 0 0 20px rgba(79, 70, 229, 0.2);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.01);
+    --glow-primary: 0 0 15px rgba(59, 130, 246, 0.3);
   }
 
   [data-theme='dark'] {
-    --accent-primary: #6366f1;
-    --accent-secondary: #c084fc;
-    --accent-tertiary: #22d3ee;
-
-    /* Dark Mode Base */
-    --bg-primary: #09090b; /* Deep Zinc Black */
-    --bg-secondary: #18181b;
-    --bg-tertiary: #27272a;
-    --bg-card: rgba(24, 24, 27, 0.7);
-
-    --text-primary: #fafafa;
-    --text-secondary: #a1a1aa;
-    --text-tertiary: #71717a;
-
-    --border-color: #27272a;
-    --border-color-hover: #3f3f46;
-
-    --nav-blur: rgba(9, 9, 11, 0.8);
+    /* Aurora Dark Mode */
+    --bg-primary: #0f172a;    /* Slate 900 */
+    --bg-secondary: #1e293b;  /* Slate 800 */
+    --bg-tertiary: #334155;   /* Slate 700 */
+    --bg-card: #1e293b;
     
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
-    --glow-primary: 0 0 30px rgba(99, 102, 241, 0.15);
+    --text-primary: #f8fafc;  /* Slate 50 */
+    --text-secondary: #94a3b8;/* Slate 400 */
+    --text-tertiary: #64748b; /* Slate 500 */
+    
+    --border-color: #334155;  /* Slate 700 */
+    --border-color-hover: #475569;
+    
+    --nav-blur: rgba(15, 23, 42, 0.9);
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+    --glow-primary: 0 0 25px rgba(59, 130, 246, 0.2);
   }
 
   html {
@@ -120,26 +121,23 @@
   }
 
   body {
-    font-family: var(--font-jakarta), sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
     @apply bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased leading-relaxed;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-outfit), sans-serif;
+    font-family: var(--font-heading), system-ui, sans-serif;
     @apply font-bold tracking-tight text-[var(--text-primary)];
   }
 
-  h1 { @apply text-5xl md:text-6xl lg:text-7xl; }
-  h2 { @apply text-3xl md:text-4xl lg:text-5xl; }
+  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
+  h2 { @apply text-3xl md:text-4xl; }
   h3 { @apply text-2xl md:text-3xl; }
 
   /* Utilities */
-  .font-heading {
-    font-family: var(--font-outfit), sans-serif;
-  }
-  .font-sans {
-    font-family: var(--font-jakarta), sans-serif;
+  .font-heading, .font-sans {
+    font-family: "Inter", sans-serif;
   }
 }
 
@@ -274,3 +272,24 @@
 .tech-item:hover .tech-icon {
   @apply scale-110 rotate-3;
 }
+
+  /* Modal Styles */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4;
+  }
+
+  .modal-content {
+    @apply w-full max-w-md bg-[var(--bg-card)] rounded-3xl p-8 border border-[var(--border-color)] shadow-2xl relative overflow-hidden;
+    animation: modal-in 0.3s ease-out;
+  }
+
+  /* Aurora Gradient Border/Glow for Modal */
+  .modal-content::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet;
+  }
+
+  @keyframes modal-in {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }

@@ -34,11 +34,9 @@ const AnimatedBackground = () => {
       />
 
       {/* Animated Gradient Orbs */}
+      {/* Animated Gradient Orbs */}
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-20"
-        style={{
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%)',
-        }}
         animate={{
           x: [0, 100, 0],
           y: [0, 150, 0],
@@ -49,13 +47,15 @@ const AnimatedBackground = () => {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        style={{ top: '10%', left: '10%' }}
+        style={{ 
+          background: 'radial-gradient(circle, var(--color-brand-blue) 0%, transparent 70%)',
+          top: '10%', 
+          left: '10%',
+          opacity: 0.2 // explicitly set opacity in style if needed for motion value, but here it's static
+        }}
       />
       <motion.div
         className="absolute w-[500px] h-[500px] rounded-full blur-[100px] opacity-20"
-        style={{
-          background: 'radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, transparent 70%)',
-        }}
         animate={{
           x: [0, -120, 0],
           y: [0, 100, 0],
@@ -66,7 +66,11 @@ const AnimatedBackground = () => {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        style={{ top: '50%', right: '10%' }}
+        style={{ 
+          background: 'radial-gradient(circle, var(--color-brand-cyan) 0%, transparent 70%)',
+          top: '50%', 
+          right: '10%' 
+        }}
       />
 
       {/* Ripple Circles */}

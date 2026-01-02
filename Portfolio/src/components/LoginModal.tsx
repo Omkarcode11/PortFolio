@@ -40,6 +40,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
           onClick={onClose}
           className="modal-overlay"
         >
@@ -47,63 +48,75 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
             className="modal-content"
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-2xl text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              className="absolute top-4 right-4 text-2xl text-[var(--text-secondary)] hover:text-brand-blue transition-colors z-20"
               aria-label="Close"
             >
               ×
             </button>
 
-            <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
+            <div className="text-center mb-8 pt-4">
+              <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-brand-cyan to-brand-violet bg-clip-text text-transparent">Admin Access</h2>
+              <p className="text-[var(--text-secondary)] text-sm">Enter your credentials to continue</p>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
               <div>
+                <label className="block text-sm font-semibold mb-1 ml-1 text-[var(--text-primary)]">Username</label>
                 <input
                   type="text"
-                  placeholder="Username"
+                  placeholder="admin"
                   value={credentials.username}
                   onChange={(e) =>
                     setCredentials({ ...credentials, username: e.target.value })
                   }
-                  className="form-input"
+                  className="form-input focus:border-brand-blue focus:shadow-brand-blue/10"
                   required
                 />
               </div>
               <div>
+                <label className="block text-sm font-semibold mb-1 ml-1 text-[var(--text-primary)]">Password</label>
                 <input
                   type="password"
-                  placeholder="Password"
+                  placeholder="••••••••"
                   value={credentials.password}
                   onChange={(e) =>
                     setCredentials({ ...credentials, password: e.target.value })
                   }
-                  className="form-input"
+                  className="form-input focus:border-brand-violet focus:shadow-brand-violet/10"
                   required
                 />
               </div>
 
               {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
+                <motion.div 
+                  initial={{ opacity: 0, y: -10 }} 
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm text-center font-medium"
+                >
+                  {error}
+                </motion.div>
               )}
 
               <button
                 type="submit"
                 disabled={loading}
-                className="btn w-full justify-center disabled:opacity-50"
+                className="btn w-full justify-center bg-gradient-to-r from-brand-blue to-brand-violet border-none shadow-lg shadow-brand-blue/20"
               >
-                {loading ? 'Signing in...' : 'Sign In'}
+                {loading ? 'Verifying...' : 'Authenticate'}
               </button>
             </form>
 
-            <p className="text-xs text-[var(--text-secondary)] text-center mt-6">
-              Press <kbd className="px-2 py-1 bg-[var(--bg-tertiary)] rounded text-xs">Ctrl</kbd> +{' '}
-              <kbd className="px-2 py-1 bg-[var(--bg-tertiary)] rounded text-xs">Alt</kbd> +{' '}
-              <kbd className="px-2 py-1 bg-[var(--bg-tertiary)] rounded text-xs">A</kbd> to open this modal
-            </p>
+            <div className="mt-6 pt-6 border-t border-[var(--border-color)] text-center">
+              <p className="text-xs text-[var(--text-secondary)]">
+                Secure Gateway • Portfolio Admin
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       )}

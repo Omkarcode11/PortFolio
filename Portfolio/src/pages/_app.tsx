@@ -3,17 +3,11 @@ import { SessionProvider } from 'next-auth/react';
 import { ThemeProvider } from '../hooks/useTheme';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
-import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-const outfit = Outfit({ 
+const inter = Inter({ 
   subsets: ['latin'], 
-  variable: '--font-outfit',
-  display: 'swap',
-});
-
-const plusJakarta = Plus_Jakarta_Sans({ 
-  subsets: ['latin'], 
-  variable: '--font-jakarta',
+  variable: '--font-sans',
   display: 'swap',
 });
 
@@ -21,7 +15,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <SessionProvider session={session}>
       <ThemeProvider>
-        <div className={`${outfit.variable} ${plusJakarta.variable} font-sans`}>
+        <div className={`${inter.variable} font-sans`}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
