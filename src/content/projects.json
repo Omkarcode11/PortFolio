@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "real-time-chat-app",
+    "title": "Real-Time Chat App",
+    "description": "A scalable real-time chat backend built with Node.js, Socket.IO, and MongoDB. Supports typing indicators, read receipts, and handles 200+ concurrent users with sub-150ms latency.",
+    "tags": ["Node.js", "Socket.IO", "MongoDB", "JWT", "WebSockets"],
+    "link": "https://github.com/Omkarcode11",
+    "github": "https://github.com/Omkarcode11",
+    "image": "https://placehold.co/600x400/2563eb/ffffff?text=Real-Time+Chat"
+  },
+  {
+      "slug": "job-automation-system",
+      "title": "Job Data Automation System",
+      "description": "High-performance scraping and data pipeline system capable of processing 20,000+ job listings with CAPTCHA handling and retry logic.",
+      "tags": ["Puppeteer", "Node.js", "Automation", "Redis"],
+      "link": "https://github.com/Omkarcode11",
+      "github": "https://github.com/Omkarcode11",
+      "image": "https://placehold.co/600x400/10b981/ffffff?text=Automation+System"
+  },
+  {
+    "slug": "shopify-theme-optimization",
+    "title": "Shopify App Optimization",
+    "description": "Performance engineering project achieving 70% faster load times (3.2s to <1s) via caching, asset optimization, and lazy loading strategies.",
+    "tags": ["Performance", "JavaScript", "Shopify", "Optimization"],
+    "link": "https://github.com/Omkarcode11",
+    "github": "https://github.com/Omkarcode11",
+    "image": "https://placehold.co/600x400/eb2563/ffffff?text=Performance+Eng"
+  }
+]
