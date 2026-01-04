@@ -16,7 +16,9 @@ export async function getSortedArticles() {
   await dbConnect();
   const articles = await Article.find({}).sort({ date: -1 }).lean();
   return articles.map((a: any) => ({
-      ...a, _id: a._id.toString(), createdAt: (a.createdAt as Date).toISOString()
+      ...a, 
+      _id: a._id.toString(), 
+      ...(a.createdAt && typeof a.createdAt === 'object' && a.createdAt.toISOString ? { createdAt: a.createdAt.toISOString() } : {})
   }));
 }
 
@@ -35,7 +37,10 @@ export async function getArticleData(slug: string) {
   await dbConnect();
   const article = await Article.findOne({ slug }).lean();
   if (!article) return null;
+  const a = article as any;
   return {
-      ...article, _id: (article as any)._id.toString(), createdAt: ((article as any).createdAt as Date).toISOString()
+      ...article, 
+      _id: a._id.toString(), 
+      ...(a.createdAt && typeof a.createdAt === 'object' && a.createdAt.toISOString ? { createdAt: a.createdAt.toISOString() } : {})
   };
 }
