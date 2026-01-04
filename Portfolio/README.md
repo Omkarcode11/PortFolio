@@ -20,14 +20,18 @@ A premium, high-performance portfolio website built with **Next.js 16**, **TypeS
 
 ### 🚀 Performance & SEO
 -   **High Performance**: Built with Next.js 16 (Turbopack) for blazing-fast builds
--   **SEO Optimized**: Meta tags, sitemap, semantic HTML, and Open Graph support
+-   **Core Web Vitals**: Zero CLS (Cumulative Layout Shift), optimized LCP and INP
+-   **SEO Optimized**: Comprehensive meta tags, JSON-LD schema markup, sitemap, and Open Graph
 -   **Static Generation**: ISR (Incremental Static Regeneration) for optimal performance
--   **Image Optimization**: Next.js Image component for optimized assets
+-   **Image Optimization**: Next.js Image component with lazy loading and blur placeholders
+-   **Mobile-First**: Optimized for touch interactions and mobile performance
 
 ### 📝 Content Management
 -   **Easy Content Updates**: Update content via JSON and Markdown files
 -   **Admin Dashboard**: Secure admin interface for content management
--   **MongoDB Integration**: Dynamic content storage and retrieval
+-   **MongoDB Integration**: Dynamic content storage and retrieval with Mongoose ODM
+-   **RESTful API**: Full CRUD operations for projects, articles, and resume
+-   **API Documentation**: Interactive Swagger/OpenAPI documentation at `/api-docs`
 -   **Markdown Support**: Write articles in Markdown with syntax highlighting
 
 ### 🎭 Animations
@@ -128,7 +132,47 @@ npm start
 
 ## 📝 Content Management
 
-### Method 1: JSON/Markdown Files
+### Method 1: Admin Dashboard (Recommended)
+
+1. **Access the Admin Dashboard**
+   - Navigate to `/admin/login`
+   - Login with credentials from `.env.local`
+
+2. **Manage Content**
+   - Add/Edit/Delete projects
+   - Create and publish articles
+   - Update resume information
+   - All changes are saved to MongoDB
+
+### Method 2: API Endpoints
+
+Use the RESTful API to manage content programmatically:
+
+```bash
+# Projects
+GET    /api/projects          # Get all projects
+POST   /api/projects          # Create project (auth required)
+GET    /api/projects/:id      # Get project by ID
+PUT    /api/projects/:id      # Update project (auth required)
+DELETE /api/projects/:id      # Delete project (auth required)
+
+# Articles
+GET    /api/articles          # Get all articles
+POST   /api/articles          # Create article (auth required)
+GET    /api/articles/:id      # Get article by ID
+PUT    /api/articles/:id      # Update article (auth required)
+DELETE /api/articles/:id      # Delete article (auth required)
+
+# Resume
+GET    /api/resume            # Get resume data
+PUT    /api/resume            # Update resume (auth required)
+```
+
+**API Documentation**: Visit `/api-docs` for interactive Swagger documentation (requires authentication).
+
+**Postman Collection**: Import `Portfolio_API.postman_collection.json` for easy testing.
+
+### Method 3: JSON/Markdown Files
 
 #### Adding a New Project
 Open `src/content/projects.json` and add a new entry:
@@ -159,21 +203,6 @@ tags: ["Tech", "Development"]
 Write your article content here using Markdown syntax...
 ```
 
-### Method 2: Admin Dashboard
-
-1. **Access the Admin Dashboard**
-   - **Keyboard Shortcut**: Press `Ctrl + Alt + A` on any page
-   - **Direct URL**: Navigate to `/admin/login`
-
-2. **Login**
-   - Use credentials from `.env.local`
-   - Default: `admin` / `admin` (change in production!)
-
-3. **Manage Content**
-   - Add/Edit projects
-   - Write articles
-   - Update resume information
-   - Manage skills and experience
 
 ## 🎨 Design System
 
@@ -221,29 +250,82 @@ See `DESIGN_SYSTEM.md` and `UI_UX_IMPROVEMENTS.md` for detailed documentation.
 ### Premium UI/UX
 - Glassmorphism effects with backdrop blur
 - Gradient backgrounds and text effects
-- Smooth animations and transitions
-- Interactive hover states
-- Loading states and skeletons
+- Smooth animations with Framer Motion
+- Interactive hover states and micro-interactions
+- Loading states and skeleton screens
+- Mobile-first responsive design
 
 ### Dark Mode
 - System preference detection
 - Manual toggle with smooth transitions
 - Persistent theme preference
 - Optimized colors for both modes
+- No flash of unstyled content (FOUC)
 
-### Performance
-- Static generation with ISR
-- Image optimization
-- Code splitting
-- Lazy loading
-- Optimized animations
+### Performance & Optimization
+- **Core Web Vitals Compliant**:
+  - CLS: 0 (Perfect score)
+  - LCP: < 2.5s
+  - INP: < 200ms
+- Static generation with ISR (Incremental Static Regeneration)
+- Next.js Image optimization with blur placeholders
+- Code splitting and lazy loading
+- Optimized bundle size
+- Server-side rendering (SSR) where needed
+
+### SEO & Discoverability
+- Comprehensive meta tags (Open Graph, Twitter Cards)
+- JSON-LD structured data (Schema.org)
+- Dynamic sitemap.xml generation
+- Robots.txt configuration
+- Semantic HTML5 markup
+- Optimized for AI search engines (ChatGPT, Perplexity, Google AI)
 
 ### Accessibility
-- Semantic HTML
-- ARIA labels
-- Keyboard navigation
-- Screen reader support
-- WCAG AA compliant colors
+- WCAG 2.1 AA compliant
+- Semantic HTML structure
+- ARIA labels and roles
+- Keyboard navigation support
+- Screen reader optimized
+- `prefers-reduced-motion` support
+- 44x44px minimum touch targets
+- Skip to main content link
+
+## 📚 Documentation
+
+Additional documentation files included in this repository:
+
+- **[API_DOCUMENTATION.md](./API_DOCUMENTATION.md)** - Complete API reference with examples
+- **[SWAGGER_SETUP.md](./SWAGGER_SETUP.md)** - Guide for API documentation setup
+- **[CLS_FIX_ANALYSIS.md](./CLS_FIX_ANALYSIS.md)** - Technical analysis of CLS optimization
+- **[MOBILE_UX_REVIEW.md](./MOBILE_UX_REVIEW.md)** - Mobile optimization guidelines
+- **[Portfolio_API.postman_collection.json](./Portfolio_API.postman_collection.json)** - Postman collection for API testing
+
+## 🐛 Troubleshooting
+
+### Build Errors
+
+**Issue**: `createdAt.toISOString is not a function`
+```bash
+# Solution: Clear Next.js cache and rebuild
+Remove-Item -Recurse -Force .next
+npm run build
+```
+
+**Issue**: MongoDB connection errors
+```bash
+# Verify your MONGODB_URI in .env.local
+# Ensure MongoDB is running (local) or accessible (Atlas)
+```
+
+### Development Issues
+
+**Issue**: Changes not reflecting
+```bash
+# Clear cache and restart dev server
+Remove-Item -Recurse -Force .next
+npm run dev
+```
 
 ## 📸 Screenshots
 
