@@ -6,7 +6,9 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from './api/auth/[...nextauth]';
 
 // Dynamically import SwaggerUI to avoid SSR issues
+// @ts-ignore - swagger-ui-react module resolution
 const SwaggerUI = dynamic<any>(() => import('swagger-ui-react'), { ssr: false });
+// @ts-ignore - swagger-ui-react css
 import 'swagger-ui-react/swagger-ui.css';
 
 export default function ApiDocs() {
