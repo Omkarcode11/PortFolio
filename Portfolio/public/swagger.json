@@ -1,0 +1,1057 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Portfolio API",
+    "version": "1.0.0",
+    "description": "Complete API documentation for Portfolio website - Projects, Articles, and Resume endpoints",
+    "contact": {
+      "name": "API Support",
+      "email": "support@example.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Development Server"
+    },
+    {
+      "url": "https://yourdomain.com",
+      "description": "Production Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Projects",
+      "description": "Project management endpoints"
+    },
+    {
+      "name": "Articles",
+      "description": "Article/blog management endpoints"
+    },
+    {
+      "name": "Resume",
+      "description": "Resume management endpoints"
+    }
+  ],
+  "paths": {
+    "/api/projects": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get all projects",
+        "description": "Retrieve a list of all projects (public endpoint)",
+        "operationId": "getAllProjects",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectsResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": [
+                    {
+                      "_id": "507f1f77bcf86cd799439011",
+                      "slug": "real-time-chat-app",
+                      "title": "Real-Time Chat App",
+                      "description": "A scalable real-time chat backend built with Node.js, Socket.IO, and MongoDB.",
+                      "tags": ["Node.js", "Socket.IO", "MongoDB", "JWT"],
+                      "link": "https://example.com",
+                      "github": "https://github.com/username/repo",
+                      "image": "/images/projects/chat-app.jpg",
+                      "createdAt": "2024-01-01T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Projects"],
+        "summary": "Create a new project",
+        "description": "Create a new project (authentication required)",
+        "operationId": "createProject",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectInput"
+              },
+              "examples": {
+                "basic": {
+                  "summary": "Basic Project",
+                  "value": {
+                    "slug": "my-awesome-project",
+                    "title": "My Awesome Project",
+                    "description": "A detailed description of the project and what it does. This can be multiple sentences long describing the features and technologies used.",
+                    "tags": ["React", "Node.js", "TypeScript", "MongoDB"],
+                    "link": "https://myproject.com",
+                    "github": "https://github.com/username/my-awesome-project",
+                    "image": "/images/projects/my-awesome-project.jpg"
+                  }
+                },
+                "minimal": {
+                  "summary": "Minimal Project (required fields only)",
+                  "value": {
+                    "slug": "simple-project",
+                    "title": "Simple Project",
+                    "description": "A simple project description",
+                    "tags": ["JavaScript"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Project created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": {
+                    "_id": "507f1f77bcf86cd799439012",
+                    "slug": "my-awesome-project",
+                    "title": "My Awesome Project",
+                    "description": "A detailed description...",
+                    "tags": ["React", "Node.js", "TypeScript"],
+                    "link": "https://myproject.com",
+                    "github": "https://github.com/username/my-awesome-project",
+                    "image": "/images/projects/my-awesome-project.jpg",
+                    "createdAt": "2024-01-15T10:30:00.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}": {
+      "get": {
+        "tags": ["Projects"],
+        "summary": "Get project by ID",
+        "description": "Retrieve a single project by its MongoDB ObjectID (public endpoint)",
+        "operationId": "getProjectById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "MongoDB ObjectID of the project",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{24}$",
+              "example": "507f1f77bcf86cd799439011"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Projects"],
+        "summary": "Update project",
+        "description": "Update an existing project by ID (authentication required). You can update any fields - only include the fields you want to update.",
+        "operationId": "updateProject",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{24}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectUpdateInput"
+              },
+              "examples": {
+                "updateTitle": {
+                  "summary": "Update title only",
+                  "value": {
+                    "title": "Updated Project Title"
+                  }
+                },
+                "updateMultiple": {
+                  "summary": "Update multiple fields",
+                  "value": {
+                    "title": "Updated Project Title",
+                    "description": "Updated description",
+                    "tags": ["React", "Node.js", "Updated Tag"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Projects"],
+        "summary": "Delete project",
+        "description": "Delete a project by ID (authentication required)",
+        "operationId": "deleteProject",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{24}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Project deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/articles": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Get all articles",
+        "description": "Retrieve a list of all articles (public endpoint)",
+        "operationId": "getAllArticles",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticlesResponse"
+                },
+                "example": {
+                  "success": true,
+                  "data": [
+                    {
+                      "_id": "507f1f77bcf86cd799439013",
+                      "slug": "getting-started-with-nextjs",
+                      "title": "Getting Started with Next.js",
+                      "date": "2024-01-10",
+                      "description": "Learn the basics of Next.js framework",
+                      "tags": ["Next.js", "React", "Web Development"],
+                      "content": "# Getting Started with Next.js\n\nFull article content...",
+                      "coverImage": "/images/articles/nextjs.jpg",
+                      "createdAt": "2024-01-10T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Articles"],
+        "summary": "Create a new article",
+        "description": "Create a new article (authentication required)",
+        "operationId": "createArticle",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArticleInput"
+              },
+              "examples": {
+                "full": {
+                  "summary": "Full Article Example",
+                  "value": {
+                    "slug": "understanding-react-hooks",
+                    "title": "Understanding React Hooks",
+                    "date": "2024-01-15",
+                    "description": "A comprehensive guide to React Hooks and how to use them effectively in your applications.",
+                    "tags": ["React", "JavaScript", "Web Development", "Hooks"],
+                    "content": "# Understanding React Hooks\n\nReact Hooks are a powerful feature that allows you to use state and other React features in functional components.\n\n## useState Hook\n\nThe useState hook allows you to add state to functional components.\n\n```javascript\nconst [count, setCount] = useState(0);\n```\n\n## useEffect Hook\n\nThe useEffect hook lets you perform side effects in functional components.\n\n```javascript\nuseEffect(() => {\n  // Side effect code\n}, [dependencies]);\n```",
+                    "coverImage": "/images/articles/react-hooks.jpg"
+                  }
+                },
+                "minimal": {
+                  "summary": "Minimal Article (required fields only)",
+                  "value": {
+                    "slug": "simple-article",
+                    "title": "Simple Article",
+                    "date": "2024-01-20",
+                    "description": "A simple article description",
+                    "tags": ["General"],
+                    "content": "# Simple Article\n\nArticle content here..."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Article created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/articles/{id}": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Get article by ID",
+        "description": "Retrieve a single article by its MongoDB ObjectID (public endpoint)",
+        "operationId": "getArticleById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{24}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Articles"],
+        "summary": "Update article",
+        "description": "Update an existing article by ID (authentication required). You can update any fields - only include the fields you want to update.",
+        "operationId": "updateArticle",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{24}$"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArticleUpdateInput"
+              },
+              "examples": {
+                "updateTitle": {
+                  "summary": "Update title only",
+                  "value": {
+                    "title": "Updated Article Title"
+                  }
+                },
+                "updateContent": {
+                  "summary": "Update content",
+                  "value": {
+                    "content": "# Updated Article\n\nUpdated content here...",
+                    "description": "Updated description"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Article updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArticleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Articles"],
+        "summary": "Delete article",
+        "description": "Delete an article by ID (authentication required)",
+        "operationId": "deleteArticle",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-fA-F]{24}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Article deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/api/resume": {
+      "get": {
+        "tags": ["Resume"],
+        "summary": "Get resume",
+        "description": "Retrieve resume data (public endpoint)",
+        "operationId": "getResume",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Resume"],
+        "summary": "Update resume",
+        "description": "Update resume data (authentication required)",
+        "operationId": "updateResume",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resume updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "next-auth.session-token",
+        "description": "Authentication via NextAuth session cookie. Login at /admin/login first, then copy the 'next-auth.session-token' cookie value."
+      }
+    },
+    "schemas": {
+      "ProjectInput": {
+        "type": "object",
+        "required": ["slug", "title", "description", "tags"],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly unique identifier",
+            "example": "my-awesome-project"
+          },
+          "title": {
+            "type": "string",
+            "description": "Project title",
+            "example": "My Awesome Project"
+          },
+          "description": {
+            "type": "string",
+            "description": "Project description",
+            "example": "A detailed description of the project"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Technology tags",
+            "example": ["React", "Node.js", "TypeScript"]
+          },
+          "link": {
+            "type": "string",
+            "format": "uri",
+            "description": "Live demo URL",
+            "example": "https://myproject.com"
+          },
+          "github": {
+            "type": "string",
+            "format": "uri",
+            "description": "GitHub repository URL",
+            "example": "https://github.com/username/repo"
+          },
+          "image": {
+            "type": "string",
+            "description": "Project image path or URL",
+            "example": "/images/projects/my-project.jpg"
+          }
+        }
+      },
+      "ProjectUpdateInput": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "link": {
+            "type": "string",
+            "format": "uri"
+          },
+          "github": {
+            "type": "string",
+            "format": "uri"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "MongoDB ObjectID"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "link": {
+            "type": "string"
+          },
+          "github": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProjectResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Project"
+          }
+        }
+      },
+      "ProjectsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        }
+      },
+      "ArticleInput": {
+        "type": "object",
+        "required": ["slug", "title", "date", "description", "tags", "content"],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL-friendly unique identifier",
+            "example": "understanding-react-hooks"
+          },
+          "title": {
+            "type": "string",
+            "description": "Article title",
+            "example": "Understanding React Hooks"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Publication date (YYYY-MM-DD)",
+            "example": "2024-01-15"
+          },
+          "description": {
+            "type": "string",
+            "description": "Short summary/description",
+            "example": "A comprehensive guide to React Hooks"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Article tags",
+            "example": ["React", "JavaScript", "Web Development"]
+          },
+          "content": {
+            "type": "string",
+            "description": "Full article content in Markdown format",
+            "example": "# Article Title\n\nArticle content here..."
+          },
+          "coverImage": {
+            "type": "string",
+            "description": "Cover image path or URL",
+            "example": "/images/articles/article-cover.jpg"
+          }
+        }
+      },
+      "ArticleUpdateInput": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "content": {
+            "type": "string"
+          },
+          "coverImage": {
+            "type": "string"
+          }
+        }
+      },
+      "Article": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "content": {
+            "type": "string"
+          },
+          "coverImage": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ArticleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Article"
+          }
+        }
+      },
+      "ArticlesResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Article"
+            }
+          }
+        }
+      },
+      "ResumeInput": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "experience": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "duration": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "highlights": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "education": {
+            "type": "object",
+            "properties": {
+              "degree": {
+                "type": "string"
+              },
+              "university": {
+                "type": "string"
+              },
+              "year": {
+                "type": "string"
+              }
+            }
+          },
+          "contact": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "linkedin": {
+                "type": "string",
+                "format": "uri"
+              },
+              "github": {
+                "type": "string",
+                "format": "uri"
+              },
+              "location": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ResumeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Validation error message"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized - Authentication required",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "error": {
+                  "type": "string",
+                  "example": "Resource not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

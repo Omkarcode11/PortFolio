@@ -26,11 +26,13 @@
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
     "simple-icons": "^16.3.0",
+    "swagger-ui-react": "^5.31.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
+    "@types/swagger-ui-react": "^5.18.0",
     "framer-motion": "^12.23.26",
     "typescript": "^5.9.3"
   }
