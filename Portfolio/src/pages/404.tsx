@@ -124,7 +124,7 @@ export default function Custom404() {
           >
             {/* 404 Number */}
             <motion.div
-              variants={numberVariants}
+              variants={numberVariants as any}
               className="mb-8 relative"
             >
               <h1 className="text-[120px] md:text-[180px] lg:text-[240px] font-extrabold leading-none">
@@ -148,7 +148,7 @@ export default function Custom404() {
             </motion.div>
 
             {/* Error Message */}
-            <motion.div variants={itemVariants} className="mb-12">
+            <motion.div variants={itemVariants as any} className="mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-[var(--text-primary)]">
                 Page Not Found
               </h2>
@@ -161,7 +161,7 @@ export default function Custom404() {
 
             {/* Action Buttons */}
             <motion.div
-              variants={itemVariants}
+              variants={itemVariants as any}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
             >
               <Link href="/" className="btn group">
@@ -203,7 +203,7 @@ export default function Custom404() {
             </motion.div>
 
             {/* Quick Links */}
-            <motion.div variants={itemVariants} className="mt-16">
+            <motion.div variants={itemVariants as any} className="mt-16">
               <p className="text-sm font-semibold text-[var(--text-secondary)] mb-6 uppercase tracking-wider">
                 Popular Pages
               </p>
@@ -248,7 +248,7 @@ export default function Custom404() {
 
             {/* Fun Element */}
             <motion.div
-              variants={itemVariants}
+              variants={itemVariants as any}
               className="mt-20 pt-8 border-t border-[var(--border-color)]"
             >
               <p className="text-sm text-[var(--text-tertiary)]">

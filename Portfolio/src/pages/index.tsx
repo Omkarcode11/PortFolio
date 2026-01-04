@@ -16,6 +16,7 @@ import {
   FaCss3Alt,
   FaJs,
   FaLinux,
+  FaExternalLinkAlt,
 } from "react-icons/fa";
 
 import {
@@ -113,6 +114,7 @@ export const techStack = [
 
 
 export default function Home({ projects = [], articles = [] }: HomeProps) {
+  const prefersReducedMotion = useReducedMotion();
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -183,23 +185,23 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
         >
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center">
             {/* Hero Content */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-8">
               {/* Status Badge & Social Proof */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5 }}
                 className="flex flex-wrap items-center justify-center lg:justify-start gap-3"
               >
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-xs font-bold uppercase tracking-wider shadow-sm">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-xs font-bold uppercase tracking-wider shadow-sm min-h-[44px]">
+                  <span className="relative flex h-2 w-2" aria-hidden="true">
+                    <span className={prefersReducedMotion ? "hidden" : "animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"}></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
                   </span>
                   Open to Backend Engineering Roles
                 </div>
-                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-secondary)] text-xs font-medium">
-                  <FaNodeJs className="text-brand-blue" />
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-secondary)] text-xs font-medium min-h-[44px]">
+                  <FaNodeJs className="text-brand-blue" aria-hidden="true" />
                   <span>Node.js • System Design • Distributed Systems</span>
                 </div>
               </motion.div>
@@ -207,11 +209,11 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
               {/* Main Heading - Backend Focused */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.1 }}
                 className="space-y-4"
               >
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.2] md:leading-[1.1] tracking-tight">
                   <span className="text-[var(--text-primary)]">Building </span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet">
                     Distributed Systems
@@ -219,17 +221,17 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                   <br className="hidden md:block" />
                   <span className="text-[var(--text-primary)]">That Handle Scale</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium max-w-2xl leading-relaxed">
+                <p className="text-lg md:text-xl lg:text-2xl text-[var(--text-secondary)] font-medium max-w-2xl leading-relaxed">
                   Backend engineer designing distributed systems, optimizing performance, and shipping production-ready code.
                 </p>
               </motion.div>
 
-              {/* What I Build - System Design Focus */}
+              {/* What I Build - System Design Focus - Hidden on mobile, shown below fold */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="space-y-3 max-w-2xl"
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.2 }}
+                className="hidden md:block space-y-3 max-w-2xl"
               >
                 <p className="text-base md:text-lg text-[var(--text-primary)] font-semibold">
                   What I Build
@@ -253,56 +255,89 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
               {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, delay: 0.3 }}
                 className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
               >
                 <Link
                   href="/projects"
-                  className="btn bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet text-white shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] border-none text-base px-8 py-4 w-full sm:w-auto"
+                  className="btn bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet text-white shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] border-none text-base px-8 py-4 w-full sm:w-auto min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 active:scale-[0.98] transition-transform"
+                  aria-label="View my projects and portfolio work"
                 >
                   View My Work
                 </Link>
                 <Link
                   href="/about"
-                  className="btn bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-color)] hover:bg-[var(--bg-secondary)] text-base px-8 py-4 w-full sm:w-auto hover:border-brand-blue/30"
+                  className="btn bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-color)] hover:bg-[var(--bg-secondary)] text-base px-8 py-4 w-full sm:w-auto hover:border-brand-blue/30 min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-offset-2 active:scale-[0.98] transition-transform"
+                  aria-label="View my engineering experience and background"
                 >
                   Engineering Experience
                 </Link>
               </motion.div>
 
-              {/* Core Technical Stack - Backend Focused */}
+              {/* Core Technical Stack - Backend Focused - Reduced on mobile */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.6 }}
                 className="pt-6 w-full max-w-sm lg:max-w-none mx-auto lg:mx-0 border-t border-[var(--border-color)]"
               >
                 <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-tertiary)] mb-4">
                   Core Stack
                 </p>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-[var(--text-secondary)] opacity-80">
-                  <div className="flex flex-col items-center gap-1 group cursor-default" title="Node.js">
-                    <FaNodeJs size={28} className="text-brand-blue group-hover:scale-110 transition-transform" />
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 text-[var(--text-secondary)] opacity-80">
+                  <div 
+                    className="flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
+                    title="Node.js"
+                    aria-label="Node.js - Backend runtime"
+                    role="img"
+                  >
+                    <FaNodeJs size={24} className="md:w-7 md:h-7 text-brand-blue group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-medium">Node.js</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 group cursor-default" title="TypeScript">
-                    <SiTypescript size={28} className="text-brand-blue group-hover:scale-110 transition-transform" />
+                  <div 
+                    className="flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
+                    title="TypeScript"
+                    aria-label="TypeScript - Type-safe JavaScript"
+                    role="img"
+                  >
+                    <SiTypescript size={24} className="md:w-7 md:h-7 text-brand-blue group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-medium">TypeScript</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 group cursor-default" title="MongoDB">
-                    <SiMongodb size={28} className="text-brand-cyan group-hover:scale-110 transition-transform" />
+                  <div 
+                    className="flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
+                    title="MongoDB"
+                    aria-label="MongoDB - NoSQL database"
+                    role="img"
+                  >
+                    <SiMongodb size={24} className="md:w-7 md:h-7 text-brand-cyan group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-medium">MongoDB</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 group cursor-default" title="PostgreSQL">
+                  {/* Hide some icons on mobile to reduce clutter */}
+                  <div 
+                    className="hidden md:flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
+                    title="PostgreSQL"
+                    aria-label="PostgreSQL - Relational database"
+                    role="img"
+                  >
                     <SiPostgresql size={28} className="text-brand-violet group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-medium">PostgreSQL</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 group cursor-default" title="AWS">
+                  <div 
+                    className="hidden md:flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
+                    title="AWS"
+                    aria-label="AWS - Cloud platform"
+                    role="img"
+                  >
                     <FaAws size={28} className="text-brand-blue group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-medium">AWS</span>
                   </div>
-                  <div className="flex flex-col items-center gap-1 group cursor-default" title="Docker">
+                  <div 
+                    className="hidden md:flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
+                    title="Docker"
+                    aria-label="Docker - Containerization"
+                    role="img"
+                  >
                     <FaDocker size={28} className="text-brand-blue group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-medium">Docker</span>
                   </div>
@@ -310,12 +345,42 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
               </motion.div>
             </div>
 
+            {/* Mobile: Simplified Tech Stack Visual */}
+            <div className="lg:hidden mt-8 w-full">
+              <div className="grid grid-cols-3 gap-4 p-6 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)]">
+                <div className="flex flex-col items-center gap-2" aria-label="Node.js">
+                  <FaNodeJs size={32} className="text-brand-blue" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">Node.js</span>
+                </div>
+                <div className="flex flex-col items-center gap-2" aria-label="TypeScript">
+                  <SiTypescript size={32} className="text-brand-blue" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">TypeScript</span>
+                </div>
+                <div className="flex flex-col items-center gap-2" aria-label="MongoDB">
+                  <SiMongodb size={32} className="text-brand-cyan" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">MongoDB</span>
+                </div>
+                <div className="flex flex-col items-center gap-2" aria-label="PostgreSQL">
+                  <SiPostgresql size={32} className="text-brand-violet" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">PostgreSQL</span>
+                </div>
+                <div className="flex flex-col items-center gap-2" aria-label="AWS">
+                  <FaAws size={32} className="text-brand-blue" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">AWS</span>
+                </div>
+                <div className="flex flex-col items-center gap-2" aria-label="Docker">
+                  <FaDocker size={32} className="text-brand-blue" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">Docker</span>
+                </div>
+              </div>
+            </div>
+
             {/* Visual Element - System Architecture Diagram (Desktop Only) */}
             <div className="relative hidden lg:block h-[600px] w-full perspective-1000 group">
               <motion.div
-                initial={{ opacity: 0, rotateY: 15, x: 50 }}
-                animate={{ opacity: 1, rotateY: -5, x: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
+                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, rotateY: 15, x: 50 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateY: -5, x: 0 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 1, ease: "easeOut" }}
                 className="absolute inset-0 flex items-center justify-center transform hover:scale-[1.02] transition-transform duration-500 ease-out"
               >
                 {/* System Architecture Panel */}
@@ -387,40 +452,46 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 {/* Floating Tech Icons */}
                 <motion.div
                   className="absolute top-10 right-10 w-20 h-20 bg-gradient-to-br from-brand-violet to-brand-blue rounded-xl z-30 shadow-lg border border-white/10 flex items-center justify-center text-white"
-                  animate={{ y: [0, -15, 0] }}
-                  transition={{
+                  animate={prefersReducedMotion ? {} : { y: [0, -15, 0] }}
+                  transition={prefersReducedMotion ? {} : {
                     duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
                   title="TypeScript"
+                  aria-label="TypeScript"
+                  role="img"
                 >
                   <SiTypescript size={32} className="drop-shadow-md" />
                 </motion.div>
 
                 <motion.div
                   className="absolute -bottom-5 -left-5 w-20 h-20 bg-gradient-to-br from-brand-cyan to-brand-blue rounded-full z-30 shadow-lg border border-white/10 flex items-center justify-center text-white"
-                  animate={{ y: [0, 15, 0] }}
-                  transition={{
+                  animate={prefersReducedMotion ? {} : { y: [0, 15, 0] }}
+                  transition={prefersReducedMotion ? {} : {
                     duration: 5,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: 1,
                   }}
                   title="Node.js"
+                  aria-label="Node.js"
+                  role="img"
                 >
                   <FaNodeJs size={32} className="drop-shadow-md" />
                 </motion.div>
 
                 <motion.div
                   className="absolute top-1/2 -right-8 w-16 h-16 bg-gradient-to-br from-brand-blue/80 to-brand-cyan/80 rounded-lg z-30 shadow-lg border border-white/10 flex items-center justify-center text-white"
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{
+                  animate={prefersReducedMotion ? {} : { rotate: [0, 10, -10, 0] }}
+                  transition={prefersReducedMotion ? {} : {
                     duration: 6,
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
                   title="Database"
+                  aria-label="PostgreSQL Database"
+                  role="img"
                 >
                   <SiPostgresql size={24} className="drop-shadow-md" />
                 </motion.div>
@@ -485,13 +556,16 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 >
                   <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all duration-500">
                     <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    <Image
+                      src={project.image || '/placeholder-project.png'}
+                      alt={`${project.title} - ${project.description.substring(0, 80)}`}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority={index < 2}
                     />
-                    {/* Aurora Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                    {/* Desktop: Aurora Overlay on Hover */}
+                    <div className="hidden lg:flex absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-end p-8">
                       <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors">
                         View Project
                         <svg
@@ -499,6 +573,27 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    {/* Mobile: Always visible overlay indicator */}
+                    <div className="lg:hidden absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent flex items-end p-4">
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-white/20 text-slate-900 dark:text-white text-xs font-medium">
+                        View Project
+                        <svg
+                          className="w-3 h-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
                         >
                           <path
                             strokeLinecap="round"
@@ -552,10 +647,13 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:border-brand-blue/30 hover:shadow-lg hover:shadow-brand-blue/5 transition-all duration-300 group cursor-default"
+                transition={prefersReducedMotion ? { duration: 0 } : { delay: idx * 0.05 }}
+                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:border-brand-blue/30 hover:shadow-lg hover:shadow-brand-blue/5 transition-all duration-300 group cursor-default min-h-[44px] focus-within:ring-2 focus-within:ring-brand-blue focus-within:ring-offset-2"
+                tabIndex={0}
+                role="listitem"
+                aria-label={tech.name}
               >
-                <span className="text-[var(--text-tertiary)] group-hover:text-brand-blue transition-colors text-xl">
+                <span className="text-[var(--text-tertiary)] group-hover:text-brand-blue transition-colors text-xl" aria-hidden="true">
                   {tech.icon}
                 </span>
                 <span className="font-semibold text-sm text-[var(--text-primary)]">
@@ -575,6 +673,7 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={prefersReducedMotion ? { duration: 0 } : {}}
               className="text-center mb-12"
             >
               <h2 className="section-heading mb-4">Why This Matters</h2>
@@ -625,8 +724,8 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-brand-blue/10 via-brand-cyan/10 to-brand-violet/10 border border-brand-blue/20"
+              transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.4 }}
+              className="mt-12 p-6 md:p-8 rounded-3xl bg-gradient-to-r from-brand-blue/10 via-brand-cyan/10 to-brand-violet/10 border border-brand-blue/20"
             >
               <h3 className="text-xl font-bold mb-4 text-[var(--text-primary)]">What I Bring to Your Team</h3>
               <ul className="space-y-3 text-[var(--text-secondary)]">
