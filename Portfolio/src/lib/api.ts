@@ -4,32 +4,36 @@ import Article from '../models/Article';
 
 export async function getProjects() {
   await dbConnect();
-  const projects = await Project.find({}).sort({ createdAt: -1 }).lean();
-  return projects.map((p: any) => ({
-     ...p, 
-     _id: p._id.toString(), 
-     ...(p.createdAt && { createdAt: (p.createdAt as Date).toISOString() })
-  }));
+  const projects = await Project.find({}).sort({ title : -1 }).lean();
+  return projects.map((p: any) => {
+    const { createdAt, ...project } = p; // Remove createdAt
+    return {
+      ...project, 
+      _id: p._id.toString()
+    };
+  });
 }
 
 export async function getSortedArticles() {
   await dbConnect();
   const articles = await Article.find({}).sort({ date: -1 }).lean();
-  return articles.map((a: any) => ({
-      ...a, 
-      _id: a._id.toString(), 
-      ...(a.createdAt && typeof a.createdAt === 'object' && a.createdAt.toISOString ? { createdAt: a.createdAt.toISOString() } : {})
-  }));
+  return articles.map((a: any) => {
+    const { createdAt, ...article } = a; // Remove createdAt
+    return {
+      ...article, 
+      _id: a._id.toString()
+    };
+  });
 }
 
 export async function getProjectBySlug(slug: string) {
   await dbConnect();
   const project = await Project.findOne({ slug }).lean();
   if (!project) return null;
+  const { createdAt, ...projectData } = project as any; // Remove createdAt
   return {
-      ...project, 
-      _id: (project as any)._id.toString(), 
-      ...((project as any).createdAt && { createdAt: ((project as any).createdAt as Date).toISOString() })
+      ...projectData, 
+      _id: (project as any)._id.toString()
   };
 }
 
@@ -37,10 +41,9 @@ export async function getArticleData(slug: string) {
   await dbConnect();
   const article = await Article.findOne({ slug }).lean();
   if (!article) return null;
-  const a = article as any;
+  const { createdAt, ...articleData } = article as any; // Remove createdAt
   return {
-      ...article, 
-      _id: a._id.toString(), 
-      ...(a.createdAt && typeof a.createdAt === 'object' && a.createdAt.toISOString ? { createdAt: a.createdAt.toISOString() } : {})
+      ...articleData, 
+      _id: (article as any)._id.toString()
   };
 }
