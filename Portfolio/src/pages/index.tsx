@@ -5,6 +5,11 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { getProjects, getSortedArticles } from "../lib/api";
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import { 
+  generatePersonSchema, 
+  generateFAQSchema, 
+  generateSoftwareApplicationSchema,
+} from "../lib/seo";
 import {
   FaReact,
   FaNodeJs,
@@ -46,6 +51,8 @@ interface Project {
   description: string;
   image: string;
   tags: string[];
+  github?: string;
+  link?: string;
 }
 
 interface Article {
@@ -112,7 +119,6 @@ export const techStack = [
   { name: "Data Structures & Algorithms", icon: <FaNodeJs /> },
 ];
 
-
 export default function Home({ projects = [], articles = [] }: HomeProps) {
   const prefersReducedMotion = useReducedMotion();
   const targetRef = useRef<HTMLDivElement>(null);
@@ -124,6 +130,7 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 50]);
+
 
   if (!projects.length && !articles.length) {
     return (
@@ -141,33 +148,50 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
   return (
     <>
       <SEO
-        title="Backend Engineer | System Design & Distributed Systems"
-        description="Backend-focused full-stack engineer building scalable distributed systems, high-performance APIs, and production-ready architectures with Node.js and modern technologies."
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: "Omkar",
-            url: "https://your-portfolio-domain.com",
-            jobTitle: "Full Stack Developer",
-            sameAs: [
-              "https://github.com/Omkarcode11",
-              "https://linkedin.com/in/omkardev",
-              "https://twitter.com/yourusername",
-            ],
-            knowsAbout: [
-              "React",
-              "Next.js",
-              "Node.js",
-              "TypeScript",
-              "AWS",
-              "UI Design",
-            ],
-          }),
-        }}
+        title="Backend Engineer | Node.js Developer Portfolio | System Design Expert"
+        description="Backend-focused full-stack engineer building scalable distributed systems, high-performance APIs, and production-ready architectures. Expert in Node.js, TypeScript, MongoDB, PostgreSQL, AWS, and system design. Available for backend engineering roles in India."
+        keywords={[
+          "Backend Developer",
+          "Node.js Developer",
+          "Full Stack Developer India",
+          "Backend Engineer",
+          "System Design Engineer",
+          "Distributed Systems",
+          "MERN Stack Developer",
+          "TypeScript Developer"
+        ]}
+        schema={[
+          generatePersonSchema(),
+          generateFAQSchema([
+            {
+              question: "What technologies do you specialize in?",
+              answer: "I specialize in Node.js, TypeScript, MongoDB, PostgreSQL, Redis, AWS, Docker, Kubernetes, and system design. I build scalable backend architectures and high-performance APIs."
+            },
+            {
+              question: "What type of backend systems do you build?",
+              answer: "I build distributed systems, high-throughput APIs (10K+ req/s), fault-tolerant architectures, database optimization solutions, and production-ready backend services."
+            },
+            {
+              question: "Are you available for backend engineering roles?",
+              answer: "Yes, I'm open to backend engineering roles. I have experience building scalable systems, optimizing performance, and shipping production-ready code."
+            },
+            {
+              question: "What is your experience with system design?",
+              answer: "I design scalable architectures from first principles, considering load, failure modes, and operational requirements. I have experience with distributed systems, caching strategies, and horizontal scaling."
+            }
+          ]),
+          ...(projects.slice(0, 3).map(project => 
+            generateSoftwareApplicationSchema({
+              title: project.title,
+              description: project.description,
+              github: project.github,
+              link: project.link,
+              tags: project.tags,
+              image: project.image,
+              slug: project.slug
+            })
+          ))
+        ]}
       />
 
       <section
@@ -187,7 +211,7 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
             {/* Hero Content */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 md:space-y-8">
               {/* Status Badge & Social Proof */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5 }}
@@ -204,7 +228,7 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                   <FaNodeJs className="text-brand-blue" aria-hidden="true" />
                   <span>Node.js • System Design • Distributed Systems</span>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Main Heading - Backend Focused */}
               <motion.div
@@ -222,7 +246,7 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                   <span className="text-[var(--text-primary)]">That Handle Scale</span>
                 </h1>
                 <p className="text-lg md:text-xl lg:text-2xl text-[var(--text-secondary)] font-medium max-w-2xl leading-relaxed">
-                  Backend engineer designing distributed systems, optimizing performance, and shipping production-ready code.
+                  Full Stack engineer designing distributed systems, optimizing performance, and shipping production-ready code.
                 </p>
               </motion.div>
 
@@ -282,75 +306,21 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.6 }}
                 className="pt-6 w-full max-w-sm lg:max-w-none mx-auto lg:mx-0 border-t border-[var(--border-color)]"
               >
-                <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-tertiary)] mb-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[var(--text-tertiary)]">
                   Core Stack
                 </p>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 text-[var(--text-secondary)] opacity-80">
-                  <div 
-                    className="flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
-                    title="Node.js"
-                    aria-label="Node.js - Backend runtime"
-                    role="img"
-                  >
-                    <FaNodeJs size={24} className="md:w-7 md:h-7 text-brand-blue group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-medium">Node.js</span>
-                  </div>
-                  <div 
-                    className="flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
-                    title="TypeScript"
-                    aria-label="TypeScript - Type-safe JavaScript"
-                    role="img"
-                  >
-                    <SiTypescript size={24} className="md:w-7 md:h-7 text-brand-blue group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-medium">TypeScript</span>
-                  </div>
-                  <div 
-                    className="flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
-                    title="MongoDB"
-                    aria-label="MongoDB - NoSQL database"
-                    role="img"
-                  >
-                    <SiMongodb size={24} className="md:w-7 md:h-7 text-brand-cyan group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-medium">MongoDB</span>
-                  </div>
-                  {/* Hide some icons on mobile to reduce clutter */}
-                  <div 
-                    className="hidden md:flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
-                    title="PostgreSQL"
-                    aria-label="PostgreSQL - Relational database"
-                    role="img"
-                  >
-                    <SiPostgresql size={28} className="text-brand-violet group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-medium">PostgreSQL</span>
-                  </div>
-                  <div 
-                    className="hidden md:flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
-                    title="AWS"
-                    aria-label="AWS - Cloud platform"
-                    role="img"
-                  >
-                    <FaAws size={28} className="text-brand-blue group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-medium">AWS</span>
-                  </div>
-                  <div 
-                    className="hidden md:flex flex-col items-center gap-1 group cursor-default min-w-[44px] min-h-[44px] justify-center" 
-                    title="Docker"
-                    aria-label="Docker - Containerization"
-                    role="img"
-                  >
-                    <FaDocker size={28} className="text-brand-blue group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-medium">Docker</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+   
+        
 
             {/* Mobile: Simplified Tech Stack Visual */}
-            <div className="lg:hidden mt-8 w-full">
-              <div className="grid grid-cols-3 gap-4 p-6 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)]">
+              <div className="grid grid-cols-3 lg:flex lg:flex-wrap gap-4 lg:gap-6 p-6 rounded-2xl">
                 <div className="flex flex-col items-center gap-2" aria-label="Node.js">
                   <FaNodeJs size={32} className="text-brand-blue" />
                   <span className="text-xs font-medium text-[var(--text-secondary)]">Node.js</span>
+                </div>
+                <div className="flex flex-col items-center gap-2" aria-label="Node.js">
+                  <FaReact size={32} className="text-brand-blue" />
+                  <span className="text-xs font-medium text-[var(--text-secondary)]">React.js</span>
                 </div>
                 <div className="flex flex-col items-center gap-2" aria-label="TypeScript">
                   <SiTypescript size={32} className="text-brand-blue" />
@@ -373,6 +343,7 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                   <span className="text-xs font-medium text-[var(--text-secondary)]">Docker</span>
                 </div>
               </div>
+            </motion.div>
             </div>
 
             {/* Visual Element - System Architecture Diagram (Desktop Only) */}

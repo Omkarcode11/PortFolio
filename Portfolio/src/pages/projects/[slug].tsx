@@ -5,6 +5,13 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaArrowLeft, FaCode, FaServer, FaDatabase, FaCloud } from 'react-icons/fa';
 import { getProjects, getProjectBySlug } from '../../lib/api';
+import SEO from '../../components/SEO';
+import { 
+  generateSoftwareApplicationSchema, 
+  generateProjectSchema, 
+  generateBreadcrumbSchema,
+  siteConfig 
+} from '../../lib/seo';
 
 interface ProjectDetail {
   slug: string;
@@ -74,15 +81,49 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
     !frontendTags.includes(tag) && !backendTags.includes(tag) && !devOpsTags.includes(tag)
   );
 
+  const projectKeywords = [
+    project.title,
+    ...project.tags,
+    'Backend Developer Project',
+    'Node.js Project',
+    'Portfolio Project'
+  ];
+
   return (
     <>
-      <Head>
-        <title>{project.title} | Portfolio</title>
-        <meta name="description" content={project.description} />
-        <meta property="og:title" content={project.title} />
-        <meta property="og:description" content={project.description} />
-        {project.image && <meta property="og:image" content={project.image} />}
-      </Head>
+      <SEO
+        title={`${project.title} | Backend Developer Portfolio | ${project.tags[0] || 'Project'}`}
+        description={`${project.description} Built with ${project.tags.slice(0, 3).join(', ')}. Explore the architecture, implementation, and impact of this ${project.title.toLowerCase()} project.`}
+        keywords={projectKeywords}
+        image={project.image}
+        url={`/projects/${project.slug}`}
+        schema={[
+          generateSoftwareApplicationSchema({
+            title: project.title,
+            description: project.description,
+            github: project.github,
+            link: project.link,
+            tags: project.tags,
+            image: project.image,
+            slug: project.slug
+          }),
+          generateProjectSchema({
+            title: project.title,
+            description: project.description,
+            github: project.github,
+            link: project.link,
+            tags: project.tags,
+            image: project.image,
+            slug: project.slug,
+            createdAt: project.createdAt
+          }),
+          generateBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Projects', url: '/projects' },
+            { name: project.title, url: `/projects/${project.slug}` }
+          ])
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">

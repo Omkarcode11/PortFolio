@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getProjects } from '../lib/api';
 import { GetStaticProps } from 'next';
+import SEO from '../components/SEO';
 
 interface Project {
   slug: string;
@@ -21,13 +22,19 @@ interface ProjectsProps {
 export default function Projects({ projects }: ProjectsProps) {
   return (
     <>
-      <Head>
-        <title>Projects | Portfolio</title>
-        <meta
-          name="description"
-          content="Explore my portfolio of innovative projects built with modern web technologies."
-        />
-      </Head>
+      <SEO
+        title="Projects | Backend Developer Portfolio | Node.js & System Design"
+        description="Explore production-grade backend projects: scalable APIs, distributed systems, and high-performance architectures built with Node.js, TypeScript, MongoDB, and AWS. Real-world solutions with measurable impact."
+        keywords={[
+          "Backend Projects",
+          "Node.js Projects",
+          "System Design Projects",
+          "Full Stack Portfolio",
+          "Backend Developer Projects",
+          "Distributed Systems Projects"
+        ]}
+        url="/projects"
+      />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">

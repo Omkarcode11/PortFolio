@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SEO from '../../components/SEO';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getSortedArticles } from '../../lib/api';
@@ -18,9 +19,18 @@ interface ArticlesProps {
 export default function Articles({ articles }: ArticlesProps) {
   return (
     <>
-      <Head>
-        <title>Articles | Portfolio</title>
-      </Head>
+      <SEO
+        title="Articles & Learnings | Backend Developer Blog"
+        description="Technical articles, system design insights, and engineering learnings on backend development, distributed systems, Node.js, TypeScript, and scalable architecture."
+        keywords={[
+          "Backend Developer Blog",
+          "System Design Articles",
+          "Node.js Tutorials",
+          "Backend Engineering Blog",
+          "Technical Articles"
+        ]}
+        url="/articles"
+      />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
