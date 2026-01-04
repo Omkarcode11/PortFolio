@@ -8,18 +8,31 @@ import {
   FaNodeJs,
   FaDocker,
   FaAws,
+  FaGitAlt,
   FaGithub,
-  FaLinkedin,
-  FaTwitter,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaLinux,
 } from "react-icons/fa";
+
 import {
   SiNextdotjs,
   SiTypescript,
-  SiMongodb,
-  SiPostgresql,
   SiTailwindcss,
-  SiGraphql,
-  SiLeetcode,
+  SiRedux,
+  SiExpress,
+  SiPostgresql,
+  SiMongodb,
+  SiRedis,
+  SiSocketdotio,
+  SiJsonwebtokens,
+  SiGithubactions,
+  SiKubernetes,
+  SiNginx,
+  SiVite,
+  SiWebpack,
+  SiPuppeteer,
 } from "react-icons/si";
 import { GetStaticProps } from "next";
 import { useRef } from "react";
@@ -44,18 +57,58 @@ interface HomeProps {
   articles: Article[];
 }
 
-const techStack = [
-  { name: "React", icon: <FaReact /> },
-  { name: "Next.js", icon: <SiNextdotjs /> },
+export const techStack = [
+  // 🌐 Frontend (Secondary)
+  { name: "HTML5", icon: <FaHtml5 /> },
+  { name: "CSS3", icon: <FaCss3Alt /> },
+  { name: "JavaScript", icon: <FaJs /> },
   { name: "TypeScript", icon: <SiTypescript /> },
-  { name: "Tailwind", icon: <SiTailwindcss /> },
+  { name: "React.js", icon: <FaReact /> },
+  { name: "Next.js", icon: <SiNextdotjs /> },
+  { name: "Redux", icon: <SiRedux /> },
+  { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+  { name: "Vite", icon: <SiVite /> },
+  { name: "Webpack", icon: <SiWebpack /> },
+
+  // ⚙️ Backend (Primary Strength)
   { name: "Node.js", icon: <FaNodeJs /> },
-  { name: "GraphQL", icon: <SiGraphql /> },
-  { name: "PostgreSQL", icon: <SiPostgresql /> },
+  { name: "Express.js", icon: <SiExpress /> },
+  { name: "REST APIs", icon: <FaNodeJs /> },
+  { name: "WebSockets", icon: <SiSocketdotio /> },
+  { name: "JWT Authentication", icon: <SiJsonwebtokens /> },
+
+  // 🗄️ Databases & Caching
   { name: "MongoDB", icon: <SiMongodb /> },
+  { name: "PostgreSQL", icon: <SiPostgresql /> },
+  { name: "Redis", icon: <SiRedis /> },
+
+  // 🧵 Distributed Systems
+  { name: "Caching Strategies", icon: <SiRedis /> },
+  { name: "Async Workers", icon: <FaNodeJs /> },
+  { name: "Queues & Background Jobs", icon: <FaNodeJs /> },
+  { name: "Fault Tolerance", icon: <FaNodeJs /> },
+  { name: "Scalability Patterns", icon: <FaNodeJs /> },
+  { name: "Microservices", icon: <FaNodeJs /> },
+
+  // ☁️ DevOps & Infra
   { name: "Docker", icon: <FaDocker /> },
+  { name: "Kubernetes", icon: <SiKubernetes /> },
   { name: "AWS", icon: <FaAws /> },
+  { name: "Nginx", icon: <SiNginx /> },
+  { name: "Linux", icon: <FaLinux /> },
+  { name: "CI/CD Pipelines", icon: <SiGithubactions /> },
+  { name: "GitHub Actions", icon: <SiGithubactions /> },
+
+  // 🤖 Automation
+  { name: "Puppeteer", icon: <SiPuppeteer /> },
+
+  // 🛠 Tools & Core CS
+  { name: "Git", icon: <FaGitAlt /> },
+  { name: "GitHub", icon: <FaGithub /> },
+  { name: "System Design", icon: <FaNodeJs /> },
+  { name: "Data Structures & Algorithms", icon: <FaNodeJs /> },
 ];
+
 
 export default function Home({ projects = [], articles = [] }: HomeProps) {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -159,10 +212,10 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
                   <span className="text-[var(--text-primary)]">Building </span>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet">
-                    Scalable Systems
+                    Distributed Systems
                   </span>
                   <br className="hidden md:block" />
-                  <span className="text-[var(--text-primary)]">That Scale</span>
+                  <span className="text-[var(--text-primary)]">That Handle Scale</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium max-w-2xl leading-relaxed">
                   Backend engineer designing distributed systems, optimizing performance, and shipping production-ready code.
@@ -179,18 +232,18 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 <p className="text-base md:text-lg text-[var(--text-primary)] font-semibold">
                   What I Build
                 </p>
-                <ul className="space-y-2 text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
+                <ul className="space-y-2.5 text-sm md:text-base text-[var(--text-secondary)] leading-relaxed">
                   <li className="flex items-start gap-3">
-                    <span className="text-brand-blue mt-1.5">→</span>
-                    <span>High-throughput APIs handling 10K+ req/s with sub-100ms latency</span>
+                    <span className="text-brand-blue mt-1.5 font-bold">→</span>
+                    <span>High-throughput APIs serving 10K+ req/s with consistent sub-100ms latency</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-brand-blue mt-1.5">→</span>
-                    <span>Distributed systems with fault tolerance and horizontal scaling</span>
+                    <span className="text-brand-blue mt-1.5 font-bold">→</span>
+                    <span>Fault-tolerant distributed systems with horizontal scaling and graceful degradation</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="text-brand-blue mt-1.5">→</span>
-                    <span>Database architectures optimized for read/write performance</span>
+                    <span className="text-brand-blue mt-1.5 font-bold">→</span>
+                    <span>Database architectures optimized for performance: caching strategies, query optimization, connection pooling</span>
                   </li>
                 </ul>
               </motion.div>
@@ -416,61 +469,66 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-10">
             {projects.slice(0, 4).map((project, index) => (
-              <motion.article
+              <Link
                 key={project.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group relative cursor-pointer"
+                href={`/projects/${project.slug}`}
+                className="group relative block"
               >
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all duration-500">
-                  <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  {/* Aurora Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors">
-                      View Case Study{" "}
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="flex gap-2 mb-2 flex-wrap">
-                    {project.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-md bg-brand-blue/10 text-brand-blue text-xs font-semibold tracking-wide border border-brand-blue/20"
-                      >
-                        {tag}
+                <motion.article
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className="cursor-pointer"
+                >
+                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 border border-[var(--border-color)] shadow-sm hover:shadow-xl transition-all duration-500">
+                    <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Aurora Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors">
+                        View Project
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
                       </span>
-                    ))}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold group-hover:text-brand-blue transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-[var(--text-secondary)] line-clamp-2 text-base">
-                    {project.description}
-                  </p>
-                </div>
-              </motion.article>
+
+                  <div className="space-y-2">
+                    <div className="flex gap-2 mb-2 flex-wrap">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-md bg-brand-blue/10 text-brand-blue text-xs font-semibold tracking-wide border border-brand-blue/20"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-2xl font-bold group-hover:text-brand-blue transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-[var(--text-secondary)] line-clamp-2 text-base">
+                      {project.description}
+                    </p>
+                  </div>
+                </motion.article>
+              </Link>
             ))}
           </div>
         </div>
@@ -503,6 +561,91 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 </span>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Recruiters Should Care */}
+      <section className="section bg-[var(--bg-primary)] border-t border-[var(--border-color)]">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="section-heading mb-4">Why This Matters</h2>
+              <p className="section-subheading max-w-2xl mx-auto">
+                I build systems that solve real problems and deliver measurable impact.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-center p-6 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)]"
+              >
+                <div className="text-4xl font-extrabold text-brand-blue mb-2">10K+</div>
+                <div className="text-sm text-[var(--text-secondary)] font-medium">Requests/Second</div>
+                <p className="text-xs text-[var(--text-tertiary)] mt-2">APIs designed for high throughput</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-center p-6 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)]"
+              >
+                <div className="text-4xl font-extrabold text-brand-cyan mb-2">&lt;100ms</div>
+                <div className="text-sm text-[var(--text-secondary)] font-medium">P99 Latency</div>
+                <p className="text-xs text-[var(--text-tertiary)] mt-2">Consistent performance under load</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-center p-6 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)]"
+              >
+                <div className="text-4xl font-extrabold text-brand-violet mb-2">100%</div>
+                <div className="text-sm text-[var(--text-secondary)] font-medium">Ownership</div>
+                <p className="text-xs text-[var(--text-tertiary)] mt-2">Design to deployment to monitoring</p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="mt-12 p-8 rounded-3xl bg-gradient-to-r from-brand-blue/10 via-brand-cyan/10 to-brand-violet/10 border border-brand-blue/20"
+            >
+              <h3 className="text-xl font-bold mb-4 text-[var(--text-primary)]">What I Bring to Your Team</h3>
+              <ul className="space-y-3 text-[var(--text-secondary)]">
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-blue mt-1">•</span>
+                  <span><strong>System Design Expertise:</strong> Design scalable architectures from first principles, considering load, failure modes, and operational requirements</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-blue mt-1">•</span>
+                  <span><strong>Production Experience:</strong> Built and maintained systems handling real traffic, debugging issues, optimizing performance, and iterating based on metrics</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-blue mt-1">•</span>
+                  <span><strong>Strong Fundamentals:</strong> Deep understanding of databases, APIs, caching, message queues, and distributed systems concepts</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-brand-blue mt-1">•</span>
+                  <span><strong>Growth Mindset:</strong> Ready to take on SDE-2 responsibilities, lead technical decisions, and contribute to team architecture discussions</span>
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -10,7 +10,7 @@
   },
   "experience": [
     {
-      "role": "Software Engineer (SDE-1)",
+      "role": "Software Engineer",
       "company": "Ripples",
       "duration": "Dec 2024 – Present",
       "description": "Built and scaled a reward and loyalty backend using Node.js and Redis. Developed asynchronous instant reward pipeline reducing latency by 60%. Implemented secure UGC ingestion microservice with Meta APIs.",

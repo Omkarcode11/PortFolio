@@ -18,6 +18,15 @@ export async function getSortedArticles() {
   }));
 }
 
+export async function getProjectBySlug(slug: string) {
+  await dbConnect();
+  const project = await Project.findOne({ slug }).lean();
+  if (!project) return null;
+  return {
+      ...project, _id: (project as any)._id.toString(), createdAt: ((project as any).createdAt as Date).toISOString()
+  };
+}
+
 export async function getArticleData(slug: string) {
   await dbConnect();
   const article = await Article.findOne({ slug }).lean();
