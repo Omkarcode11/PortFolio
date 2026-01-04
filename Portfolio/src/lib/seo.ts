@@ -112,7 +112,6 @@ export function generateProjectSchema(project: {
   tags: string[];
   image?: string;
   slug: string;
-  createdAt?: string;
 }) {
   return {
     '@context': 'https://schema.org',
@@ -131,9 +130,6 @@ export function generateProjectSchema(project: {
     }),
     ...(project.image && {
       image: project.image
-    }),
-    ...(project.createdAt && {
-      dateCreated: project.createdAt
     }),
     keywords: project.tags.join(', '),
     programmingLanguage: project.tags

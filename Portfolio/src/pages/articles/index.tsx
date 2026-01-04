@@ -9,7 +9,6 @@ interface Article {
   slug: string;
   title: string;
   description: string;
-  date: string;
 }
 
 interface ArticlesProps {
@@ -85,9 +84,6 @@ export default function Articles({ articles }: ArticlesProps) {
                         <h2 className="text-2xl font-bold text-[var(--text-primary)] group-hover:text-brand-blue transition-colors w-full tracking-tight">
                           {article.title}
                         </h2>
-                        <span className="text-xs font-bold tracking-wide text-brand-blue whitespace-nowrap bg-brand-blue/5 px-3 py-1.5 rounded-md self-start md:self-auto border border-brand-blue/10">
-                          {article.date}
-                        </span>
                      </div>
                      <p className="text-base text-[var(--text-secondary)] mb-6 line-clamp-2 leading-relaxed max-w-2xl">
                        {article.description}

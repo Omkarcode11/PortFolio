@@ -21,7 +21,6 @@ interface ProjectDetail {
   link?: string;
   github?: string;
   image?: string;
-  createdAt: string;
 }
 
 interface ProjectDetailProps {
@@ -115,7 +114,6 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
             tags: project.tags,
             image: project.image,
             slug: project.slug,
-            createdAt: project.createdAt
           }),
           generateBreadcrumbSchema([
             { name: 'Home', url: '/' },
@@ -224,19 +222,6 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                   </motion.a>
                 )}
               </div>
-
-              {/* Metadata */}
-              {project.createdAt && (
-                <div className="pt-4 border-t border-[var(--border-color)]">
-                  <p className="text-sm text-[var(--text-tertiary)]">
-                    Created: {new Date(project.createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </p>
-                </div>
-              )}
             </motion.div>
           </div>
         </div>

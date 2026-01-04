@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { getProjects, getSortedArticles } from '../lib/api';
 
-const EXTERNAL_DATA_URL = 'https://your-portfolio-domain.com';
+const EXTERNAL_DATA_URL = 'https://portfolio-one-rosy-94.vercel.app';
 
 function generateSiteMap(projects: any[], articles: any[]) {
   return `<?xml version="1.0" encoding="UTF-8"?>
