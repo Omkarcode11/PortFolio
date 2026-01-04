@@ -1,8 +1,10 @@
 import Head from "next/head";
 import SEO from "../components/SEO";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { getProjects, getSortedArticles } from "../lib/api";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 import {
   FaReact,
   FaNodeJs,
@@ -650,63 +652,6 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
         </div>
       </section>
 
-      {/* Insights - Minimal List */}
-      <section className="section bg-[var(--bg-secondary)] border-t border-[var(--border-color)] relative">
-        <div className="container relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-            <h2 className="section-heading">Writing</h2>
-            <Link
-              href="/articles"
-              className="text-sm font-bold text-brand-blue hover:text-brand-violet transition-colors"
-            >
-              Read All Articles &rarr;
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {articles.slice(0, 3).map((article, i) => (
-              <motion.div
-                key={article.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <Link
-                  href={`/articles/${article.slug}`}
-                  className="group block h-full p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-brand-blue/30 hover:shadow-xl hover:shadow-brand-blue/5 transition-all duration-300 flex flex-col"
-                >
-                  <div className="text-xs font-bold text-brand-violet mb-3 uppercase tracking-wider">
-                    {article.date}
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-brand-blue transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-[var(--text-secondary)] line-clamp-3 mb-4 flex-grow">
-                    {article.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-sm font-semibold text-[var(--text-primary)] mt-auto group-hover:text-brand-blue transition-colors">
-                    Read Article{" "}
-                    <svg
-                      className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

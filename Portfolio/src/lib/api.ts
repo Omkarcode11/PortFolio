@@ -6,7 +6,9 @@ export async function getProjects() {
   await dbConnect();
   const projects = await Project.find({}).sort({ createdAt: -1 }).lean();
   return projects.map((p: any) => ({
-     ...p, _id: p._id.toString(), createdAt: (p.createdAt as Date).toISOString()
+     ...p, 
+     _id: p._id.toString(), 
+     ...(p.createdAt && { createdAt: (p.createdAt as Date).toISOString() })
   }));
 }
 
@@ -23,7 +25,9 @@ export async function getProjectBySlug(slug: string) {
   const project = await Project.findOne({ slug }).lean();
   if (!project) return null;
   return {
-      ...project, _id: (project as any)._id.toString(), createdAt: ((project as any).createdAt as Date).toISOString()
+      ...project, 
+      _id: (project as any)._id.toString(), 
+      ...((project as any).createdAt && { createdAt: ((project as any).createdAt as Date).toISOString() })
   };
 }
 
