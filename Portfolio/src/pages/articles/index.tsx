@@ -119,9 +119,17 @@ export default function Articles({ articles }: ArticlesProps) {
 }
 
 export const getStaticProps: GetStaticProps<ArticlesProps> = async () => {
-  const articles = await getSortedArticles();
-  return {
-    props: { articles },
-    revalidate: 60,
-  };
+  try {
+    const articles = await getSortedArticles();
+    return {
+      props: { articles: articles || [] },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      props: { articles: [] },
+      revalidate: 60,
+    };
+  }
 };

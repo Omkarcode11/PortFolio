@@ -174,9 +174,17 @@ export default function Projects({ projects }: ProjectsProps) {
 }
 
 export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
-  const projects = await getProjects();
-  return {
-    props: { projects },
-    revalidate: 60,
-  };
+  try {
+    const projects = await getProjects();
+    return {
+      props: { projects: projects || [] },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      props: { projects: [] },
+      revalidate: 60,
+    };
+  }
 };

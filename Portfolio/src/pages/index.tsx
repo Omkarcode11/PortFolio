@@ -727,13 +727,24 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const projects = await getProjects();
-  const articles = await getSortedArticles();
-  return {
-    props: {
-      projects,
-      articles,
-    },
-    revalidate: 60,
-  };
+  try {
+    const projects = await getProjects();
+    const articles = await getSortedArticles();
+    return {
+      props: {
+        projects: projects || [],
+        articles: articles || [],
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      props: {
+        projects: [],
+        articles: [],
+      },
+      revalidate: 60,
+    };
+  }
 };
