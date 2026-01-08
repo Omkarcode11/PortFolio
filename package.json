@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "@vercel/analytics": "^1.6.1",
     "autoprefixer": "^10.4.23",
     "axios": "^1.13.2",
     "framer-motion": "^12.23.26",
@@ -32,6 +33,7 @@
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/swagger-ui-react": "^5.18.0",
+    "critters": "^0.0.23",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "typescript": "^5.9.3"
