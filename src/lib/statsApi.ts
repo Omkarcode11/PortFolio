@@ -16,6 +16,7 @@ export interface LeetCodeStats {
   acceptanceRate: number;
   ranking: number;
   username: string;
+  submissionCalendar?: { [key: string]: number }; // Unix timestamp -> count
 }
 
 export interface GitHubStats {
@@ -69,8 +70,17 @@ export async function fetchLeetCodeStats(username: string): Promise<LeetCodeStat
       return null;
     }
 
+    // Log submissionCalendar info
+    console.log('API Response - submissionCalendar:', {
+      exists: !!data.submissionCalendar,
+      type: typeof data.submissionCalendar,
+      isObject: data.submissionCalendar && typeof data.submissionCalendar === 'object',
+      keysCount: data.submissionCalendar ? Object.keys(data.submissionCalendar).length : 0,
+      sampleKeys: data.submissionCalendar ? Object.keys(data.submissionCalendar).slice(0, 5) : []
+    });
+
     // Map API response to our interface
-    return {
+    const result = {
       username: username,
       totalSolved: data.totalSolved || 0,
       easySolved: data.easySolved || 0,
@@ -82,7 +92,15 @@ export async function fetchLeetCodeStats(username: string): Promise<LeetCodeStat
       hardTotal: data.totalHard || 0,
       acceptanceRate: Math.round(data.acceptanceRate || 0),
       ranking: data.ranking || 0,
+      submissionCalendar: data.submissionCalendar || {},
     };
+
+    console.log('Mapped result - submissionCalendar:', {
+      exists: !!result.submissionCalendar,
+      keysCount: Object.keys(result.submissionCalendar).length
+    });
+
+    return result;
   } catch (error: any) {
     if (error.response?.status === 404) {
       console.error('LeetCode user not found:', username);
