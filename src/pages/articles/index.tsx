@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SEO from '../../components/SEO';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { getSortedArticles } from '../../lib/api';
@@ -8,7 +9,6 @@ interface Article {
   slug: string;
   title: string;
   description: string;
-  date: string;
 }
 
 interface ArticlesProps {
@@ -18,9 +18,18 @@ interface ArticlesProps {
 export default function Articles({ articles }: ArticlesProps) {
   return (
     <>
-      <Head>
-        <title>Articles | Portfolio</title>
-      </Head>
+      <SEO
+        title="Articles & Learnings | Backend Developer Blog"
+        description="Technical articles, system design insights, and engineering learnings on backend development, distributed systems, Node.js, TypeScript, and scalable architecture."
+        keywords={[
+          "Backend Developer Blog",
+          "System Design Articles",
+          "Node.js Tutorials",
+          "Backend Engineering Blog",
+          "Technical Articles"
+        ]}
+        url="/articles"
+      />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -75,9 +84,6 @@ export default function Articles({ articles }: ArticlesProps) {
                         <h2 className="text-2xl font-bold text-[var(--text-primary)] group-hover:text-brand-blue transition-colors w-full tracking-tight">
                           {article.title}
                         </h2>
-                        <span className="text-xs font-bold tracking-wide text-brand-blue whitespace-nowrap bg-brand-blue/5 px-3 py-1.5 rounded-md self-start md:self-auto border border-brand-blue/10">
-                          {article.date}
-                        </span>
                      </div>
                      <p className="text-base text-[var(--text-secondary)] mb-6 line-clamp-2 leading-relaxed max-w-2xl">
                        {article.description}
@@ -113,9 +119,17 @@ export default function Articles({ articles }: ArticlesProps) {
 }
 
 export const getStaticProps: GetStaticProps<ArticlesProps> = async () => {
-  const articles = await getSortedArticles();
-  return {
-    props: { articles },
-    revalidate: 60,
-  };
+  try {
+    const articles = await getSortedArticles();
+    return {
+      props: { articles: articles || [] },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+    return {
+      props: { articles: [] },
+      revalidate: 60,
+    };
+  }
 };

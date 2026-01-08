@@ -14,7 +14,8 @@ export default function Login() {
 
   useEffect(() => {
     if (session) {
-      router.push('/admin/dashboard');
+      const callbackUrl = router.query.callbackUrl as string || '/admin/dashboard';
+      router.push(callbackUrl);
     }
   }, [session, router]);
 
@@ -32,7 +33,8 @@ export default function Login() {
     });
 
     if (result && !result.error) {
-      router.push('/admin/dashboard');
+      const callbackUrl = router.query.callbackUrl as string || '/admin/dashboard';
+      router.push(callbackUrl);
     } else {
       setError('Invalid username or password');
       setLoading(false);

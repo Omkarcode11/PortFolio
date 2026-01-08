@@ -4,6 +4,8 @@ import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa
 import dbConnect from '../lib/dbConnect';
 import Resume from '../models/Resume';
 import { GetStaticProps } from 'next';
+import SEO from '../components/SEO';
+import { generatePersonSchema } from '../lib/seo';
 
 interface Experience {
   role: string;
@@ -59,13 +61,20 @@ export default function About({ resume }: AboutProps) {
 
   return (
     <>
-      <Head>
-        <title>About | Omkar Sonawane</title>
-        <meta
-          name="description"
-          content="Learn more about Omkar Sonawane - Full-stack developer passionate about building scalable web applications."
-        />
-      </Head>
+      <SEO
+        title="About | Backend Engineer | Node.js Developer India"
+        description="Learn about my experience building scalable backend systems, system design expertise, and production experience with Node.js, TypeScript, MongoDB, PostgreSQL, and AWS. Available for backend engineering roles."
+        keywords={[
+          "Backend Engineer",
+          "Node.js Developer",
+          "Full Stack Developer",
+          "System Design Engineer",
+          "Backend Developer India",
+          "About Backend Engineer"
+        ]}
+        url="/about"
+        schema={generatePersonSchema()}
+      />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">

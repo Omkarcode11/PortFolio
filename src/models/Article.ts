@@ -8,7 +8,6 @@ export interface IArticle {
   tags: string[];
   content: string;
   coverImage?: string;
-  createdAt: Date;
 }
 
 const ArticleSchema = new Schema<IArticle>({
@@ -19,7 +18,6 @@ const ArticleSchema = new Schema<IArticle>({
   tags: { type: [String], default: [] },
   content: { type: String, required: true },
   coverImage: String,
-  createdAt: { type: Date, default: Date.now }
 });
 
 export default models.Article || model<IArticle>('Article', ArticleSchema);

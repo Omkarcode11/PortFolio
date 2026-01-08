@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <Link href="/" className="inline-block group">
               <span className="text-2xl md:text-3xl font-extrabold text-[var(--text-primary)] group-hover:text-primary-500 transition-colors">
-                Portfolio<span className="text-primary-500">.</span>
+               Omkar's Portfolio<span className="text-primary-500">.</span>
               </span>
             </Link>
             <p className="text-sm md:text-base text-[var(--text-secondary)] mt-4 max-w-xs leading-relaxed">
@@ -77,10 +77,10 @@ const Footer = () => {
             </div>
             <p className="text-sm text-[var(--text-secondary)] mt-6">
               <a 
-                href="mailto:omkarsonawane232@gmail.com" 
+                href="mailto:omkarsonawaneomkar2@gmail.com" 
                 className="hover:text-primary-500 transition-colors font-medium"
               >
-                omkarsonawane232@gmail.com
+                omkarsonawaneomkar2@gmail.com
               </a>
             </p>
           </div>

@@ -20,7 +20,6 @@ export default function Dashboard() {
     title: '', 
     slug: '', 
     description: '', 
-    date: new Date().toISOString().split('T')[0], 
     tags: '', 
     content: '' 
   });
@@ -103,7 +102,6 @@ export default function Dashboard() {
           title: '', 
           slug: '', 
           description: '', 
-          date: new Date().toISOString().split('T')[0], 
           tags: '', 
           content: '' 
         });

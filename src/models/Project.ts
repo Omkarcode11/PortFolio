@@ -8,7 +8,6 @@ export interface IProject {
   link?: string;
   github?: string;
   image?: string;
-  createdAt: Date;
 }
 
 const ProjectSchema = new Schema<IProject>({
@@ -19,7 +18,6 @@ const ProjectSchema = new Schema<IProject>({
   link: String,
   github: String,
   image: String,
-  createdAt: { type: Date, default: Date.now }
 });
 
 export default models.Project || model<IProject>('Project', ProjectSchema);
