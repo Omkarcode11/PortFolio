@@ -4,6 +4,7 @@ import { ThemeProvider } from '../hooks/useTheme';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 import { Inter } from 'next/font/google';
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <ThemeProvider>
         <div className={`${inter.variable} font-sans`}>
           <Layout>
+            <Analytics />
             <Component {...pageProps} />
           </Layout>
         </div>
