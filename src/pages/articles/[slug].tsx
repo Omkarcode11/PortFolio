@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion } from 'framer-motion';
 import { getSortedArticles, getArticleData } from '../../lib/api';
+import SEO from '../../components/SEO';
+import { generateArticleSchema, generateBreadcrumbSchema } from '../../lib/seo';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 interface ArticleData {
@@ -13,6 +15,7 @@ interface ArticleData {
   content: string;
   slug: string;
   description?: string;
+  coverImage?: string;
 }
 
 interface ArticleProps {
@@ -24,10 +27,34 @@ export default function Article({ article }: ArticleProps) {
 
   return (
     <>
-      <Head>
-        <title>{article.title} | Portfolio</title>
-        <meta name="description" content={article.description || `Read ${article.title} on my portfolio.`} />
-      </Head>
+      <SEO
+        title={`${article.title} | Backend Developer Blog`}
+        description={article.description || `Read ${article.title} - Technical article on backend development, system design, and engineering best practices.`}
+        keywords={[
+          article.title,
+          "Backend Development",
+          "System Design",
+          "Technical Article",
+          "Engineering Blog"
+        ]}
+        type="article"
+        publishedTime={article.date}
+        url={`/articles/${article.slug}`}
+        schema={[
+          generateArticleSchema({
+            title: article.title,
+            description: article.description || '',
+            date: article.date,
+            slug: article.slug,
+            coverImage: article.coverImage || ''
+          }),
+          generateBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Articles', url: '/articles' },
+            { name: article.title, url: `/articles/${article.slug}` }
+          ])
+        ]}
+      />
       
       <article className="container section max-w-4xl mx-auto px-4">
         <motion.div

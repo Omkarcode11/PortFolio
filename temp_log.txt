@@ -1,5 +1,0 @@
-136214e feat: Add .gitignore to exclude node_modules
-8ac827a refactor: Simplify API response structure in getProjects, getSortedArticles, getProjectBySlug, and getArticleData functions by explicitly constructing response objects without the createdAt field, ensuring consistent data representation.
-8d4bca3 refactor: Enhance error handling in API functions and static props to ensure graceful degradation during database connection failures, returning empty arrays or null as appropriate.
-55214bc refactor: Change article sorting from date to slug in API and dashboard components, and remove date initialization from the dashboard state to streamline data handling.
-b462572 chore: Update package-lock.json to replace eslint and eslint-config-next with framer-motion, and upgrade @emnapi/core and @emnapi/runtime to version 1.8.1. Mark several dependencies as dev dependencies for better project organization.

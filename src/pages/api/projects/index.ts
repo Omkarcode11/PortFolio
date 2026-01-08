@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (method === 'GET') {
     try {
-      const projects = await Project.find({}).sort({ createdAt: -1 });
+      const projects = await Project.find({}).sort({ slug : -1 });
       res.status(200).json({ success: true, data: projects });
     } catch (error) {
       res.status(400).json({ success: false });
