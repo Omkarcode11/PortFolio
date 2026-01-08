@@ -1,11 +1,14 @@
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 import dbConnect from '../lib/dbConnect';
 import Resume from '../models/Resume';
 import { GetStaticProps } from 'next';
 import SEO from '../components/SEO';
 import { generatePersonSchema } from '../lib/seo';
+import LeetCodeStats from '../components/LeetCodeStats';
+import GitHubStats from '../components/GitHubStats';
 
 interface Experience {
   role: string;
@@ -89,6 +92,28 @@ export default function About({ resume }: AboutProps) {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
+            {/* Profile Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <div className="relative w-40 h-40 mx-auto">
+                {/* Gradient border effect */}
+                <div className="absolute inset-[-4px] bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-full animate-gradient-shift" />
+                <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-[var(--bg-primary)] shadow-2xl">
+                  <Image
+                    src="/695d03a731783_download.jpg"
+                    alt="Omkar Sonawane - Full Stack Engineer"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -212,16 +237,36 @@ export default function About({ resume }: AboutProps) {
               </div>
             </motion.div>
 
+            {/* GitHub Stats - Below Experience */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12"
+            >
+              <GitHubStats username="Omkarcode11" />
+            </motion.div>
+
             {/* Education Desktop - Moved to main column on mobile, keep desktop layout logic if desired or stack */}
           </div>
 
           {/* Sidebar */}
           <aside className="space-y-10">
+            {/* LeetCode Stats */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <LeetCodeStats username="omkardev" />
+            </motion.div>
+
              {/* Tech Skills */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
               className="p-8 rounded-3xl bg-[var(--bg-secondary)]/30 border border-transparent hover:border-brand-blue/10 transition-colors"
             >
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
@@ -244,7 +289,7 @@ export default function About({ resume }: AboutProps) {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.3 }}
             >
                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 pl-2">
                 <span className="text-brand-violet">🎓</span> Education
@@ -264,7 +309,7 @@ export default function About({ resume }: AboutProps) {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.4 }}
               >
                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2 pl-2">
                   <span className="text-brand-blue">📜</span> Certifications
@@ -285,7 +330,7 @@ export default function About({ resume }: AboutProps) {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.5 }}
               className="pt-8 border-t border-[var(--border-color)]"
             >
                <div className="flex flex-col gap-4">
