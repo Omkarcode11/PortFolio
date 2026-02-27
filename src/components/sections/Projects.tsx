@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
-import ProjectCard from '../ProjectCard';
-import Link from 'next/link';
+import ProjectCard from "../ProjectCard";
+import Link from "next/link";
 
 interface Project {
   slug: string;
@@ -21,19 +20,14 @@ export default function Projects({ projects }: ProjectsProps) {
     <section id="projects" className="section bg-black py-24">
       <div className="container mx-auto px-6 max-w-7xl">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             FEATURED PROJECTS
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Production systems built for scale, performance, and reliability.
           </p>
-        </motion.div>
+        </div>
 
         {/* Project Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -43,12 +37,7 @@ export default function Projects({ projects }: ProjectsProps) {
         </div>
 
         {/* View All Link */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold transition-colors group"
@@ -68,7 +57,7 @@ export default function Projects({ projects }: ProjectsProps) {
               />
             </svg>
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

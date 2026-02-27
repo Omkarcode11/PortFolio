@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
 interface ProjectCardProps {
   project: {
@@ -17,20 +16,11 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-    >
+    <article className="transition-all duration-300">
       <Link href={`/projects/${project.slug}`}>
-        <motion.div
-          className="group relative bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden cursor-pointer"
-          whileHover={{ y: -8, scale: 1.02 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div className="group relative bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-[1.02] transition-all duration-300">
           {/* Gradient Border on Hover */}
-          <div className="absolute inset-[-1px] bg-gradient-to-br from-cyan-500/30 to-violet-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+          <div className="absolute -inset-px bg-linear-to-br from-cyan-500/30 to-violet-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
 
           {/* Image */}
           <div className="relative aspect-video overflow-hidden">
@@ -40,9 +30,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              unoptimized={project.image?.includes('placehold.co')}
+              unoptimized={project.image?.includes("placehold.co")}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent opacity-60" />
+            <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-transparent opacity-60" />
           </div>
 
           {/* Content */}
@@ -81,9 +71,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
 
           {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-        </motion.div>
+          <div className="absolute inset-0 bg-linear-to-t from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        </div>
       </Link>
-    </motion.article>
+    </article>
   );
 }
