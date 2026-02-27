@@ -94,7 +94,7 @@ export default function Projects({ projects }: ProjectsProps) {
                       title="View Code"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <i className="fa-brands fa-github text-xl"></i>
+                      <i className="devicon-github-original text-xl"></i>
                     </a>
                     <a
                       href={project.link}
@@ -104,7 +104,9 @@ export default function Projects({ projects }: ProjectsProps) {
                       title="View Live Site"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <i className="fa-solid fa-arrow-up-right-from-square text-xl"></i>
+                      <span className="material-symbols-outlined text-xl">
+                        open_in_new
+                      </span>
                     </a>
                   </div>
                 </div>

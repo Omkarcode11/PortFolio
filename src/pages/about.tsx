@@ -315,7 +315,7 @@ export default function About({ resume }: AboutProps) {
                       rel="noreferrer"
                       className="p-3 rounded-full bg-(--bg-secondary) text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
                     >
-                      <i className="fa-brands fa-github text-xl"></i>
+                      <i className="devicon-github-original text-xl"></i>
                     </a>
                   )}
                   {resume.contact?.linkedin && (
@@ -325,7 +325,7 @@ export default function About({ resume }: AboutProps) {
                       rel="noreferrer"
                       className="p-3 rounded-full bg-(--bg-secondary) text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
                     >
-                      <i className="fa-brands fa-linkedin text-xl"></i>
+                      <i className="devicon-linkedin-plain text-xl"></i>
                     </a>
                   )}
                   {resume.contact?.email && (
@@ -333,7 +333,9 @@ export default function About({ resume }: AboutProps) {
                       href={`mailto:${resume.contact.email}`}
                       className="p-3 rounded-full bg-(--bg-secondary) text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
                     >
-                      <i className="fa-solid fa-envelope text-xl"></i>
+                      <span className="material-symbols-outlined text-xl">
+                        mail
+                      </span>
                     </a>
                   )}
                 </div>

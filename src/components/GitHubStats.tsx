@@ -170,11 +170,15 @@ const RepoCard = ({ repo, index }: { repo: any; index: number }) => {
           </div>
         )}
         <div className="flex items-center gap-1">
-          <i className="fa-solid fa-star text-yellow-500 text-[10px]"></i>
+          <span className="material-symbols-outlined text-yellow-500 text-[10px]">
+            star
+          </span>
           <span>{repo.stars}</span>
         </div>
         <div className="flex items-center gap-1">
-          <i className="fa-solid fa-code-fork text-[10px]"></i>
+          <span className="material-symbols-outlined text-[10px]">
+            fork_right
+          </span>
           <span>{repo.forks}</span>
         </div>
       </div>
@@ -234,7 +238,7 @@ export default function GitHubStats({ username, token }: GitHubStatsProps) {
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-10 rounded-xl bg-linear-to-br from-purple-500/20 to-purple-600/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <i className="fa-brands fa-github text-purple-400 text-xl"></i>
+            <i className="devicon-github-original text-purple-400 text-xl"></i>
           </div>
           <div>
             <h3 className="font-bold text-lg text-(--text-primary)">GitHub</h3>
@@ -265,13 +269,13 @@ export default function GitHubStats({ username, token }: GitHubStatsProps) {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <StatCard
-            icon={<i className="fa-brands fa-github"></i>}
+            icon={<i className="devicon-github-original"></i>}
             label="Repositories"
             value={stats.totalRepos}
             gradient="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-purple-600"
           />
           <StatCard
-            icon={<i className="fa-solid fa-star"></i>}
+            icon={<span className="material-symbols-outlined">star</span>}
             label="Total Stars"
             value={stats.totalStars}
             gradient="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600"
@@ -322,7 +326,9 @@ export default function GitHubStats({ username, token }: GitHubStatsProps) {
         {stats.topRepos && stats.topRepos.length > 0 && (
           <div>
             <h4 className="text-sm font-bold text-(--text-primary) mb-3 flex items-center gap-2">
-              <i className="fa-solid fa-star text-yellow-500 text-xs"></i>
+              <span className="material-symbols-outlined text-yellow-500 text-xs">
+                star
+              </span>
               Top Repositories
             </h4>
             <div className="space-y-3">

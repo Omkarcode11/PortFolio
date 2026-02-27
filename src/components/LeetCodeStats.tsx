@@ -411,7 +411,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
         <div className="relative z-10 flex items-start justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-orange-500/20 to-orange-600/10 flex items-center justify-center border border-orange-500/20 shadow-lg hover:scale-110 hover:rotate-5 transition-transform">
-              <i className="fa-solid fa-code text-orange-400 text-xl"></i>
+              <span className="material-symbols-outlined text-orange-400 text-xl">
+                code
+              </span>
             </div>
             <div>
               <h3 className="font-bold text-xl text-(--text-primary) tracking-tight">
@@ -444,7 +446,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
           {stats.ranking > 0 && (
             <div className="px-3 py-1.5 rounded-full bg-linear-to-r from-orange-500/20 to-orange-600/10 border border-orange-500/30 shadow-sm animate-in zoom-in duration-500">
               <div className="flex items-center gap-1.5">
-                <i className="fa-solid fa-trophy text-orange-400 text-xs shadow-none border-none"></i>
+                <span className="material-symbols-outlined text-orange-400 text-xs shadow-none border-none">
+                  emoji_events
+                </span>
                 <span className="text-orange-400 font-bold text-xs">
                   #{stats.ranking.toLocaleString()}
                 </span>
@@ -464,7 +468,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <i className="fa-solid fa-chart-line text-[14px]"></i>
+              <span className="material-symbols-outlined text-[14px]">
+                monitoring
+              </span>
               <span>Stats</span>
             </div>
           </button>
@@ -477,7 +483,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <i className="fa-solid fa-fire text-[14px]"></i>
+              <span className="material-symbols-outlined text-[14px]">
+                local_fire_department
+              </span>
               <span>Consistency</span>
             </div>
           </button>
@@ -491,7 +499,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm hover:border-orange-500/30 transition-all group">
                   <div className="flex items-center gap-2 mb-2">
-                    <i className="fa-solid fa-circle-check text-orange-400 text-[16px]"></i>
+                    <span className="material-symbols-outlined text-orange-400 text-[16px]">
+                      check_circle
+                    </span>
                     <span className="text-xs text-(--text-secondary) font-medium uppercase tracking-wide">
                       Solved
                     </span>
@@ -506,7 +516,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
 
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm hover:border-green-500/30 transition-all group">
                   <div className="flex items-center gap-2 mb-2">
-                    <i className="fa-solid fa-chart-simple text-green-400 text-[16px]"></i>
+                    <span className="material-symbols-outlined text-green-400 text-[16px]">
+                      bar_chart
+                    </span>
                     <span className="text-xs text-(--text-secondary) font-medium uppercase tracking-wide">
                       Acceptance
                     </span>
@@ -528,7 +540,11 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
                   label="Easy"
                   solved={stats.easySolved}
                   total={stats.easyTotal}
-                  icon={<i className="fa-solid fa-circle-check"></i>}
+                  icon={
+                    <span className="material-symbols-outlined">
+                      check_circle
+                    </span>
+                  }
                 />
                 <CircularProgress
                   percentage={mediumPercentage}
@@ -536,7 +552,11 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
                   label="Medium"
                   solved={stats.mediumSolved}
                   total={stats.mediumTotal}
-                  icon={<i className="fa-solid fa-circle-check"></i>}
+                  icon={
+                    <span className="material-symbols-outlined">
+                      check_circle
+                    </span>
+                  }
                 />
                 <CircularProgress
                   percentage={hardPercentage}
@@ -544,7 +564,11 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
                   label="Hard"
                   solved={stats.hardSolved}
                   total={stats.hardTotal}
-                  icon={<i className="fa-solid fa-circle-check"></i>}
+                  icon={
+                    <span className="material-symbols-outlined">
+                      check_circle
+                    </span>
+                  }
                 />
               </div>
             </div>
@@ -554,7 +578,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-2">
-                    <i className="fa-solid fa-fire text-orange-400 text-[16px]"></i>
+                    <span className="material-symbols-outlined text-orange-400 text-[16px]">
+                      local_fire_department
+                    </span>
                     <span className="text-xs text-(--text-secondary) font-medium uppercase">
                       Current
                     </span>
@@ -569,7 +595,9 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
 
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-2">
-                    <i className="fa-solid fa-trophy text-yellow-400 text-[16px]"></i>
+                    <span className="material-symbols-outlined text-yellow-400 text-[16px]">
+                      emoji_events
+                    </span>
                     <span className="text-xs text-(--text-secondary) font-medium uppercase">
                       Longest
                     </span>

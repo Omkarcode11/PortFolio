@@ -50,9 +50,9 @@ export const techStack = [
   // ⚙️ Backend (Primary Strength)
   { name: "Node.js", icon: "devicon-nodejs-plain coloured" },
   { name: "Express.js", icon: "devicon-express-original" },
-  { name: "REST APIs", icon: "fa-solid fa-cloud" },
-  { name: "WebSockets", icon: "fa-solid fa-plug" },
-  { name: "JWT Authentication", icon: "fa-solid fa-key" },
+  { name: "REST APIs", icon: "cloud" },
+  { name: "WebSockets", icon: "settings_input_component" },
+  { name: "JWT Authentication", icon: "key" },
 
   // 🗄️ Databases & Caching
   { name: "MongoDB", icon: "devicon-mongodb-plain coloured" },
@@ -65,7 +65,7 @@ export const techStack = [
   { name: "AWS", icon: "devicon-amazonwebservices-original coloured" },
   { name: "Nginx", icon: "devicon-nginx-original coloured" },
   { name: "Linux", icon: "devicon-linux-plain" },
-  { name: "CI/CD Pipelines", icon: "fa-solid fa-infinity" },
+  { name: "CI/CD Pipelines", icon: "all_inclusive" },
   { name: "GitHub Actions", icon: "devicon-githubactions-plain coloured" },
 
   // 🤖 Automation
@@ -74,8 +74,8 @@ export const techStack = [
   // 🛠 Tools & Core CS
   { name: "Git", icon: "devicon-git-plain coloured" },
   { name: "GitHub", icon: "devicon-github-original" },
-  { name: "System Design", icon: "fa-solid fa-sitemap" },
-  { name: "Data Structures & Algorithms", icon: "fa-solid fa-code" },
+  { name: "System Design", icon: "account_tree" },
+  { name: "Data Structures & Algorithms", icon: "code" },
 ];
 
 // Lazy load heavy architecture visualization component
@@ -461,10 +461,16 @@ export default function Home({ projects = [], articles = [] }: HomeProps) {
                 aria-label={tech.name}
               >
                 <span
-                  className="text-(--text-tertiary) group-hover:text-brand-blue transition-colors text-xl"
+                  className="text-(--text-tertiary) group-hover:text-brand-blue transition-colors text-xl flex items-center justify-center w-8 h-8"
                   aria-hidden="true"
                 >
-                  <i className={tech.icon}></i>
+                  {tech.icon.startsWith("devicon") ? (
+                    <i className={tech.icon}></i>
+                  ) : (
+                    <span className="material-symbols-outlined text-2xl!">
+                      {tech.icon}
+                    </span>
+                  )}
                 </span>
                 <span className="font-semibold text-sm text-(--text-primary)">
                   {tech.name}

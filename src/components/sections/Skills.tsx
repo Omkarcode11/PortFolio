@@ -17,7 +17,11 @@ const skillCategories = [
       },
       {
         name: "REST APIs",
-        icon: <i className="fa-solid fa-server text-2xl text-brand-blue"></i>,
+        icon: (
+          <span className="material-symbols-outlined text-2xl text-brand-blue">
+            dns
+          </span>
+        ),
       },
     ],
   },

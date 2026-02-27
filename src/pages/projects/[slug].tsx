@@ -151,7 +151,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
               href="/projects"
               className="inline-flex items-center gap-2 text-(--text-secondary) hover:text-brand-blue transition-colors group"
             >
-              <i className="fa-solid fa-arrow-left w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+              <span className="material-symbols-outlined text-lg! group-hover:-translate-x-1 transition-transform">
+                arrow_back
+              </span>
               <span className="font-medium">Back to Projects</span>
             </Link>
           </div>
@@ -167,7 +169,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-brand-cyan/20 to-brand-violet/20">
-                  <i className="fa-solid fa-code text-5xl text-brand-blue/30"></i>
+                  <span className="material-symbols-outlined text-5xl text-brand-blue/30">
+                    code
+                  </span>
                 </div>
               )}
             </div>
@@ -204,7 +208,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                     rel="noopener noreferrer"
                     className="btn bg-(--bg-primary) text-(--text-primary) border border-(--border-color) hover:bg-(--bg-secondary) hover:border-brand-blue/50 flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <i className="fa-brands fa-github text-xl"></i>
+                    <i className="devicon-github-original text-xl"></i>
                     <span>View Code</span>
                   </a>
                 )}
@@ -215,7 +219,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                     rel="noopener noreferrer"
                     className="btn bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet text-white border-none shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <i className="fa-solid fa-arrow-up-right-from-square text-lg"></i>
+                    <span className="material-symbols-outlined text-lg">
+                      open_in_new
+                    </span>
                     <span>Live Demo</span>
                   </a>
                 )}
@@ -237,7 +243,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                 {frontendTags.length > 0 && (
                   <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
                     <div className="flex items-center gap-3 mb-4">
-                      <i className="fa-solid fa-code text-2xl text-brand-cyan"></i>
+                      <span className="material-symbols-outlined text-2xl text-brand-cyan">
+                        code
+                      </span>
                       <h3 className="text-xl font-bold">Frontend</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -256,7 +264,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                 {backendTags.length > 0 && (
                   <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
                     <div className="flex items-center gap-3 mb-4">
-                      <i className="fa-solid fa-server text-2xl text-brand-blue"></i>
+                      <span className="material-symbols-outlined text-2xl text-brand-blue">
+                        dns
+                      </span>
                       <h3 className="text-xl font-bold">Backend</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -275,7 +285,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                 {devOpsTags.length > 0 && (
                   <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
                     <div className="flex items-center gap-3 mb-4">
-                      <i className="fa-solid fa-cloud text-2xl text-brand-violet"></i>
+                      <span className="material-symbols-outlined text-2xl text-brand-violet">
+                        cloud
+                      </span>
                       <h3 className="text-xl font-bold">
                         DevOps & Infrastructure
                       </h3>
@@ -296,7 +308,9 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                 {otherTags.length > 0 && (
                   <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
                     <div className="flex items-center gap-3 mb-4">
-                      <i className="fa-solid fa-database text-2xl text-brand-blue"></i>
+                      <span className="material-symbols-outlined text-2xl text-brand-blue">
+                        database
+                      </span>
                       <h3 className="text-xl font-bold">Other Technologies</h3>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -324,10 +338,12 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
             <h2 className="text-3xl font-bold mb-4">More Projects</h2>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-brand-blue hover:text-brand-violet transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-brand-blue hover:text-brand-violet transition-colors font-medium group"
             >
               View All Projects
-              <i className="fa-solid fa-arrow-left w-4 h-4 rotate-180"></i>
+              <span className="material-symbols-outlined text-lg! group-hover:translate-x-1 transition-transform">
+                arrow_forward
+              </span>
             </Link>
           </div>
         </div>

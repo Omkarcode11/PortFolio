@@ -1,11 +1,11 @@
 @import "tailwindcss";
-@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "devicon/devicon.min.css";
+@import "material-symbols/outlined.css";
 
 @theme {
   /* Font Families */
-  --font-heading: "Inter", sans-serif;
-  --font-sans: "Inter", sans-serif;
+  --font-heading: "Poppins", var(--font-sans), sans-serif;
+  --font-sans: "Poppins", var(--font-sans), sans-serif;
 
   /* Aurora Brand Colors */
   --color-brand-cyan: #22d3ee;

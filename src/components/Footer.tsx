@@ -25,7 +25,7 @@ const Footer = () => {
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="GitHub"
               >
-                <i className="fa-brands fa-github text-2xl"></i>
+                <i className="devicon-github-original text-2xl"></i>
               </a>
               <a
                 href="https://linkedin.com/in/omkardev"
@@ -34,7 +34,7 @@ const Footer = () => {
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="LinkedIn"
               >
-                <i className="fa-brands fa-linkedin text-2xl"></i>
+                <i className="devicon-linkedin-plain text-2xl"></i>
               </a>
               <a
                 href="https://twitter.com/yourusername"
@@ -43,14 +43,14 @@ const Footer = () => {
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="Twitter"
               >
-                <i className="fa-brands fa-x-twitter text-2xl"></i>
+                <i className="devicon-twitter-original text-2xl"></i>
               </a>
               <a
                 href="mailto:omkarsonawaneomkar2@gmail.com"
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="Email"
               >
-                <i className="fa-solid fa-envelope text-2xl"></i>
+                <span className="material-symbols-outlined text-2xl">mail</span>
               </a>
             </div>
           </div>

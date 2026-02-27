@@ -4,10 +4,11 @@ import { ThemeProvider } from "../hooks/useTheme";
 import Layout from "../components/Layout";
 import SmoothScroll from "../components/SmoothScroll";
 import "../styles/globals.css";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -21,7 +22,7 @@ export default function App({
     <SessionProvider session={session}>
       <ThemeProvider>
         <SmoothScroll>
-          <div className={`${inter.variable} font-sans`}>
+          <div className={`${poppins.variable} font-sans`}>
             <Layout>
               <Analytics />
               <Component {...pageProps} />
