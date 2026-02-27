@@ -1,8 +1,6 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
-
+import Link from "next/link";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -16,8 +14,8 @@ const Footer = () => {
               OMKAR SONAWANE
             </h3>
             <p className="text-gray-400 mb-6">
-              Backend-focused full-stack engineer building scalable systems
-              for the modern web. Open to backend engineering roles.
+              Backend-focused full-stack engineer building scalable systems for
+              the modern web. Open to backend engineering roles.
             </p>
             <div className="flex gap-4">
               <a
@@ -27,7 +25,7 @@ const Footer = () => {
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="GitHub"
               >
-                <FaGithub size={24} />
+                <i className="fa-brands fa-github text-2xl"></i>
               </a>
               <a
                 href="https://linkedin.com/in/omkardev"
@@ -36,7 +34,7 @@ const Footer = () => {
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="LinkedIn"
               >
-                <FaLinkedin size={24} />
+                <i className="fa-brands fa-linkedin text-2xl"></i>
               </a>
               <a
                 href="https://twitter.com/yourusername"
@@ -45,14 +43,14 @@ const Footer = () => {
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="Twitter"
               >
-                <FaTwitter size={24} />
+                <i className="fa-brands fa-x-twitter text-2xl"></i>
               </a>
               <a
                 href="mailto:omkarsonawaneomkar2@gmail.com"
                 className="p-2 text-gray-400 hover:text-cyan-400 transition-colors"
                 aria-label="Email"
               >
-                <FaEnvelope size={24} />
+                <i className="fa-solid fa-envelope text-2xl"></i>
               </a>
             </div>
           </div>

@@ -1,8 +1,7 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Custom404() {
   const router = useRouter();
@@ -12,43 +11,6 @@ export default function Custom404() {
     setMounted(true);
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  };
-
-  const numberVariants = {
-    hidden: { opacity: 0, scale: 0.5, rotate: -180 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 200,
-        damping: 15,
-      },
-    },
-  };
-
   if (!mounted) {
     return null;
   }
@@ -57,113 +19,71 @@ export default function Custom404() {
     <>
       <Head>
         <title>404 - Page Not Found | Portfolio</title>
-        <meta name="description" content="The page you're looking for doesn't exist." />
+        <meta
+          name="description"
+          content="The page you're looking for doesn't exist."
+        />
       </Head>
 
-      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[var(--bg-primary)]">
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-(--bg-primary)">
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Gradient Orbs */}
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20"
+          <div
+            className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20 animate-pulse"
             style={{
-              background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
-            }}
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: 'easeInOut',
+              background:
+                "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
             }}
           />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20"
+          <div
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20 animate-pulse delay-700"
             style={{
-              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)',
-            }}
-            animate={{
-              x: [0, -100, 0],
-              y: [0, -50, 0],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: 'easeInOut',
+              background:
+                "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)",
             }}
           />
-          <motion.div
-            className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full blur-[100px] opacity-15"
+          <div
+            className="absolute top-1/2 right-1/3 w-64 h-64 rounded-full blur-[100px] opacity-15 animate-pulse delay-1000"
             style={{
-              background: 'radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, transparent 70%)',
-            }}
-            animate={{
-              x: [0, 80, 0],
-              y: [0, -80, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 18,
-              repeat: Infinity,
-              ease: 'easeInOut',
+              background:
+                "radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, transparent 70%)",
             }}
           />
         </div>
 
         {/* Main Content */}
         <div className="container relative z-10 px-4">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-center max-w-4xl mx-auto"
-          >
+          <div className="text-center max-w-4xl mx-auto animate-in fade-in duration-700">
             {/* 404 Number */}
-            <motion.div
-              variants={numberVariants as any}
-              className="mb-8 relative"
-            >
+            <div className="mb-8 relative animate-in zoom-in duration-500">
               <h1 className="text-[120px] md:text-[180px] lg:text-[240px] font-extrabold leading-none">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-violet animate-aurora" style={{ backgroundSize: '200% 200%' }}>
+                <span
+                  className="text-transparent bg-clip-text bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet animate-aurora"
+                  style={{ backgroundSize: "200% 200%" }}
+                >
                   404
                 </span>
               </h1>
               {/* Decorative elements */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full border-4 border-brand-blue/20"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-            </motion.div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full border-4 border-brand-blue/20 animate-ping opacity-20" />
+            </div>
 
             {/* Error Message */}
-            <motion.div variants={itemVariants as any} className="mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-[var(--text-primary)]">
+            <div className="mb-12 animate-in slide-in-from-bottom-4 duration-500 delay-200 fill-mode-both">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-(--text-primary)">
                 Page Not Found
               </h2>
-              <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
-                Oops! The page you&apos;re looking for seems to have wandered off into the digital void.
+              <p className="text-lg md:text-xl text-(--text-secondary) max-w-2xl mx-auto leading-relaxed">
+                Oops! The page you&apos;re looking for seems to have wandered
+                off into the digital void.
                 <br className="hidden md:block" />
                 Let&apos;s get you back on track.
               </p>
-            </motion.div>
+            </div>
 
             {/* Action Buttons */}
-            <motion.div
-              variants={itemVariants as any}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-            >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-in slide-in-from-bottom-4 duration-500 delay-300 fill-mode-both">
               <Link href="/" className="btn group">
                 <svg
                   className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
@@ -200,31 +120,33 @@ export default function Custom404() {
                 </svg>
                 <span>Go Back</span>
               </button>
-            </motion.div>
+            </div>
 
             {/* Quick Links */}
-            <motion.div variants={itemVariants as any} className="mt-16">
-              <p className="text-sm font-semibold text-[var(--text-secondary)] mb-6 uppercase tracking-wider">
+            <div className="mt-16 animate-in slide-in-from-bottom-4 duration-500 delay-400 fill-mode-both">
+              <p className="text-sm font-semibold text-(--text-secondary) mb-6 uppercase tracking-wider">
                 Popular Pages
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 {[
-                  { name: 'Projects', href: '/projects' },
-                  { name: 'About', href: '/about' },
-                  { name: 'Articles', href: '/articles' },
-                  { name: 'API Docs', href: '/api-docs' },
+                  { name: "Projects", href: "/projects" },
+                  { name: "About", href: "/about" },
+                  { name: "Articles", href: "/articles" },
+                  { name: "API Docs", href: "/api-docs" },
                 ].map((link, index) => (
-                  <motion.div
+                  <div
                     key={link.href}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="animate-in fade-in zoom-in duration-300"
+                    style={
+                      {
+                        animationDelay: `${0.5 + index * 0.1}s`,
+                        fillMode: "both",
+                      } as any
+                    }
                   >
                     <Link
                       href={link.href}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:border-brand-blue/50 hover:text-brand-blue transition-all duration-300 font-medium text-sm"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--bg-secondary) border border-(--border-color) text-(--text-primary) hover:border-brand-blue/50 hover:text-brand-blue transition-all duration-300 font-medium text-sm hover:scale-105 active:scale-95"
                     >
                       {link.name}
                       <svg
@@ -241,24 +163,20 @@ export default function Custom404() {
                         />
                       </svg>
                     </Link>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Fun Element */}
-            <motion.div
-              variants={itemVariants as any}
-              className="mt-20 pt-8 border-t border-[var(--border-color)]"
-            >
-              <p className="text-sm text-[var(--text-tertiary)]">
+            <div className="mt-20 pt-8 border-t border-(--border-color) animate-in fade-in duration-500 delay-700 fill-mode-both">
+              <p className="text-sm text-(--text-tertiary)">
                 Error Code: 404 | Status: Lost in Space 🚀
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </>
   );
 }
-
