@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GitHubIcon, StarIcon, ForkIcon } from "./icons";
 import {
   fetchGitHubStats,
   GitHubStats as GitHubStatsType,
@@ -170,15 +171,11 @@ const RepoCard = ({ repo, index }: { repo: any; index: number }) => {
           </div>
         )}
         <div className="flex items-center gap-1">
-          <span className="material-symbols-outlined text-yellow-500 text-[10px]">
-            star
-          </span>
+          <StarIcon className="w-3 h-3 text-yellow-500" />
           <span>{repo.stars}</span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="material-symbols-outlined text-[10px]">
-            fork_right
-          </span>
+          <ForkIcon className="w-3 h-3" />
           <span>{repo.forks}</span>
         </div>
       </div>
@@ -238,7 +235,7 @@ export default function GitHubStats({ username, token }: GitHubStatsProps) {
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-10 h-10 rounded-xl bg-linear-to-br from-purple-500/20 to-purple-600/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <i className="devicon-github-original text-purple-400 text-xl"></i>
+            <GitHubIcon className="w-6 h-6 text-purple-400" />
           </div>
           <div>
             <h3 className="font-bold text-lg text-(--text-primary)">GitHub</h3>
@@ -269,13 +266,13 @@ export default function GitHubStats({ username, token }: GitHubStatsProps) {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3 mb-6">
           <StatCard
-            icon={<i className="devicon-github-original"></i>}
+            icon={<GitHubIcon className="w-5 h-5" />}
             label="Repositories"
             value={stats.totalRepos}
             gradient="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-purple-600"
           />
           <StatCard
-            icon={<span className="material-symbols-outlined">star</span>}
+            icon={<StarIcon className="w-5 h-5" />}
             label="Total Stars"
             value={stats.totalStars}
             gradient="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600"
@@ -326,9 +323,7 @@ export default function GitHubStats({ username, token }: GitHubStatsProps) {
         {stats.topRepos && stats.topRepos.length > 0 && (
           <div>
             <h4 className="text-sm font-bold text-(--text-primary) mb-3 flex items-center gap-2">
-              <span className="material-symbols-outlined text-yellow-500 text-xs">
-                star
-              </span>
+              <StarIcon className="w-4 h-4 text-yellow-500" />
               Top Repositories
             </h4>
             <div className="space-y-3">

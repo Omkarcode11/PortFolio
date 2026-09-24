@@ -1,12 +1,16 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import dbConnect from "../lib/dbConnect";
 import Resume from "../models/Resume";
 import { GetStaticProps } from "next";
 import SEO from "../components/SEO";
+import { GitHubIcon, LinkedInIcon, MailIcon } from "../components/icons";
 import { generatePersonSchema } from "../lib/seo";
 import LeetCodeStats from "../components/LeetCodeStats";
 import GitHubStats from "../components/GitHubStats";
+import fs from "fs";
+import path from "path";
 
 interface Experience {
   role: string;
@@ -63,15 +67,15 @@ export default function About({ resume }: AboutProps) {
   return (
     <>
       <SEO
-        title="About | Backend Engineer | Node.js Developer India"
-        description="Learn about my experience building scalable backend systems, system design expertise, and production experience with Node.js, TypeScript, MongoDB, PostgreSQL, and AWS. Available for backend engineering roles."
+        title="About | Omkar Sonawane - AI & Full-Stack Developer"
+        description="Full-stack and AI developer with production experience building AI applications, Shopify solutions, Node.js backend systems, and business automation workflows. Experienced in turning business problems into production-ready software."
         keywords={[
-          "Backend Engineer",
-          "Node.js Developer",
+          "AI Developer",
           "Full Stack Developer",
-          "System Design Engineer",
-          "Backend Developer India",
-          "About Backend Engineer",
+          "Shopify Developer",
+          "Node.js Developer",
+          "Business Automation",
+          "About Omkar Sonawane",
         ]}
         url="/about"
         schema={generatePersonSchema()}
@@ -80,20 +84,19 @@ export default function About({ resume }: AboutProps) {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Ambient Background */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-cyan/10 rounded-full blur-[120px] -z-10" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-violet/10 rounded-full blur-[120px] -z-10" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-violet/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
         <div className="container relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             {/* Profile Image */}
             <div className="mb-8">
               <div className="relative w-40 h-40 mx-auto">
-                {/* Gradient border effect */}
                 <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-full" />
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-(--bg-primary) shadow-2xl">
                   <Image
                     src="/695d03a731783_download.jpg"
-                    alt="Omkar Sonawane - Full Stack Engineer"
+                    alt="Omkar Sonawane - AI & Full-Stack Developer"
                     fill
                     className="object-cover"
                     priority
@@ -105,20 +108,19 @@ export default function About({ resume }: AboutProps) {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-blue/10 rounded-full mb-8">
               <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
               <span className="text-brand-blue font-semibold text-sm tracking-wide uppercase">
-                Professional Profile
+                AI &amp; Full-Stack Developer
               </span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-8 tracking-tight">
               About{" "}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet">
-                Me
+                Omkar
               </span>
             </h1>
 
             <p className="text-lg lg:text-xl text-(--text-secondary) max-w-2xl mx-auto leading-relaxed">
-              Crafting exceptional digital experiences through innovative
-              solutions and cutting-edge technology.
+              Building AI-powered applications, custom Shopify solutions, scalable backends, and business automation pipelines.
             </p>
           </div>
         </div>
@@ -126,10 +128,10 @@ export default function About({ resume }: AboutProps) {
 
       <section className="container section min-h-[80vh] pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-12 lg:gap-20">
-          <div className="space-y-20">
+          <div className="space-y-16">
             {/* Summary */}
             <div className="group">
-              <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-(--text-primary)">
                 <span className="w-10 h-10 rounded-xl bg-linear-to-br from-brand-cyan/20 to-brand-blue/20 flex items-center justify-center text-brand-blue">
                   <svg
                     className="w-5 h-5"
@@ -147,8 +149,8 @@ export default function About({ resume }: AboutProps) {
                 </span>
                 Professional Summary
               </h2>
-              <div className="relative p-8 rounded-3xl bg-(--bg-secondary)/50 backdrop-blur-sm hover:shadow-xl hover:shadow-brand-blue/5 transition-all duration-500">
-                <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet opacity-50 rounded-t-3xl" />
+              <div className="relative p-8 rounded-3xl bg-(--bg-secondary)/50 backdrop-blur-sm border border-(--border-color) hover:shadow-xl hover:shadow-brand-blue/5 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet opacity-60 rounded-t-3xl" />
                 <p className="text-lg text-(--text-primary) leading-relaxed relative z-10">
                   {resume.summary}
                 </p>
@@ -157,7 +159,7 @@ export default function About({ resume }: AboutProps) {
 
             {/* Experience */}
             <div>
-              <h2 className="text-3xl font-bold mb-10 flex items-center gap-3">
+              <h2 className="text-3xl font-bold mb-10 flex items-center gap-3 text-(--text-primary)">
                 <span className="w-10 h-10 rounded-xl bg-linear-to-br from-brand-blue/20 to-brand-violet/20 flex items-center justify-center text-brand-violet">
                   <svg
                     className="w-5 h-5"
@@ -173,21 +175,19 @@ export default function About({ resume }: AboutProps) {
                     />
                   </svg>
                 </span>
-                Work Experience
+                Professional Experience
               </h2>
 
               <div className="space-y-12 relative">
-                {/* Subtle vertical guide */}
                 <div className="absolute left-[19px] top-4 bottom-8 w-px bg-linear-to-b from-brand-blue/50 via-brand-violet/20 to-transparent hidden sm:block" />
 
                 {resume.experience?.map((job, index) => (
                   <div key={index} className="relative pl-0 sm:pl-16 group">
-                    {/* Timeline Node */}
                     <div className="absolute left-0 top-1.5 w-10 h-10 rounded-full bg-(--bg-primary) border-4 border-(--bg-secondary) shadow-sm hidden sm:flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
                       <div className="w-2.5 h-2.5 rounded-full bg-linear-to-r from-brand-cyan to-brand-blue" />
                     </div>
 
-                    <div className="p-6 sm:p-8 rounded-3xl bg-(--bg-secondary)/30 hover:bg-(--bg-secondary)/80 transition-all duration-300 hover:shadow-lg hover:shadow-brand-blue/5">
+                    <div className="p-6 sm:p-8 rounded-3xl bg-(--bg-secondary)/30 border border-(--border-color) hover:bg-(--bg-secondary)/70 transition-all duration-300 hover:shadow-lg hover:shadow-brand-blue/5">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                         <div>
                           <h3 className="text-xl font-bold text-(--text-primary) group-hover:text-brand-blue transition-colors">
@@ -197,23 +197,23 @@ export default function About({ resume }: AboutProps) {
                             <span>{job.company}</span>
                           </div>
                         </div>
-                        <span className="self-start px-4 py-1.5 rounded-full bg-brand-blue/5 text-brand-blue text-sm font-semibold whitespace-nowrap">
+                        <span className="self-start px-4 py-1.5 rounded-full bg-brand-blue/10 text-brand-blue text-xs font-semibold whitespace-nowrap">
                           {job.duration}
                         </span>
                       </div>
 
-                      <p className="text-(--text-secondary) mb-6 leading-relaxed">
+                      <p className="text-(--text-secondary) mb-6 leading-relaxed text-sm sm:text-base">
                         {job.description}
                       </p>
 
                       {job.highlights && job.highlights.length > 0 && (
-                        <div className="space-y-3">
+                        <div className="space-y-2.5">
                           {job.highlights.map((h, i) => (
                             <div
                               key={i}
                               className="flex gap-3 text-sm text-(--text-secondary)"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-brand-violet/50 mt-2 shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-violet/60 mt-2 shrink-0" />
                               <span className="leading-relaxed">{h}</span>
                             </div>
                           ))}
@@ -225,31 +225,29 @@ export default function About({ resume }: AboutProps) {
               </div>
             </div>
 
-            {/* GitHub Stats - Below Experience */}
+            {/* GitHub Stats */}
             <div className="mt-12">
               <GitHubStats username="Omkarcode11" />
             </div>
-
-            {/* Education Desktop - Moved to main column on mobile, keep desktop layout logic if desired or stack */}
           </div>
 
           {/* Sidebar */}
           <aside className="space-y-10">
-            {/* LeetCode Stats */}
+            {/* LeetCode Algorithmic Credibility */}
             <div>
               <LeetCodeStats username="omkardev" />
             </div>
 
-            {/* Tech Skills */}
-            <div className="p-8 rounded-3xl bg-(--bg-secondary)/30 border border-transparent hover:border-brand-blue/10 transition-colors">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <span className="text-brand-cyan">⚡</span> Skills & Tech
+            {/* Skills & Capabilities */}
+            <div className="p-8 rounded-3xl bg-(--bg-secondary)/30 border border-(--border-color) hover:border-brand-blue/20 transition-colors">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-(--text-primary)">
+                <span className="text-brand-cyan">⚡</span> Core Capabilities
               </h3>
               <div className="flex flex-wrap gap-2">
                 {resume.skills?.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 rounded-lg bg-(--bg-card) text-sm font-medium text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-colors cursor-default"
+                    className="px-3 py-1.5 rounded-lg bg-(--bg-card) text-xs sm:text-sm font-semibold text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 border border-(--border-color) transition-colors cursor-default"
                   >
                     {skill}
                   </span>
@@ -259,14 +257,14 @@ export default function About({ resume }: AboutProps) {
 
             {/* Education */}
             <div>
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 pl-2">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-2 pl-2 text-(--text-primary)">
                 <span className="text-brand-violet">🎓</span> Education
               </h3>
-              <div className="relative p-6 rounded-3xl bg-linear-to-br from-brand-violet/5 to-transparent border border-brand-violet/10">
-                <h4 className="font-bold text-lg mb-1">
+              <div className="relative p-6 rounded-3xl bg-(--bg-secondary)/30 border border-(--border-color)">
+                <h4 className="font-bold text-lg mb-1 text-(--text-primary)">
                   {resume.education?.degree}
                 </h4>
-                <p className="text-brand-violet font-medium text-sm mb-4">
+                <p className="text-brand-violet font-semibold text-sm mb-4">
                   {resume.education?.university}
                 </p>
                 <span className="inline-block px-3 py-1 rounded-md bg-brand-violet/10 text-brand-violet text-xs font-bold">
@@ -275,70 +273,53 @@ export default function About({ resume }: AboutProps) {
               </div>
             </div>
 
-            {/* Certifications (if any) */}
-            {resume.certifications && resume.certifications.length > 0 && (
-              <div>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2 pl-2">
-                  <span className="text-brand-blue">📜</span> Certifications
-                </h3>
-                <ul className="space-y-4">
-                  {resume.certifications.map((cert, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-3 text sm text-(--text-secondary)"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-brand-blue/50" />
-                      {cert}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            {/* Client CTA Card */}
+            <div className="p-8 rounded-3xl bg-linear-to-br from-brand-blue/10 via-brand-cyan/10 to-transparent border border-brand-blue/30 space-y-4">
+              <h3 className="text-xl font-bold text-(--text-primary)">
+                Have a Project?
+              </h3>
+              <p className="text-sm text-(--text-secondary) leading-relaxed">
+                Available for freelance engineering, AI integrations, Shopify development, and workflow automation.
+              </p>
+              <Link
+                href="/#contact"
+                className="w-full py-3.5 px-6 rounded-full bg-brand-blue text-white font-bold text-sm text-center block shadow-md shadow-brand-blue/25 hover:bg-brand-blue/90 transition-all"
+              >
+                Start a Conversation
+              </Link>
 
-            {/* Contact / Download */}
-            <div className="pt-8 border-t border-(--border-color)">
-              <div className="flex flex-col gap-4">
-                <a
-                  href={resume.resumeLink || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn w-full justify-center bg-(--text-primary) text-(--bg-primary) hover:opacity-90"
-                >
-                  Download Resume
-                </a>
-
-                <div className="flex gap-4 justify-center mt-4">
-                  {resume.contact?.github && (
-                    <a
-                      href={resume.contact.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-3 rounded-full bg-(--bg-secondary) text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
-                    >
-                      <i className="devicon-github-original text-xl"></i>
-                    </a>
-                  )}
-                  {resume.contact?.linkedin && (
-                    <a
-                      href={resume.contact.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-3 rounded-full bg-(--bg-secondary) text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
-                    >
-                      <i className="devicon-linkedin-plain text-xl"></i>
-                    </a>
-                  )}
-                  {resume.contact?.email && (
-                    <a
-                      href={`mailto:${resume.contact.email}`}
-                      className="p-3 rounded-full bg-(--bg-secondary) text-(--text-secondary) hover:text-brand-blue hover:bg-brand-blue/10 transition-all"
-                    >
-                      <span className="material-symbols-outlined text-xl">
-                        mail
-                      </span>
-                    </a>
-                  )}
-                </div>
+              <div className="flex gap-3 justify-center pt-2">
+                {resume.contact?.github && (
+                  <a
+                    href={resume.contact.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-full bg-(--bg-card) text-(--text-secondary) hover:text-brand-blue border border-(--border-color) transition-all"
+                    aria-label="GitHub"
+                  >
+                    <GitHubIcon className="w-5 h-5 shrink-0" />
+                  </a>
+                )}
+                {resume.contact?.linkedin && (
+                  <a
+                    href={resume.contact.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-full bg-(--bg-card) text-(--text-secondary) hover:text-[#0077b5] border border-(--border-color) transition-all"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedInIcon className="w-5 h-5 shrink-0 text-[#0077b5]" />
+                  </a>
+                )}
+                {resume.contact?.email && (
+                  <a
+                    href={`mailto:${resume.contact.email}`}
+                    className="p-2.5 rounded-full bg-(--bg-card) text-(--text-secondary) hover:text-brand-blue border border-(--border-color) transition-all"
+                    aria-label="Email"
+                  >
+                    <MailIcon className="w-5 h-5 shrink-0 text-brand-blue" />
+                  </a>
+                )}
               </div>
             </div>
           </aside>
@@ -353,18 +334,30 @@ export const getStaticProps: GetStaticProps<AboutProps> = async () => {
     await dbConnect();
     const resumeDoc = await Resume.findOne({}).lean();
 
-    if (!resumeDoc) {
-      return { props: { resume: null } };
+    if (resumeDoc) {
+      const resume = JSON.parse(JSON.stringify(resumeDoc));
+      return {
+        props: { resume },
+        revalidate: 60,
+      };
     }
-
-    const resume = JSON.parse(JSON.stringify(resumeDoc));
-
-    return {
-      props: { resume },
-      revalidate: 60,
-    };
   } catch (error) {
-    console.error("Error fetching resume:", error);
-    return { props: { resume: null } };
+    console.warn("DB resume fetch failed, falling back to local file:", error);
   }
+
+  // Fallback to local resume.json
+  try {
+    const resumePath = path.join(process.cwd(), "src/content/resume.json");
+    if (fs.existsSync(resumePath)) {
+      const resumeData = JSON.parse(fs.readFileSync(resumePath, "utf8"));
+      return {
+        props: { resume: resumeData },
+        revalidate: 60,
+      };
+    }
+  } catch (err) {
+    console.error("Local resume.json read error:", err);
+  }
+
+  return { props: { resume: null } };
 };

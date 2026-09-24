@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg2)"/>
+  <circle cx="400" cy="200" r="240" fill="url(#glow2)"/>
+
+  <!-- Performance Meter Graphic -->
+  <g transform="translate(180, 80)">
+    <!-- Before Box -->
+    <rect x="0" y="30" width="200" height="150" rx="14" fill="#0f172a" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="20" y="65" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="600">BEFORE OPTIMIZATION</text>
+    <text x="20" y="115" fill="#ef4444" font-family="system-ui, sans-serif" font-size="36" font-weight="800">3.2s</text>
+    <text x="20" y="145" fill="#64748b" font-family="system-ui, sans-serif" font-size="12">Heavy script bloat &amp; latency</text>
+
+    <!-- Arrow Transition -->
+    <path d="M 215 105 L 235 105" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="235,100 245,105 235,110" fill="#3b82f6"/>
+
+    <!-- After Box -->
+    <rect x="250" y="10" width="200" height="180" rx="14" fill="#064e3b" fill-opacity="0.3" stroke="#10b981" stroke-width="2"/>
+    <rect x="270" y="30" width="80" height="20" rx="4" fill="#10b981" fill-opacity="0.2"/>
+    <text x="310" y="44" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">70% FASTER</text>
+    <text x="270" y="75" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="12" font-weight="600">AFTER ARCHITECTURE</text>
+    <text x="270" y="125" fill="#10b981" font-family="system-ui, sans-serif" font-size="44" font-weight="900">&lt;1.0s</text>
+    <text x="270" y="155" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="12">Theme App Extensions + CDN</text>
+  </g>
+
+  <!-- Metrics Pill Row -->
+  <g transform="translate(160, 290)">
+    <rect x="0" y="0" width="480" height="60" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="80" y="35" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Theme Extensions</text>
+    <line x1="160" y1="15" x2="160" y2="45" stroke="#334155" stroke-width="1"/>
+    <text x="240" y="35" fill="#34d399" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Zero CLS Impact</text>
+    <line x1="320" y1="15" x2="320" y2="45" stroke="#334155" stroke-width="1"/>
+    <text x="400" y="35" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Redis Caching</text>
+  </g>
+
+  <text x="400" y="415" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Shopify Storefront Performance Engine</text>
+  <text x="400" y="440" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">Sub-second Shopify Architecture for High-Conversion Merchants</text>
+</svg>

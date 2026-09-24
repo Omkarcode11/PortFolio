@@ -1,29 +1,70 @@
 [
   {
-    "slug": "real-time-chat-app",
-    "title": "Real-Time Chat App",
-    "description": "A scalable real-time chat backend built with Node.js, Socket.IO, and MongoDB. Supports typing indicators, read receipts, and handles 200+ concurrent users with sub-150ms latency.",
-    "tags": ["Node.js", "Socket.IO", "MongoDB", "JWT", "WebSockets"],
-    "link": "https://github.com/Omkarcode11",
-    "github": "https://github.com/Omkarcode11",
-    "image": "https://placehold.co/600x400/2563eb/ffffff?text=Real-Time+Chat"
-  },
-  {
-      "slug": "job-automation-system",
-      "title": "Job Data Automation System",
-      "description": "High-performance scraping and data pipeline system capable of processing 20,000+ job listings with CAPTCHA handling and retry logic.",
-      "tags": ["Puppeteer", "Node.js", "Automation", "Redis"],
-      "link": "https://github.com/Omkarcode11",
-      "github": "https://github.com/Omkarcode11",
-      "image": "https://placehold.co/600x400/10b981/ffffff?text=Automation+System"
+    "slug": "ai-commerce-agent",
+    "title": "AI Commerce Agent",
+    "tagline": "Conversational AI assistant for product discovery, merchant catalog interaction, and customer support.",
+    "problem": "E-commerce shoppers struggle to quickly find matching products across large inventories, leading to high cart drop-offs and repetitive pre-sales support queries.",
+    "solution": "An AI-powered commerce assistant designed to help customers discover products, answer product questions and interact with commerce data using natural language.",
+    "description": "An AI-powered commerce assistant designed to help customers discover products, answer product questions and interact with commerce data using natural language.",
+    "tags": ["AI", "Node.js", "Shopify", "TypeScript", "APIs", "LLMs"],
+    "badge": "Coming Soon",
+    "category": "AI Applications",
+    "isComingSoon": true,
+    "image": "/projects/ai-commerce-agent.svg"
   },
   {
     "slug": "shopify-theme-optimization",
-    "title": "Shopify App Optimization",
-    "description": "Performance engineering project achieving 70% faster load times (3.2s to <1s) via caching, asset optimization, and lazy loading strategies.",
-    "tags": ["Performance", "JavaScript", "Shopify", "Optimization"],
+    "title": "Shopify Storefront Performance Engine",
+    "tagline": "Sub-second storefront architecture reducing load time by 70% (<1s) for Shopify merchants.",
+    "problem": "Third-party app bloat and synchronous script execution slowed merchant storefronts to 3.2s, depressing conversion rates and mobile user retention.",
+    "solution": "Re-engineered the Shopify theme integration with asynchronous resource bundling, CDN caching, and lightweight DOM manipulation, slashing load time from 3.2s to <1s.",
+    "description": "Performance engineering project achieving 70% faster load times (3.2s to <1s) via caching, asset optimization, and modern Shopify Theme App Extension architecture.",
+    "tags": ["Shopify", "Performance", "JavaScript", "Theme Extensions", "Redis"],
+    "badge": "Professional Experience",
+    "category": "Shopify Solutions",
     "link": "https://github.com/Omkarcode11",
     "github": "https://github.com/Omkarcode11",
-    "image": "https://placehold.co/600x400/eb2563/ffffff?text=Performance+Eng"
+    "image": "/projects/shopify-optimization.svg"
+  },
+  {
+    "slug": "job-automation-system",
+    "title": "Business Data & Workflow Automation Engine",
+    "tagline": "Fault-tolerant automated data ingestion pipeline processing 20,000+ records with 85% time savings.",
+    "problem": "Manual data collection and validation took over an hour daily, suffered from frequent IP rate limits, and lacked failure recovery.",
+    "solution": "Built an automated Puppeteer & Node.js pipeline with Redis-backed task queuing, CAPTCHA handling, and exponential backoff retry logic, shrinking processing time from 60 minutes to 9 minutes.",
+    "description": "High-performance scraping and data pipeline system capable of processing 20,000+ listings with automated retry logic, reducing run times by 85% (60m to 9m).",
+    "tags": ["Node.js", "Puppeteer", "Redis", "Automation", "APIs"],
+    "badge": "Business Automation",
+    "category": "Business Automation",
+    "link": "https://github.com/Omkarcode11",
+    "github": "https://github.com/Omkarcode11",
+    "image": "/projects/job-automation.svg"
+  },
+  {
+    "slug": "analytics-reporting-engine",
+    "title": "High-Volume Analytics & Admin Dashboard",
+    "tagline": "Operational data platform handling 500K+ records with 40% faster reporting and real-time metrics.",
+    "problem": "Operations teams faced sluggish admin consoles that experienced connection timeouts when querying large datasets across hundreds of thousands of operational records.",
+    "solution": "Built an analytics dashboard that allows teams to monitor large datasets through optimized data fetching, indexed aggregation queries, and Redis caching.",
+    "description": "Analytics and operational dashboard handling 500K+ records with Redis caching and aggregation queries, boosting reporting performance by 40%.",
+    "tags": ["React", "Node.js", "PostgreSQL", "Redis", "Dashboards"],
+    "badge": "Professional Experience",
+    "category": "Backend Systems",
+    "github": "https://github.com/Omkarcode11",
+    "image": "/projects/analytics-dashboard.svg"
+  },
+  {
+    "slug": "real-time-chat-app",
+    "title": "Real-Time Messaging & Collaboration Engine",
+    "tagline": "Low-latency WebSocket messaging system supporting 200+ concurrent connections with sub-150ms delivery.",
+    "problem": "Distributed teams require reliable real-time communication with instant packet delivery, typing indicators, read receipts, and graceful disconnection handling.",
+    "solution": "Engineered a scalable WebSocket service using Node.js, Socket.IO, and MongoDB, delivering typing indicators, message persistence, and sub-150ms latency under concurrent load.",
+    "description": "A scalable real-time messaging backend built with Node.js, Socket.IO, and MongoDB. Supports typing indicators, read receipts, and handles 200+ concurrent users with sub-150ms latency.",
+    "tags": ["Node.js", "Socket.IO", "MongoDB", "WebSockets", "JWT"],
+    "badge": "Backend System",
+    "category": "Backend Systems",
+    "link": "https://github.com/Omkarcode11",
+    "github": "https://github.com/Omkarcode11",
+    "image": "/projects/realtime-chat.svg"
   }
 ]

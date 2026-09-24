@@ -1,132 +1,142 @@
+import * as Icons from "./icons";
+
 interface ArchitectureVisualizationProps {
-  prefersReducedMotion: boolean;
+  prefersReducedMotion?: boolean;
 }
 
 export default function ArchitectureVisualization({
-  prefersReducedMotion,
+  prefersReducedMotion = false,
 }: ArchitectureVisualizationProps) {
   return (
-    <div className="relative hidden lg:block h-[600px] w-full perspective-1000 group">
+    <div className="relative hidden lg:block h-[580px] w-full perspective-1000 group">
       <div
         className="absolute inset-0 flex items-center justify-center transform hover:scale-[1.02] transition-transform duration-500 ease-out"
         style={{
           opacity: 1,
-          transform: "rotateY(-5deg) translateX(0)",
+          transform: "rotateY(-4deg) rotateX(2deg)",
         }}
       >
-        {/* System Architecture Panel */}
-        <div className="relative w-[500px] h-[380px] bg-white/40 dark:bg-slate-900/40 backdrop-blur-2xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl shadow-brand-blue/10 z-20 overflow-hidden">
-          {/* Terminal Header */}
-          <div className="h-12 border-b border-white/10 flex items-center px-6 gap-2 bg-white/5">
-            <div className="w-3 h-3 rounded-full bg-red-400 opacity-80" />
-            <div className="w-3 h-3 rounded-full bg-yellow-400 opacity-80" />
-            <div className="w-3 h-3 rounded-full bg-green-400 opacity-80" />
-            <span className="ml-4 text-xs text-white/60 font-mono">
-              system-architecture.json
-            </span>
+        {/* Main Product Engineering Console */}
+        <div className="relative w-[520px] bg-(--bg-card) backdrop-blur-2xl rounded-3xl border border-(--border-color) shadow-2xl shadow-brand-blue/10 z-20 overflow-hidden">
+          {/* Console Header */}
+          <div className="h-12 border-b border-(--border-color) flex items-center justify-between px-6 bg-(--bg-secondary)/60">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-red-400/80" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
+              <div className="w-3 h-3 rounded-full bg-green-400/80" />
+              <span className="ml-3 text-xs font-mono text-(--text-secondary)">
+                production-stack.architecture
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span>LIVE</span>
+            </div>
           </div>
 
-          {/* Architecture Visualization */}
+          {/* Architecture Visualization Body */}
           <div className="p-6 space-y-4">
-            {/* API Layer */}
-            <div className="h-20 rounded-xl bg-linear-to-r from-brand-cyan/30 to-brand-blue/30 border border-white/20 flex items-center justify-center relative overflow-hidden group/api">
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
-              <div className="relative z-10 text-center">
-                <div className="text-xs font-mono text-white/90 mb-1">
-                  API Gateway
+            {/* Top: AI & Commerce Entry Layer */}
+            <div className="p-4 rounded-2xl bg-linear-to-r from-brand-cyan/15 via-brand-blue/15 to-brand-violet/15 border border-brand-blue/30 relative overflow-hidden">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-bold text-(--text-primary) flex items-center gap-2">
+                    <span className="text-brand-cyan">✦</span>
+                    <span>AI Integrations &amp; Shopify Commerce</span>
+                  </div>
+                  <div className="text-[11px] text-(--text-secondary) mt-0.5">
+                    LLM Agents • Storefront APIs • Webhook Ingestion
+                  </div>
                 </div>
-                <div className="text-[10px] text-white/60 font-mono">
-                  10K+ req/s • &lt;100ms latency
-                </div>
+                <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-brand-cyan/20 text-brand-cyan">
+                  Sub-second
+                </span>
               </div>
             </div>
 
-            {/* Service Layer */}
+            {/* Middle: Core Services */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="h-24 rounded-xl bg-white/10 border border-white/10 flex flex-col items-center justify-center relative group/service">
-                <i className="devicon-nodejs-plain coloured text-3xl mb-2 transition-transform group-hover/service:scale-110"></i>
-                <div className="text-[10px] font-mono text-white/70">
-                  Service A
+              <div className="p-4 rounded-2xl bg-(--bg-secondary) border border-(--border-color) flex flex-col justify-between group/service hover:border-brand-blue/40 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-xs font-bold">
+                    JS
+                  </div>
+                  <span className="text-[10px] font-mono text-(--text-tertiary)">Node.js API</span>
                 </div>
-                <div className="text-[9px] text-white/50 font-mono mt-1">
-                  Node.js
+                <div>
+                  <div className="text-xs font-bold text-(--text-primary)">
+                    High-Throughput Backend
+                  </div>
+                  <div className="text-[10px] text-(--text-secondary) mt-0.5">
+                    REST &amp; WebSockets
+                  </div>
                 </div>
               </div>
-              <div className="h-24 rounded-xl bg-white/10 border border-white/10 flex flex-col items-center justify-center relative group/service">
-                <i className="devicon-mongodb-plain coloured text-3xl mb-2 transition-transform group-hover/service:scale-110"></i>
-                <div className="text-[10px] font-mono text-white/70">
-                  Service B
+
+              <div className="p-4 rounded-2xl bg-(--bg-secondary) border border-(--border-color) flex flex-col justify-between group/service hover:border-brand-violet/40 transition-colors">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="w-7 h-7 rounded-lg bg-violet-500/10 text-violet-500 flex items-center justify-center text-xs font-bold">
+                    ⚡
+                  </div>
+                  <span className="text-[10px] font-mono text-(--text-tertiary)">Automation</span>
                 </div>
-                <div className="text-[9px] text-white/50 font-mono mt-1">
-                  Database
+                <div>
+                  <div className="text-xs font-bold text-(--text-primary)">
+                    Workflow Engine
+                  </div>
+                  <div className="text-[10px] text-(--text-secondary) mt-0.5">
+                    Puppeteer • Bull Queues
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Database Layer */}
-            <div className="h-16 rounded-xl bg-linear-to-r from-brand-violet/20 to-brand-blue/20 border border-white/10 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-xs font-mono text-white/80 mb-1">
-                  Distributed Cache • Message Queue
+            {/* Bottom: Database & Cache */}
+            <div className="p-4 rounded-2xl bg-(--bg-secondary)/80 border border-(--border-color) flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-red-500/10 text-red-500 font-bold text-xs flex items-center justify-center">
+                  RD
                 </div>
-                <div className="text-[10px] text-white/50 font-mono">
-                  Redis • RabbitMQ
+                <div>
+                  <div className="text-xs font-bold text-(--text-primary)">
+                    Redis Cache &amp; PostgreSQL
+                  </div>
+                  <div className="text-[10px] text-(--text-secondary)">
+                    500K+ records • Latency &lt; 15ms
+                  </div>
                 </div>
               </div>
+              <span className="text-[11px] font-bold text-emerald-400">
+                99.9% Uptime
+              </span>
             </div>
 
-            {/* Connection Lines Animation */}
-            <div className="absolute inset-0 pointer-events-none opacity-30">
-              <svg className="w-full h-full">
-                <path
-                  d="M 80 100 Q 250 150 420 100"
-                  stroke="rgba(59, 130, 246, 0.5)"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeDasharray="5,5"
-                  className="animate-[shimmer_2s_linear_infinite]"
-                />
-              </svg>
+            {/* Terminal Live Output Simulation */}
+            <div className="p-3 rounded-xl bg-slate-950 font-mono text-[11px] text-slate-300 border border-slate-800 space-y-1">
+              <div className="flex items-center gap-2 text-cyan-400">
+                <span>❯</span>
+                <span>agent.processQuery("Analyze Shopify catalog &amp; suggest bundle")</span>
+              </div>
+              <div className="text-emerald-400 pl-4">
+                ✓ Vector search executed (14ms) • 3 candidate variants returned
+              </div>
+              <div className="text-slate-400 pl-4">
+                ✓ Response streamed to client with sub-100ms first token
+              </div>
             </div>
           </div>
-
-          {/* Hover Hint */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[10px] text-white/40 font-mono opacity-0 group-hover:opacity-100 transition-opacity">
-            Hover to explore architecture
-          </div>
         </div>
 
-        {/* Floating Tech Icons */}
-        <div
-          className="absolute top-10 right-10 w-20 h-20 bg-linear-to-br from-brand-violet to-brand-blue rounded-xl z-30 shadow-lg border border-white/10 flex items-center justify-center text-white animate-float-orb-1"
-          title="TypeScript"
-          aria-label="TypeScript"
-          role="img"
-        >
-          <i className="devicon-typescript-plain coloured text-4xl"></i>
+        {/* Floating Accent Cards in 3D Perspective */}
+        <div className="absolute -top-6 -right-6 px-4 py-2.5 rounded-2xl bg-(--bg-card) border border-(--border-color) shadow-xl shadow-slate-900/10 z-30 flex items-center gap-2.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs font-bold text-(--text-primary)">Shopify &lt; 1s Load Time</span>
         </div>
 
-        <div
-          className="absolute -bottom-5 -left-5 w-20 h-20 bg-linear-to-br from-brand-cyan to-brand-blue rounded-full z-30 shadow-lg border border-white/10 flex items-center justify-center text-white animate-float-orb-2"
-          style={{ animationDelay: "1s" }}
-          title="Node.js"
-          aria-label="Node.js"
-          role="img"
-        >
-          <i className="devicon-nodejs-plain coloured text-4xl"></i>
+        <div className="absolute -bottom-6 -left-6 px-4 py-2.5 rounded-2xl bg-(--bg-card) border border-(--border-color) shadow-xl shadow-slate-900/10 z-30 flex items-center gap-2.5">
+          <span className="text-brand-cyan text-sm">✦</span>
+          <span className="text-xs font-bold text-(--text-primary)">AI + Automation Architect</span>
         </div>
-
-        <div
-          className="absolute top-1/2 -right-8 w-16 h-16 bg-linear-to-br from-brand-blue/80 to-brand-cyan/80 rounded-lg z-30 shadow-lg border border-white/10 flex items-center justify-center text-white animate-[bounce_6s_infinite]"
-          title="Database"
-          aria-label="PostgreSQL Database"
-          role="img"
-        >
-          <i className="devicon-postgresql-plain coloured text-3xl"></i>
-        </div>
-
-        {/* Glows */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-blue/20 blur-[100px] rounded-full -z-10" />
       </div>
     </div>
   );

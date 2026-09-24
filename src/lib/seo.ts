@@ -1,29 +1,25 @@
 // SEO Configuration & Schema Markup Generator
 export const siteConfig = {
-  title: 'Omkar - Backend Engineer | Node.js Developer Portfolio',
-  description: 'Backend-focused full-stack engineer building scalable distributed systems, high-performance APIs, and production-ready architectures. Expert in Node.js, TypeScript, MongoDB, PostgreSQL, AWS, and system design.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://your-portfolio-domain.com',
+  title: 'Omkar Sonawane | AI & Full-Stack Developer',
+  description: 'AI and full-stack developer specializing in AI applications, Shopify solutions, Node.js backend systems and business automation.',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://omkarsonawane.dev',
   twitterHandle: '@omkardev',
-  defaultImage: '/og-image.png',
-  author: 'Omkar',
-  jobTitle: 'Backend Engineer',
-  location: 'India',
+  defaultImage: '/projects/ai-commerce-agent.svg',
+  author: 'Omkar Sonawane',
+  jobTitle: 'AI & Full-Stack Developer',
+  location: 'Bengaluru, India',
   keywords: [
-    'Backend Developer',
-    'Node.js Developer',
-    'Full Stack Developer India',
-    'Backend Engineer India',
-    'System Design Engineer',
-    'Distributed Systems Engineer',
-    'MERN Stack Developer',
-    'TypeScript Developer',
-    'API Developer',
-    'Scalable Backend Architecture',
-    'Node.js Expert',
-    'MongoDB Developer',
-    'PostgreSQL Developer',
-    'AWS Engineer',
-    'Software Engineer Portfolio'
+    'AI developer',
+    'AI application development',
+    'Shopify developer',
+    'Shopify app development',
+    'Node.js developer',
+    'full-stack developer',
+    'business automation',
+    'AI automation',
+    'custom web application development',
+    'API integration',
+    'Shopify integration',
   ]
 };
 
@@ -32,39 +28,37 @@ export function generatePersonSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: 'Omkar',
+    name: 'Omkar Sonawane',
     jobTitle: siteConfig.jobTitle,
     url: siteConfig.url,
-    image: `${siteConfig.url}${siteConfig.defaultImage}`,
+    image: `${siteConfig.url}/695d03a731783_download.jpg`,
     sameAs: [
       'https://github.com/Omkarcode11',
       'https://linkedin.com/in/omkardev',
     ],
     knowsAbout: [
+      'Artificial Intelligence',
+      'LLM Integrations',
+      'AI Agents',
+      'Shopify Development',
+      'Theme App Extensions',
       'Node.js',
       'TypeScript',
-      'JavaScript',
       'React',
       'Next.js',
-      'MongoDB',
       'PostgreSQL',
+      'MongoDB',
       'Redis',
-      'AWS',
-      'Docker',
-      'Kubernetes',
-      'System Design',
-      'Distributed Systems',
+      'Business Automation',
+      'Puppeteer',
       'REST APIs',
       'WebSockets',
-      'Microservices',
-      'Database Design',
-      'Backend Architecture',
-      'Performance Optimization',
-      'Scalability'
+      'System Architecture',
     ],
     address: {
       '@type': 'PostalAddress',
-      addressCountry: 'IN'
+      addressCountry: 'IN',
+      addressLocality: 'Bengaluru'
     }
   };
 }
@@ -120,7 +114,7 @@ export function generateProjectSchema(project: {
     description: project.description,
     creator: {
       '@type': 'Person',
-      name: 'Omkar'
+      name: 'Omkar Sonawane'
     },
     ...(project.github && {
       codeRepository: project.github
@@ -178,14 +172,14 @@ export function generateArticleSchema(article: {
     description: article.description,
     author: {
       '@type': 'Person',
-      name: 'Omkar'
+      name: 'Omkar Sonawane'
     },
     publisher: {
       '@type': 'Organization',
       name: siteConfig.title,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/logo.png`
+        url: `${siteConfig.url}/favicon.ico`
       }
     },
     datePublished: article.date,
@@ -229,4 +223,3 @@ export function generateMetaTags({
     keywords: metaKeywords
   };
 }
-

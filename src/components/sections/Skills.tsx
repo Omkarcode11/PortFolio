@@ -1,3 +1,5 @@
+import * as Icons from "../icons";
+
 const skillCategories = [
   {
     title: "Backend Engineering",
@@ -5,23 +7,19 @@ const skillCategories = [
     skills: [
       {
         name: "Node.js",
-        icon: <i className="devicon-nodejs-plain text-2xl coloured"></i>,
+        icon: <Icons.NodejsIcon className="text-2xl text-[#339933]" />,
       },
       {
         name: "Express.js",
-        icon: <i className="devicon-express-original text-2xl"></i>,
+        icon: <Icons.ExpressIcon className="text-2xl" />,
       },
       {
         name: "TypeScript",
-        icon: <i className="devicon-typescript-plain text-2xl coloured"></i>,
+        icon: <Icons.TypeScriptIcon className="text-2xl" />,
       },
       {
         name: "REST APIs",
-        icon: (
-          <span className="material-symbols-outlined text-2xl text-brand-blue">
-            dns
-          </span>
-        ),
+        icon: <Icons.ServerIcon className="text-2xl text-brand-blue" />,
       },
     ],
   },
@@ -31,15 +29,15 @@ const skillCategories = [
     skills: [
       {
         name: "MongoDB",
-        icon: <i className="devicon-mongodb-plain text-2xl coloured"></i>,
+        icon: <Icons.MongodbIcon className="text-2xl text-[#47A248]" />,
       },
       {
         name: "PostgreSQL",
-        icon: <i className="devicon-postgresql-plain text-2xl coloured"></i>,
+        icon: <Icons.PostgresqlIcon className="text-2xl text-[#336791]" />,
       },
       {
         name: "Redis",
-        icon: <i className="devicon-redis-plain text-2xl coloured"></i>,
+        icon: <Icons.RedisIcon className="text-2xl text-[#DC382D]" />,
       },
     ],
   },
@@ -49,21 +47,19 @@ const skillCategories = [
     skills: [
       {
         name: "Docker",
-        icon: <i className="devicon-docker-plain text-2xl coloured"></i>,
+        icon: <Icons.DockerIcon className="text-2xl text-[#2496ED]" />,
       },
       {
         name: "Kubernetes",
-        icon: <i className="devicon-kubernetes-plain text-2xl coloured"></i>,
+        icon: <Icons.KubernetesIcon className="text-2xl text-[#326CE5]" />,
       },
       {
         name: "AWS",
-        icon: (
-          <i className="devicon-amazonwebservices-original text-2xl coloured"></i>
-        ),
+        icon: <Icons.AWSIcon className="text-2xl text-[#FF9900]" />,
       },
       {
         name: "Git",
-        icon: <i className="devicon-git-plain text-2xl coloured"></i>,
+        icon: <Icons.GitIcon className="text-2xl text-[#F05032]" />,
       },
     ],
   },
@@ -73,15 +69,15 @@ const skillCategories = [
     skills: [
       {
         name: "React.js",
-        icon: <i className="devicon-react-original text-2xl coloured"></i>,
+        icon: <Icons.ReactIcon className="text-2xl text-[#61DAFB]" />,
       },
       {
         name: "Next.js",
-        icon: <i className="devicon-nextjs-original text-2xl"></i>,
+        icon: <Icons.NextjsIcon className="text-2xl" />,
       },
       {
         name: "Tailwind CSS",
-        icon: <i className="devicon-tailwindcss-plain text-2xl coloured"></i>,
+        icon: <Icons.TailwindIcon className="text-2xl text-[#38B2AC]" />,
       },
     ],
   },

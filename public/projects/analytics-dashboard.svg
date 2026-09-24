@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="glow5" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg5)"/>
+  <circle cx="400" cy="200" r="240" fill="url(#glow5)"/>
+
+  <!-- Dashboard Interface Mockup -->
+  <g transform="translate(140, 75)">
+    <rect x="0" y="0" width="520" height="240" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect x="0" y="0" width="520" height="38" rx="16" fill="#1e293b"/>
+    <circle cx="25" cy="19" r="5" fill="#ef4444"/>
+    <circle cx="42" cy="19" r="5" fill="#f59e0b"/>
+    <circle cx="59" cy="19" r="5" fill="#10b981"/>
+    <text x="260" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Analytics &amp; Operational Metrics • 500K+ Ingested Records</text>
+
+    <!-- Top Stats Row -->
+    <rect x="25" y="55" width="145" height="60" rx="10" fill="#1e293b"/>
+    <text x="38" y="77" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Total Processed</text>
+    <text x="38" y="103" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="20" font-weight="800">500,000+</text>
+
+    <rect x="187" y="55" width="145" height="60" rx="10" fill="#1e293b"/>
+    <text x="200" y="77" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Query Speedup</text>
+    <text x="200" y="103" fill="#34d399" font-family="system-ui, sans-serif" font-size="20" font-weight="800">+40% Faster</text>
+
+    <rect x="350" y="55" width="145" height="60" rx="10" fill="#1e293b"/>
+    <text x="363" y="77" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Cache Hit Ratio</text>
+    <text x="363" y="103" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="20" font-weight="800">94.8%</text>
+
+    <!-- Chart Visualization -->
+    <g transform="translate(25, 130)">
+      <rect x="0" y="0" width="470" height="90" rx="10" fill="#020617" stroke="#1e293b" stroke-width="1"/>
+      <path d="M 20 70 Q 80 50 140 55 T 260 30 T 380 20 T 450 15" fill="none" stroke="#3b82f6" stroke-width="3"/>
+      <path d="M 20 70 Q 80 50 140 55 T 260 30 T 380 20 T 450 15 L 450 80 L 20 80 Z" fill="#3b82f6" fill-opacity="0.1"/>
+      <circle cx="450" cy="15" r="4" fill="#38bdf8"/>
+    </g>
+  </g>
+
+  <!-- Metric Badges Row -->
+  <g transform="translate(170, 335)">
+    <rect x="0" y="0" width="460" height="50" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="80" y="30" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">PostgreSQL + Redis</text>
+    <line x1="160" y1="12" x2="160" y2="38" stroke="#334155" stroke-width="1"/>
+    <text x="235" y="30" fill="#34d399" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">500K+ Dataset</text>
+    <line x1="310" y1="12" x2="310" y2="38" stroke="#334155" stroke-width="1"/>
+    <text x="385" y="30" fill="#c084fc" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Real-Time Aggregation</text>
+  </g>
+
+  <text x="400" y="435" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="700" text-anchor="middle">High-Volume Analytics &amp; Admin Dashboard</text>
+  <text x="400" y="460" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">Scalable Reporting Engine with Aggregation Caching</text>
+</svg>

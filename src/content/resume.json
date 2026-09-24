@@ -1,5 +1,5 @@
 {
-  "summary": "Backend-focused Software Engineer with 2+ years of experience building scalable, reliable, and production-ready systems using Node.js, distributed backend patterns, and caching. Strong foundation in computer science fundamentals, system design, and high-performance API development. Solved 750+ LeetCode problems.",
+  "summary": "AI & Full-Stack Developer with 2+ years of production experience building AI-powered applications, Shopify solutions, high-performance Node.js backends, and business automation workflows. I help startups and businesses turn manual workflows, complex requirements, and business bottlenecks into production-ready software.",
   "contact": {
     "email": "omkarsonawaneomkar2@gmail.com",
     "mobile": "+91 89565 34135",
@@ -31,9 +31,10 @@
     }
   ],
   "skills": [
-    "Node.js", "Express.js", "MongoDB", "PostgreSQL", "Redis", 
-    "React.js", "Next.js", "TypeScript", "Docker", "AWS", 
-    "System Design", "DSA", "WebSockets", "Puppeteer"
+    "AI Integrations", "LLM APIs", "Shopify", "Node.js", "TypeScript", 
+    "React.js", "Next.js", "Express.js", "PostgreSQL", "MongoDB", 
+    "Redis", "Business Automation", "Puppeteer", "Docker", "AWS", 
+    "REST APIs", "WebSockets", "System Design"
   ],
   "education": {
     "degree": "Bachelor of Computer Applications (BCA)",

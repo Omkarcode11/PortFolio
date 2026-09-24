@@ -1,5 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
 import {
+  CodeIcon,
+  TrophyIcon,
+  MonitoringIcon,
+  FireIcon,
+  CheckCircleIcon,
+  BarChartIcon,
+} from "./icons";
+import {
   fetchLeetCodeStats,
   LeetCodeStats as LeetCodeStatsType,
   getCachedData,
@@ -411,9 +419,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
         <div className="relative z-10 flex items-start justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-orange-500/20 to-orange-600/10 flex items-center justify-center border border-orange-500/20 shadow-lg hover:scale-110 hover:rotate-5 transition-transform">
-              <span className="material-symbols-outlined text-orange-400 text-xl">
-                code
-              </span>
+              <CodeIcon className="w-6 h-6 text-orange-400" />
             </div>
             <div>
               <h3 className="font-bold text-xl text-(--text-primary) tracking-tight">
@@ -446,9 +452,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
           {stats.ranking > 0 && (
             <div className="px-3 py-1.5 rounded-full bg-linear-to-r from-orange-500/20 to-orange-600/10 border border-orange-500/30 shadow-sm animate-in zoom-in duration-500">
               <div className="flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-orange-400 text-xs shadow-none border-none">
-                  emoji_events
-                </span>
+                <TrophyIcon className="w-4 h-4 text-orange-400" />
                 <span className="text-orange-400 font-bold text-xs">
                   #{stats.ranking.toLocaleString()}
                 </span>
@@ -468,9 +472,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <span className="material-symbols-outlined text-[14px]">
-                monitoring
-              </span>
+              <MonitoringIcon className="w-4 h-4" />
               <span>Stats</span>
             </div>
           </button>
@@ -483,9 +485,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <span className="material-symbols-outlined text-[14px]">
-                local_fire_department
-              </span>
+              <FireIcon className="w-4 h-4" />
               <span>Consistency</span>
             </div>
           </button>
@@ -499,9 +499,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm hover:border-orange-500/30 transition-all group">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="material-symbols-outlined text-orange-400 text-[16px]">
-                      check_circle
-                    </span>
+                    <CheckCircleIcon className="w-4 h-4 text-orange-400" />
                     <span className="text-xs text-(--text-secondary) font-medium uppercase tracking-wide">
                       Solved
                     </span>
@@ -516,9 +514,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
 
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm hover:border-green-500/30 transition-all group">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="material-symbols-outlined text-green-400 text-[16px]">
-                      bar_chart
-                    </span>
+                    <BarChartIcon className="w-4 h-4 text-green-400" />
                     <span className="text-xs text-(--text-secondary) font-medium uppercase tracking-wide">
                       Acceptance
                     </span>
@@ -540,11 +536,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
                   label="Easy"
                   solved={stats.easySolved}
                   total={stats.easyTotal}
-                  icon={
-                    <span className="material-symbols-outlined">
-                      check_circle
-                    </span>
-                  }
+                  icon={<CheckCircleIcon className="w-5 h-5" />}
                 />
                 <CircularProgress
                   percentage={mediumPercentage}
@@ -552,11 +544,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
                   label="Medium"
                   solved={stats.mediumSolved}
                   total={stats.mediumTotal}
-                  icon={
-                    <span className="material-symbols-outlined">
-                      check_circle
-                    </span>
-                  }
+                  icon={<CheckCircleIcon className="w-5 h-5" />}
                 />
                 <CircularProgress
                   percentage={hardPercentage}
@@ -564,11 +552,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
                   label="Hard"
                   solved={stats.hardSolved}
                   total={stats.hardTotal}
-                  icon={
-                    <span className="material-symbols-outlined">
-                      check_circle
-                    </span>
-                  }
+                  icon={<CheckCircleIcon className="w-5 h-5" />}
                 />
               </div>
             </div>
@@ -578,9 +562,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="material-symbols-outlined text-orange-400 text-[16px]">
-                      local_fire_department
-                    </span>
+                    <FireIcon className="w-4 h-4 text-orange-400" />
                     <span className="text-xs text-(--text-secondary) font-medium uppercase">
                       Current
                     </span>
@@ -595,9 +577,7 @@ export default function LeetCodeStats({ username }: LeetCodeStatsProps) {
 
                 <div className="p-5 rounded-2xl bg-linear-to-br from-(--bg-card)/50 to-(--bg-card)/30 border border-(--border-color)/30 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="material-symbols-outlined text-yellow-400 text-[16px]">
-                      emoji_events
-                    </span>
+                    <TrophyIcon className="w-4 h-4 text-yellow-400" />
                     <span className="text-xs text-(--text-secondary) font-medium uppercase">
                       Longest
                     </span>

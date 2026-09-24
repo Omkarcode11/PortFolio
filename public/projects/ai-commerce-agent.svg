@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <circle cx="400" cy="200" r="240" fill="url(#glow)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g stroke="#1e293b" stroke-width="1" opacity="0.6">
+    <line x1="100" y1="0" x2="100" y2="500"/>
+    <line x1="250" y1="0" x2="250" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="550" y1="0" x2="550" y2="500"/>
+    <line x1="700" y1="0" x2="700" y2="500"/>
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="250" x2="800" y2="250"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+  </g>
+
+  <!-- Central Agent Card Frame -->
+  <rect x="220" y="90" width="360" height="260" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  <rect x="220" y="90" width="360" height="42" rx="16" fill="#1e293b"/>
+  <circle cx="245" cy="111" r="5" fill="#ef4444"/>
+  <circle cx="262" cy="111" r="5" fill="#f59e0b"/>
+  <circle cx="279" cy="111" r="5" fill="#10b981"/>
+  <text x="400" y="116" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">AI Commerce Agent • Natural Language Core</text>
+
+  <!-- Chat / Inference Nodes -->
+  <rect x="245" y="150" width="220" height="34" rx="8" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+  <text x="260" y="172" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12">Find top-rated running shoes under $120</text>
+  
+  <rect x="335" y="198" width="220" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="350" y="218" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="11" font-weight="600">⚡ LLM + Vector Catalog Filter</text>
+  <text x="350" y="234" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Found 3 matching Shopify variants</text>
+
+  <!-- Badge in Frame -->
+  <rect x="245" y="265" width="310" height="60" rx="10" fill="#020617" stroke="#22d3ee" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="400" y="295" fill="#22d3ee" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">IN ACTIVE DEVELOPMENT</text>
+  <text x="400" y="313" fill="#64748b" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">Shopify Storefront API • RAG • Node.js Agents</text>
+
+  <!-- Bottom Title Label -->
+  <text x="400" y="410" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="700" text-anchor="middle">AI Commerce Agent</text>
+  <text x="400" y="435" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">Conversational Product Discovery &amp; Merchant Intelligence</text>
+</svg>

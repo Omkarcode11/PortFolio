@@ -1,7 +1,16 @@
 import SEO from "../components/SEO";
 import Hero from "../components/sections/Hero";
-import Projects from "../components/sections/Projects";
-import Skills from "../components/sections/Skills";
+import WhatIBuild from "../components/sections/WhatIBuild";
+import HowICanHelp from "../components/sections/HowICanHelp";
+import FeaturedWork from "../components/sections/FeaturedWork";
+import ShopifyAndExperience from "../components/sections/ShopifyAndExperience";
+import CaseStudies from "../components/sections/CaseStudies";
+import WhyWorkWithMe from "../components/sections/WhyWorkWithMe";
+import HowIWork from "../components/sections/HowIWork";
+import TechnologySection from "../components/sections/TechnologySection";
+import AboutClientSection from "../components/sections/AboutClientSection";
+import ContactSection from "../components/sections/ContactSection";
+import MobileStickyCTA from "../components/MobileStickyCTA";
 import { getProjects } from "../lib/api";
 import { GetStaticProps } from "next";
 import { generatePersonSchema, generateFAQSchema, generateSoftwareApplicationSchema } from "../lib/seo";
@@ -9,11 +18,17 @@ import { generatePersonSchema, generateFAQSchema, generateSoftwareApplicationSch
 interface Project {
   slug: string;
   title: string;
+  tagline?: string;
+  problem?: string;
+  solution?: string;
   description: string;
   image: string;
   tags: string[];
   github?: string;
   link?: string;
+  badge?: string;
+  category?: string;
+  isComingSoon?: boolean;
 }
 
 interface HomeProps {
@@ -24,23 +39,25 @@ export default function Home({ projects = [] }: HomeProps) {
   return (
     <>
       <SEO
-        title="Omkar Sonawane - Backend Engineer | Full Stack Developer"
-        description="Full-stack engineer specializing in high-performance backend architectures, distributed systems, and production-grade APIs. Expert in Node.js, TypeScript, and system design."
-        url="https://yourportfolio.com"
+        title="Omkar Sonawane | AI & Full-Stack Developer"
+        description="AI and full-stack developer specializing in AI applications, Shopify solutions, Node.js backend systems and business automation."
+        keywords={[
+          "AI developer",
+          "Shopify developer",
+          "Node.js developer",
+          "full-stack developer",
+          "business automation",
+        ]}
         schema={[
           generatePersonSchema(),
           generateFAQSchema([
             {
               question: "What technologies do you specialize in?",
-              answer: "I specialize in Node.js, TypeScript, MongoDB, PostgreSQL, Redis, Docker, AWS, and system design. I focus on building scalable backend systems."
+              answer: "I specialize in AI applications, LLM APIs, Shopify Theme Extensions, Node.js, TypeScript, PostgreSQL, and business automation pipelines."
             },
             {
-              question: "Are you open to new opportunities?",
-              answer: "Yes, I'm open to backend engineering roles. I have experience building scalable systems, optimizing performance, and shipping production-ready code."
-            },
-            {
-              question: "What is your experience with system design?",
-              answer: "I design scalable architectures from first principles, considering load, failure modes, and operational requirements. I have experience with distributed systems, caching strategies, and horizontal scaling."
+              question: "What types of client projects do you accept?",
+              answer: "I work with startups and businesses to build AI tools, custom Shopify functionality, backend systems, and workflow automation."
             }
           ]),
           ...(projects.slice(0, 3).map(project => 
@@ -57,14 +74,18 @@ export default function Home({ projects = [] }: HomeProps) {
         ]}
       />
 
-      {/* Hero Section */}
       <Hero />
-
-      {/* Featured Projects Section */}
-      <Projects projects={projects} />
-
-      {/* Skills Section */}
-      <Skills />
+      <WhatIBuild />
+      <FeaturedWork projects={projects} />
+      <HowICanHelp />
+      <ShopifyAndExperience />
+      <CaseStudies />
+      <WhyWorkWithMe />
+      <HowIWork />
+      <TechnologySection />
+      <AboutClientSection />
+      <ContactSection />
+      <MobileStickyCTA />
     </>
   );
 }
@@ -76,6 +97,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       projects: projects || [],
     },
-    revalidate: 3600,
+    revalidate: 60,
   };
 };

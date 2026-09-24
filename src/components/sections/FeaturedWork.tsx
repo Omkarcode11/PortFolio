@@ -1,79 +1,65 @@
-import Head from "next/head";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getProjects } from "../lib/api";
-import { GetStaticProps } from "next";
-import SEO from "../components/SEO";
-import { GitHubIcon, ExternalLinkIcon } from "../components/icons";
+import { GitHubIcon, ExternalLinkIcon } from "../icons";
 
-interface Project {
+export interface Project {
   slug: string;
   title: string;
   tagline?: string;
   problem?: string;
   solution?: string;
   description: string;
+  tags: string[];
   image: string;
   github?: string;
   link?: string;
-  tags: string[];
   badge?: string;
   category?: string;
   isComingSoon?: boolean;
 }
 
-interface ProjectsProps {
+interface FeaturedWorkProps {
   projects: Project[];
 }
 
-export default function Projects({ projects }: ProjectsProps) {
+export default function FeaturedWork({ projects }: FeaturedWorkProps) {
   return (
-    <>
-      <SEO
-        title="Featured Work & Projects | Omkar Sonawane - AI & Full-Stack Developer"
-        description="Production software projects across AI applications, custom Shopify solutions, scalable Node.js backends, and business automation pipelines with measurable results."
-        keywords={[
-          "AI Projects",
-          "Shopify Projects",
-          "Node.js Backend",
-          "Business Automation",
-          "Full Stack Developer Portfolio",
-          "Production Systems",
-        ]}
-        url="/projects"
-      />
+    <section id="work" className="section bg-(--bg-primary) relative overflow-hidden">
+      {/* Background radial glow */}
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-brand-cyan/5 rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-cyan/10 rounded-full blur-[130px] -z-10 pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-brand-blue/10 rounded-full blur-[130px] -z-10 pointer-events-none" />
-
-        <div className="container relative z-10 text-center">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-blue/10 rounded-full mb-8 border border-brand-blue/20">
-              <span className="w-2 h-2 rounded-full bg-brand-blue animate-pulse" />
-              <span className="text-brand-blue font-bold text-xs tracking-wider uppercase">
-                Production Engineering
-              </span>
+      <div className="container relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20 text-brand-blue text-xs font-bold uppercase tracking-wider mb-4">
+              <span>Production Solutions</span>
             </div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight">
-              Selected{" "}
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet">
-                Work
-              </span>
-            </h1>
-
-            <p className="text-lg lg:text-xl text-(--text-secondary) max-w-2xl mx-auto leading-relaxed">
-              Real-world engineering projects demonstrating AI integrations, Shopify development, scalable backend architecture, and business automation.
+            <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
+              Featured Work
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-(--text-secondary) leading-relaxed">
+              Selected engineering projects demonstrating product development, backend architecture, AI and automation.
             </p>
           </div>
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm font-bold text-brand-blue hover:text-brand-violet transition-colors group shrink-0"
+          >
+            <span>View All Projects</span>
+            <svg
+              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
-      </section>
 
-      {/* Projects Grid */}
-      <section className="container section -mt-6 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {projects.map((project, index) => {
             const isComingSoon = project.isComingSoon || project.slug === "ai-commerce-agent";
 
@@ -94,7 +80,7 @@ export default function Projects({ projects }: ProjectsProps) {
                     unoptimized={project.image?.endsWith(".svg") || project.image?.includes("placehold.co")}
                   />
 
-                  {/* Badges */}
+                  {/* Top Badges */}
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2 z-10 pointer-events-none">
                     {project.badge && (
                       <span
@@ -120,13 +106,14 @@ export default function Projects({ projects }: ProjectsProps) {
                 {/* Card Body */}
                 <div className="p-6 sm:p-8 flex flex-col justify-between flex-1">
                   <div>
+                    {/* Title & Tagline */}
                     <div className="mb-4">
                       <div className="flex items-start justify-between gap-2">
-                        <h2 className="text-2xl font-bold text-(--text-primary) group-hover:text-brand-blue transition-colors">
+                        <h3 className="text-2xl font-bold text-(--text-primary) group-hover:text-brand-blue transition-colors">
                           <Link href={`/projects/${project.slug}`}>
                             {project.title}
                           </Link>
-                        </h2>
+                        </h3>
                         {isComingSoon && (
                           <span className="shrink-0 px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20">
                             Coming Soon
@@ -140,32 +127,37 @@ export default function Projects({ projects }: ProjectsProps) {
                       )}
                     </div>
 
-                    {/* Problem & Solution */}
+                    {/* Problem & Solution Structure */}
                     <div className="space-y-3 mb-6 text-sm leading-relaxed">
-                      {project.problem && (
+                      {project.problem ? (
                         <div className="p-3.5 rounded-xl bg-(--bg-secondary)/60 border border-(--border-color)/60">
                           <p className="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">
                             Problem
                           </p>
                           <p className="text-(--text-secondary)">{project.problem}</p>
                         </div>
-                      )}
-                      {project.solution && (
+                      ) : null}
+
+                      {project.solution ? (
                         <div className="p-3.5 rounded-xl bg-(--bg-secondary)/60 border border-(--border-color)/60">
                           <p className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
                             Solution
                           </p>
                           <p className="text-(--text-secondary)">{project.solution}</p>
                         </div>
+                      ) : (
+                        <p className="text-(--text-secondary)">
+                          {project.description}
+                        </p>
                       )}
                     </div>
 
-                    {/* Tags */}
+                    {/* Tech Pills */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-md text-xs font-medium bg-(--bg-secondary) text-(--text-secondary) border border-(--border-color)"
+                          className="px-2.5 py-1 rounded-md text-xs font-medium bg-(--bg-secondary) text-(--text-secondary) border border-(--border-color) hover:border-brand-blue/30 transition-colors"
                         >
                           {tag}
                         </span>
@@ -173,7 +165,7 @@ export default function Projects({ projects }: ProjectsProps) {
                     </div>
                   </div>
 
-                  {/* Actions */}
+                  {/* Actions / Links */}
                   <div className="pt-4 border-t border-(--border-color)/60 flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       {project.github && (
@@ -182,20 +174,23 @@ export default function Projects({ projects }: ProjectsProps) {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-(--bg-secondary) text-(--text-primary) hover:bg-brand-blue/10 hover:text-brand-blue border border-(--border-color) transition-all"
+                          aria-label={`View ${project.title} on GitHub`}
                         >
                           <GitHubIcon className="w-4 h-4" />
-                          <span>Code</span>
+                          <span>GitHub</span>
                         </a>
                       )}
+
                       {project.link && project.link !== project.github && (
                         <a
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-brand-blue text-white hover:bg-brand-blue/90 transition-all shadow-sm"
+                          aria-label={`View Live Demo of ${project.title}`}
                         >
                           <ExternalLinkIcon className="w-4 h-4" />
-                          <span>Live Site</span>
+                          <span>Live Demo</span>
                         </a>
                       )}
                     </div>
@@ -204,7 +199,7 @@ export default function Projects({ projects }: ProjectsProps) {
                       href={`/projects/${project.slug}`}
                       className="text-xs font-bold text-brand-blue hover:text-brand-violet transition-colors flex items-center gap-1.5 ml-auto"
                     >
-                      <span>Deep Dive</span>
+                      <span>Project Details</span>
                       <span>→</span>
                     </Link>
                   </div>
@@ -213,23 +208,7 @@ export default function Projects({ projects }: ProjectsProps) {
             );
           })}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
-
-export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
-  try {
-    const projects = await getProjects();
-    return {
-      props: { projects: projects || [] },
-      revalidate: 60,
-    };
-  } catch (error) {
-    console.error("Error in getStaticProps:", error);
-    return {
-      props: { projects: [] },
-      revalidate: 60,
-    };
-  }
-};

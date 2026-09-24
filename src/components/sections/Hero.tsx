@@ -3,23 +3,22 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center bg-(--bg-primary) overflow-hidden pt-24 pb-16">
       {/* Animated Background Gradient */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-violet-500/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-cyan-500/15 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-violet-500/15 rounded-full blur-[120px] animate-pulse delay-1000" />
       </div>
 
-      <div className="container relative z-10 text-center px-6 max-w-7xl mx-auto">
+      <div className="container relative z-10 text-center px-6 max-w-5xl mx-auto">
         {/* Profile Image */}
-        <div className="mb-8">
-          <div className="relative w-32 h-32 mx-auto">
-            {/* Gradient border effect */}
+        <div className="mb-6">
+          <div className="relative w-28 h-28 mx-auto">
             <div className="absolute -inset-1 bg-linear-to-r from-cyan-500 via-blue-500 to-violet-500 rounded-full animate-gradient-shift" />
-            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-black shadow-2xl">
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-(--bg-primary) shadow-2xl">
               <Image
                 src="/695d03a731783_download.jpg"
-                alt="Omkar Sonawane - Full Stack Engineer"
+                alt="Omkar Sonawane - AI & Full-Stack Developer"
                 fill
                 className="object-cover"
                 priority
@@ -28,50 +27,47 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Brand Name */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-white tracking-wider">
-            OMKAR SONAWANE
-          </h2>
+        {/* Eyebrow */}
+        <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-blue/10 border border-brand-blue/20">
+          <span className="w-2 h-2 rounded-full bg-brand-cyan animate-pulse" />
+          <span className="text-xs sm:text-sm font-bold text-brand-blue tracking-wide">
+            AI • Shopify • Node.js • Business Automation
+          </span>
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8">
-          BUILDING DISTRIBUTED
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-(--text-primary) leading-tight mb-6 tracking-tight">
+          I Build{" "}
+          <span className="bg-linear-to-r from-cyan-400 via-blue-500 to-violet-500 bg-clip-text text-transparent">
+            AI-Powered Applications
+          </span>
           <br />
-          <span
-            className="bg-linear-to-r from-cyan-400 via-blue-500 to-violet-500 bg-clip-text text-transparent"
-            style={{ backgroundSize: "200% 200%" }}
-          >
-            SYSTEMS
-          </span>{" "}
-          THAT SCALE.
+          &amp; Business Automation
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12">
-          Full-stack engineer specializing in high-performance backend
-          architectures, distributed systems, and production-grade APIs. Expert
-          in Node.js, TypeScript, and system design.
+        <p className="text-base sm:text-lg md:text-xl text-(--text-secondary) max-w-3xl mx-auto mb-8 leading-relaxed">
+          I help startups and businesses build AI applications, Shopify solutions, scalable backend systems, dashboards and custom automation using modern web technologies.
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="/projects">
-            <button className="px-8 py-4 bg-linear-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 hover:scale-105 w-full sm:w-auto">
-              View Projects
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+          <Link href="/#contact">
+            <button className="px-8 py-4 bg-brand-blue text-white font-bold rounded-full hover:bg-brand-blue/90 shadow-lg shadow-brand-blue/25 hover:shadow-brand-blue/40 transition-all duration-300 w-full sm:w-auto cursor-pointer">
+              Start a Project
             </button>
           </Link>
-          <a
-            href="https://drive.google.com/uc?export=download&id=1XZDKxASreLIoy2nrLmduwrhmB4pxDLdy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="px-8 py-4 bg-transparent text-white font-semibold rounded-xl border border-gray-700 hover:border-blue-500 hover:bg-gray-900 transition-all duration-300 w-full sm:w-auto">
-              Download Resume
+          <Link href="/#work">
+            <button className="px-8 py-4 bg-(--bg-card) text-(--text-primary) font-bold rounded-full border border-(--border-color) hover:border-brand-blue/40 hover:bg-(--bg-secondary) transition-all duration-300 w-full sm:w-auto cursor-pointer">
+              View My Work
             </button>
-          </a>
+          </Link>
         </div>
+
+        {/* Credibility Line */}
+        <p className="text-xs sm:text-sm font-semibold text-(--text-tertiary)">
+          Full-Stack Development • AI Integrations • Shopify • APIs • Automation
+        </p>
       </div>
     </section>
   );

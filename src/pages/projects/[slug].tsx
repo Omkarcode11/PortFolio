@@ -1,4 +1,14 @@
 import Head from "next/head";
+import {
+  GitHubIcon,
+  ExternalLinkIcon,
+  ArrowLeftIcon,
+  CodeIcon,
+  ServerIcon,
+  CloudIcon,
+  DatabaseIcon,
+  ArrowRightIcon,
+} from "../../components/icons";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -8,17 +18,22 @@ import {
   generateSoftwareApplicationSchema,
   generateProjectSchema,
   generateBreadcrumbSchema,
-  siteConfig,
 } from "../../lib/seo";
 
 interface ProjectDetail {
   slug: string;
   title: string;
+  tagline?: string;
+  problem?: string;
+  solution?: string;
   description: string;
   tags: string[];
   link?: string;
   github?: string;
   image?: string;
+  badge?: string;
+  category?: string;
+  isComingSoon?: boolean;
 }
 
 interface ProjectDetailProps {
@@ -43,7 +58,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
     return (
       <>
         <Head>
-          <title>Project Not Found | Portfolio</title>
+          <title>Project Not Found | Omkar Sonawane</title>
         </Head>
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
@@ -60,7 +75,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
     );
   }
 
-  // Categorize tags for better display
+  // Categorize tags
   const frontendTags = project.tags.filter((tag) =>
     [
       "React",
@@ -71,7 +86,7 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
       "HTML",
       "CSS",
       "JavaScript",
-    ].some((tech) => tag.toLowerCase().includes(tech.toLowerCase())),
+    ].some((tech) => tag.toLowerCase().includes(tech.toLowerCase()))
   );
   const backendTags = project.tags.filter((tag) =>
     [
@@ -82,33 +97,37 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
       "MongoDB",
       "PostgreSQL",
       "Redis",
-    ].some((tech) => tag.toLowerCase().includes(tech.toLowerCase())),
+      "Socket.IO",
+      "WebSockets",
+      "JWT",
+    ].some((tech) => tag.toLowerCase().includes(tech.toLowerCase()))
   );
-  const devOpsTags = project.tags.filter((tag) =>
-    ["Docker", "AWS", "Kubernetes", "CI/CD", "Nginx", "Linux"].some((tech) =>
-      tag.toLowerCase().includes(tech.toLowerCase()),
-    ),
+  const aiAndShopifyTags = project.tags.filter((tag) =>
+    ["AI", "LLM", "Shopify", "Theme", "Puppeteer", "Automation"].some((tech) =>
+      tag.toLowerCase().includes(tech.toLowerCase())
+    )
   );
   const otherTags = project.tags.filter(
     (tag) =>
       !frontendTags.includes(tag) &&
       !backendTags.includes(tag) &&
-      !devOpsTags.includes(tag),
+      !aiAndShopifyTags.includes(tag)
   );
 
   const projectKeywords = [
     project.title,
     ...project.tags,
-    "Backend Developer Project",
-    "Node.js Project",
-    "Portfolio Project",
+    "AI Project",
+    "Shopify Project",
+    "Full Stack Architecture",
+    "Freelance Engineering",
   ];
 
   return (
     <>
       <SEO
-        title={`${project.title} | Backend Developer Portfolio | ${project.tags[0] || "Project"}`}
-        description={`${project.description} Built with ${project.tags.slice(0, 3).join(", ")}. Explore the architecture, implementation, and impact of this ${project.title.toLowerCase()} project.`}
+        title={`${project.title} | Omkar Sonawane - AI & Full-Stack Developer`}
+        description={`${project.description} Built with ${project.tags.slice(0, 3).join(", ")}. Explore the architecture, technical decisions, and business impact.`}
         keywords={projectKeywords}
         image={project.image}
         url={`/projects/${project.slug}`}
@@ -141,8 +160,8 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cyan/10 rounded-full blur-[120px] -z-10" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-violet/10 rounded-full blur-[120px] -z-10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cyan/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-violet/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
         <div className="container relative z-10">
           {/* Back Button */}
@@ -151,15 +170,13 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
               href="/projects"
               className="inline-flex items-center gap-2 text-(--text-secondary) hover:text-brand-blue transition-colors group"
             >
-              <span className="material-symbols-outlined text-lg! group-hover:-translate-x-1 transition-transform">
-                arrow_back
-              </span>
-              <span className="font-medium">Back to Projects</span>
+              <ArrowLeftIcon className="w-5 h-5 mr-1 transition-transform group-hover:-translate-x-1" />
+              <span className="font-semibold text-sm">Back to Projects</span>
             </Link>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Image */}
+            {/* Visual Card */}
             <div className="relative aspect-16/10 rounded-3xl overflow-hidden bg-(--bg-secondary) border border-(--border-color) shadow-2xl">
               {project.image ? (
                 <img
@@ -169,30 +186,68 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-brand-cyan/20 to-brand-violet/20">
-                  <span className="material-symbols-outlined text-5xl text-brand-blue/30">
-                    code
+                  <CodeIcon className="w-8 h-8 text-cyan-400" strokeWidth={2.5} />
+                </div>
+              )}
+
+              {project.badge && (
+                <div className="absolute top-4 left-4">
+                  <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-slate-900/80 text-white backdrop-blur-md border border-white/20">
+                    {project.badge}
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Content */}
+            {/* Content Details */}
             <div className="space-y-6">
               <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 tracking-tight">
+                <h1 className="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight text-(--text-primary)">
                   {project.title}
                 </h1>
-                <p className="text-xl text-(--text-secondary) leading-relaxed">
+                {project.tagline && (
+                  <p className="text-lg font-semibold text-brand-blue mb-4">
+                    {project.tagline}
+                  </p>
+                )}
+                <p className="text-lg text-(--text-secondary) leading-relaxed">
                   {project.description}
                 </p>
               </div>
 
+              {/* Problem & Solution Breakdown */}
+              {(project.problem || project.solution) && (
+                <div className="space-y-4 pt-2">
+                  {project.problem && (
+                    <div className="p-4 rounded-2xl bg-rose-500/5 border border-rose-500/20">
+                      <div className="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">
+                        Business Problem
+                      </div>
+                      <p className="text-sm text-(--text-secondary) leading-relaxed">
+                        {project.problem}
+                      </p>
+                    </div>
+                  )}
+
+                  {project.solution && (
+                    <div className="p-4 rounded-2xl bg-emerald-500/5 border border-emerald-500/20">
+                      <div className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                        Engineering Solution
+                      </div>
+                      <p className="text-sm text-(--text-secondary) leading-relaxed">
+                        {project.solution}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Tags */}
-              <div className="flex flex-wrap gap-3 pt-4">
+              <div className="flex flex-wrap gap-2 pt-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-semibold border border-brand-blue/20"
+                    className="px-3 py-1.5 rounded-lg bg-(--bg-secondary) text-(--text-secondary) text-xs font-semibold border border-(--border-color)"
                   >
                     {tag}
                   </span>
@@ -200,152 +255,139 @@ export default function ProjectDetailPage({ project }: ProjectDetailProps) {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-(--border-color)">
                 {project.github && (
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn bg-(--bg-primary) text-(--text-primary) border border-(--border-color) hover:bg-(--bg-secondary) hover:border-brand-blue/50 flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-(--bg-secondary) text-(--text-primary) border border-(--border-color) hover:border-brand-blue/50 text-xs font-bold transition-all hover:scale-[1.02]"
                   >
-                    <i className="devicon-github-original text-xl"></i>
-                    <span>View Code</span>
+                    <GitHubIcon className="w-4 h-4" />
+                    <span>View Repository</span>
                   </a>
                 )}
-                {project.link && (
+                {project.link && project.link !== project.github && (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn bg-linear-to-r from-brand-cyan via-brand-blue to-brand-violet text-white border-none shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] flex items-center gap-2 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-blue text-white text-xs font-bold hover:bg-brand-blue/90 shadow-md shadow-brand-blue/20 transition-all hover:scale-[1.02]"
                   >
-                    <span className="material-symbols-outlined text-lg">
-                      open_in_new
-                    </span>
-                    <span>Live Demo</span>
+                    <ExternalLinkIcon className="w-4 h-4" />
+                    <span>Live Demonstration</span>
                   </a>
                 )}
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-(--bg-card) border border-brand-blue/40 text-brand-blue text-xs font-bold hover:bg-brand-blue/10 transition-all ml-auto"
+                >
+                  <span>Build Similar Solution</span>
+                  <span>→</span>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tech Stack Breakdown */}
-      {(frontendTags.length > 0 ||
-        backendTags.length > 0 ||
-        devOpsTags.length > 0) && (
-        <section className="section bg-(--bg-secondary)/30 border-y border-(--border-color)">
-          <div className="container">
-            <div>
-              <h2 className="text-3xl font-bold mb-8">Tech Stack</h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                {frontendTags.length > 0 && (
-                  <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="material-symbols-outlined text-2xl text-brand-cyan">
-                        code
-                      </span>
-                      <h3 className="text-xl font-bold">Frontend</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {frontendTags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1.5 rounded-lg bg-brand-cyan/10 text-brand-cyan text-sm font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
+      {/* Technical Architecture Breakdown */}
+      <section className="section bg-(--bg-secondary)/30 border-y border-(--border-color)">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-8 text-(--text-primary)">
+              Technologies Used in This Project
+            </h2>
 
-                {backendTags.length > 0 && (
-                  <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="material-symbols-outlined text-2xl text-brand-blue">
-                        dns
-                      </span>
-                      <h3 className="text-xl font-bold">Backend</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {backendTags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1.5 rounded-lg bg-brand-blue/10 text-brand-blue text-sm font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {aiAndShopifyTags.length > 0 && (
+                <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
+                  <div className="flex items-center gap-3 mb-4">
+                    <CloudIcon className="w-6 h-6 text-brand-cyan" />
+                    <h3 className="text-lg font-bold">AI &amp; Platform</h3>
                   </div>
-                )}
+                  <div className="flex flex-wrap gap-2">
+                    {aiAndShopifyTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md bg-brand-cyan/10 text-brand-cyan text-xs font-semibold"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-                {devOpsTags.length > 0 && (
-                  <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="material-symbols-outlined text-2xl text-brand-violet">
-                        cloud
-                      </span>
-                      <h3 className="text-xl font-bold">
-                        DevOps & Infrastructure
-                      </h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {devOpsTags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1.5 rounded-lg bg-brand-violet/10 text-brand-violet text-sm font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+              {backendTags.length > 0 && (
+                <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
+                  <div className="flex items-center gap-3 mb-4">
+                    <ServerIcon className="w-6 h-6 text-brand-blue" />
+                    <h3 className="text-lg font-bold">Backend &amp; Data</h3>
                   </div>
-                )}
+                  <div className="flex flex-wrap gap-2">
+                    {backendTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md bg-brand-blue/10 text-brand-blue text-xs font-semibold"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-                {otherTags.length > 0 && (
-                  <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="material-symbols-outlined text-2xl text-brand-blue">
-                        database
-                      </span>
-                      <h3 className="text-xl font-bold">Other Technologies</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {otherTags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1.5 rounded-lg bg-(--bg-secondary) text-(--text-secondary) text-sm font-medium border border-(--border-color)"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+              {frontendTags.length > 0 && (
+                <div className="p-6 rounded-2xl bg-(--bg-card) border border-(--border-color)">
+                  <div className="flex items-center gap-3 mb-4">
+                    <CodeIcon className="w-6 h-6 text-brand-violet" />
+                    <h3 className="text-lg font-bold">Frontend &amp; UI</h3>
                   </div>
-                )}
-              </div>
+                  <div className="flex flex-wrap gap-2">
+                    {frontendTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 rounded-md bg-brand-violet/10 text-brand-violet text-xs font-semibold"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Inquire Banner */}
+            <div className="mt-12 p-8 rounded-3xl bg-linear-to-r from-brand-blue/10 via-brand-cyan/10 to-brand-violet/10 border border-brand-blue/30 text-center space-y-4">
+              <h3 className="text-xl font-bold text-(--text-primary)">
+                Have a similar challenge in your company?
+              </h3>
+              <p className="text-sm text-(--text-secondary) max-w-xl mx-auto">
+                I can help analyze your requirements and implement a production-ready solution tailored to your workflow.
+              </p>
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-blue text-white font-bold text-sm shadow-md shadow-brand-blue/25 hover:bg-brand-blue/90 transition-all"
+              >
+                <span>Start a Project</span>
+                <span>→</span>
+              </Link>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* Related Projects */}
+      {/* Navigation to More Projects */}
       <section className="section">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">More Projects</h2>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 text-brand-blue hover:text-brand-violet transition-colors font-medium group"
-            >
-              View All Projects
-              <span className="material-symbols-outlined text-lg! group-hover:translate-x-1 transition-transform">
-                arrow_forward
-              </span>
-            </Link>
-          </div>
+        <div className="container text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm font-bold text-brand-blue hover:text-brand-violet transition-colors group"
+          >
+            <span>Explore All Projects</span>
+            <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
     </>
@@ -361,36 +403,30 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: "blocking", // Enable ISR for new projects
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     if (!params?.slug) {
-      return {
-        notFound: true,
-      };
+      return { notFound: true };
     }
 
     const project = await getProjectBySlug(params.slug as string);
 
     if (!project) {
-      return {
-        notFound: true,
-      };
+      return { notFound: true };
     }
 
     return {
       props: {
         project: JSON.parse(JSON.stringify(project)),
       },
-      revalidate: 60, // Revalidate every 60 seconds
+      revalidate: 60,
     };
   } catch (error) {
     console.error("Error fetching project:", error);
-    return {
-      notFound: true,
-    };
+    return { notFound: true };
   }
 };
