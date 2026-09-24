@@ -30,15 +30,16 @@ export default function Projects({ projects }: ProjectsProps) {
   return (
     <>
       <SEO
-        title="Featured Work & Projects | Omkar Sonawane - AI & Full-Stack Developer"
-        description="Production software projects across AI applications, custom Shopify solutions, scalable Node.js backends, and business automation pipelines with measurable results."
+        title="Projects & Case Studies | Omkar Sonawane - Freelance Software Engineer"
+        description="Explore production engineering projects by freelance software engineer Omkar Sonawane — including React applications, custom Shopify extensions, scalable Node.js backends, and AI automation."
         keywords={[
-          "AI Projects",
-          "Shopify Projects",
-          "Node.js Backend",
-          "Business Automation",
-          "Full Stack Developer Portfolio",
-          "Production Systems",
+          "Freelance Software Engineer Projects",
+          "React Freelancer Portfolio",
+          "Shopify Freelancer Work",
+          "Software Freelancer Case Studies",
+          "Node.js Backend Projects",
+          "Full Stack Freelancer",
+          "AI Application Development",
         ]}
         url="/projects"
       />

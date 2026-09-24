@@ -24,9 +24,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  experimental: {},
   // Modern JavaScript output for better tree-shaking
   output: 'standalone',
   // Turbopack config (Next.js 16+ uses Turbopack by default)

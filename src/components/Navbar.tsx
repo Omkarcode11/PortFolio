@@ -73,6 +73,7 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
+      aria-label="Main Navigation"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "backdrop-blur-xl bg-(--nav-blur)/95 border-b border-(--border-color)/80 shadow-sm"
@@ -86,7 +87,7 @@ const Navbar = () => {
             <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-brand-cyan via-brand-blue to-brand-violet flex items-center justify-center text-white font-extrabold text-base shadow-sm group-hover:scale-105 transition-transform">
               OS
             </div>
-            <div>
+            <div className="hidden sm:block">
               <div className="text-base sm:text-lg font-extrabold tracking-tight text-(--text-primary) font-heading leading-tight">
                 Omkar Sonawane
               </div>

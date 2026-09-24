@@ -67,14 +67,17 @@ export default function About({ resume }: AboutProps) {
   return (
     <>
       <SEO
-        title="About | Omkar Sonawane - AI & Full-Stack Developer"
-        description="Full-stack and AI developer with production experience building AI applications, Shopify solutions, Node.js backend systems, and business automation workflows. Experienced in turning business problems into production-ready software."
+        title="About | Omkar Sonawane - Freelance Software Engineer & Full-Stack Developer"
+        description="Learn about Omkar Sonawane, a Freelance Software Engineer & Full-Stack Developer specializing in React, Next.js, Shopify, Node.js backend systems, and AI automation workflows."
         keywords={[
-          "AI Developer",
-          "Full Stack Developer",
-          "Shopify Developer",
+          "Freelance Software Engineer",
+          "Freelance SDE",
+          "Software Freelancer",
+          "React Freelancer",
+          "Shopify Freelancer",
+          "Full Stack Freelancer",
           "Node.js Developer",
-          "Business Automation",
+          "AI Developer",
           "About Omkar Sonawane",
         ]}
         url="/about"
